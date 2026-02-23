@@ -31,10 +31,10 @@ export function Layout({ children }: { children: ReactNode }) {
 
   const navItems = [
     { path: '/', label: 'Index', icon: <User className="w-4 h-4" /> },
+    { path: '/experience', label: 'Experience', icon: <BookOpen className="w-4 h-4" /> },
     { path: '/projects', label: 'Projects', icon: <Code className="w-4 h-4" /> },
     { path: '/blog', label: 'Logs', icon: <BookOpen className="w-4 h-4" /> },
     { path: '/achievements', label: 'Badges', icon: <Trophy className="w-4 h-4" /> },
-    { path: '/private', label: 'Classified', icon: <ShieldAlert className="w-4 h-4" /> },
     { path: '/contact', label: 'Terminal', icon: <Terminal className="w-4 h-4" /> },
   ];
 
@@ -58,7 +58,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <header className="fixed top-0 left-0 right-0 z-40 px-4 py-4 md:px-8 glass-panel border-b-0 border-t-0">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <Link href="/" className="font-mono font-bold text-xl tracking-tighter text-glow-cyan text-white magnet-target">
-              SYS_ADMIN<span className="text-primary">.</span>
+              Anshit Raj Yadav <span className="text-primary">— SYS_ADMIN</span>
             </Link>
             
             <nav className="hidden md:flex items-center gap-6">
@@ -78,7 +78,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
             <div className="flex items-center gap-4">
               <div className="text-xs font-mono text-muted-foreground hidden sm:block">
-                SYNC: <span className="text-secondary">{progress}%</span>
+                X Followers: <span className="text-secondary">21.4k</span>
               </div>
               <Link 
                 href="/resume" 

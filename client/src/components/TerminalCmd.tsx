@@ -49,16 +49,30 @@ export function TerminalCmd() {
         addLog('output', 'AVAILABLE COMMANDS:');
         addLog('output', '  help      - Show this menu');
         addLog('output', '  about     - View profile summary');
+        addLog('output', '  experience- View professional history');
         addLog('output', '  projects  - List active deployments');
         addLog('output', '  open      - Open a project (e.g. open arcpay)');
+        addLog('output', '  funding   - View Webcoin Labs funding details');
         addLog('output', '  badges    - View unlocked achievements');
         addLog('output', '  riddle    - Initiate security override protocol');
+        addLog('output', '  download resume - Show resume options');
         addLog('output', '  clear     - Clear terminal history');
         break;
       case 'about':
-        addLog('output', 'PROFILE: Senior Product Engineer');
-        addLog('output', 'SPECIALTIES: Distributed Systems, React, WebGL, Gamification');
-        addLog('output', 'STATUS: Open to highly classified opportunities.');
+        addLog('output', 'IDENTITY: Anshit Raj Yadav');
+        addLog('output', 'ROLE: Builder / Founder / Engineer');
+        addLog('output', 'SPECIALTIES: Web3, Systems, Distributed Products, AI Agents');
+        addLog('output', 'STATUS: Building production-grade systems for the future economy.');
+        break;
+      case 'experience':
+        addLog('system', 'FETCHING PROFESSIONAL HISTORY...');
+        addLog('output', 'Webcoin Labs | 2022-2024 | Ecosystem Growth Lead');
+        addLog('output', 'Titan DEX    | 2024      | SDE Intern');
+        addLog('output', 'Type "webcoin" or "funding" for more details.');
+        break;
+      case 'funding':
+      case 'webcoin':
+        addLog('output', 'Webcoin Labs — $20,000+ fundraising supported via demos, partnerships & investor coordination.');
         break;
       case 'projects':
         addLog('output', 'DEPLOYED SYSTEMS:');
@@ -75,6 +89,16 @@ export function TerminalCmd() {
           } else {
             addLog('error', `PROJECT NOT FOUND: ${args[1]}`);
           }
+        }
+        break;
+      case 'download':
+        if (args[1] === 'resume') {
+          addLog('output', 'SELECT RESUME TYPE:');
+          addLog('output', '  > download resume technical');
+          addLog('output', '  > download resume business');
+          addLog('output', '  > download resume founder');
+        } else {
+          addLog('error', 'USAGE: download resume <type>');
         }
         break;
       case 'badges':

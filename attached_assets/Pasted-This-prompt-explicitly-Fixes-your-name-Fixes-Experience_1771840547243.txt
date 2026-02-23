@@ -1,0 +1,392 @@
+This prompt explicitly:
+
+Fixes your name
+
+Fixes Experience vs Projects separation
+
+Adds Webcoin Labs + $20K funding
+
+Adds ALL your real projects
+
+Replaces dots with real project visuals
+
+Makes it unmistakably YOUR portfolio, not a SaaS landing page
+
+Keeps the SYS_ADMIN / terminal aesthetic, but reframes it as your personal operating system
+
+✅ FINAL CORRECTED MASTER PROMPT
+
+(Paste this as-is into Replit / Lovable / Cursor)
+
+ROLE & INTENT
+
+You are building a personal portfolio operating system for Anshit Raj Yadav — not a generic website, not a SaaS product, not a company landing page.
+
+This site represents one person:
+
+Anshit Raj Yadav — Engineer, Builder, Founder, Web3 & Systems Developer
+
+Every screen must clearly communicate:
+
+Who I am
+
+What I’ve built
+
+What impact I’ve created
+
+Why I’m different
+
+The aesthetic can feel like a “system interface”, but the identity must always be personal.
+
+GLOBAL IDENTITY (FIX THIS FIRST)
+❌ REMOVE / REPLACE
+
+Any fake names (OmniCorp, StartUpX, Lead Architect, etc.)
+
+Any generic experience placeholders
+
+Any project dots without meaning
+
+✅ SET AS GLOBAL TRUTH
+
+Name everywhere: Anshit Raj Yadav
+
+Brand tone: “Personal OS / Engineer’s Control Panel”
+
+Not a company website
+
+Not a fictional resume
+
+HEADER / NAV (PERSONALIZED)
+
+Top-left:
+
+Anshit Raj Yadav — SYS_ADMIN
+
+Navigation:
+
+Index
+
+Experience
+
+Projects
+
+Logs
+
+Badges
+
+Terminal
+
+Resume
+
+Top-right:
+
+X Followers: 21.4k
+
+Resume button
+
+HERO SECTION (FIXED COPY)
+❌ REMOVE
+
+“Engineering the Future” (too generic, startup-ish)
+
+✅ REPLACE WITH
+
+Anshit Raj Yadav
+Builder of Systems, Products & Experiments
+
+Subtext:
+
+I build real products used by real users — from stablecoin payment infrastructure and encrypted ledgers to gamified consumer apps and AI-powered commerce systems.
+
+CTAs:
+
+Explore My Work
+
+Open Terminal
+
+Add subtle system text:
+
+SYSTEM STATUS: ONLINE
+USER: anshit.raj.yadav
+ROLE: BUILDER / FOUNDER / ENGINEER
+
+EXPERIENCE SECTION (THIS WAS WRONG — FIX IT)
+RULE
+
+👉 Experience = where you worked
+👉 Projects = what you built
+
+EXPERIENCE (REAL ONLY)
+Webcoin Labs — Business Development & Ecosystem Growth Lead
+
+2022 – 2024
+
+Led partnerships with 50+ Web3 startups
+
+Managed 1,500+ influencers (KOLs) across X, Telegram, Discord
+
+Supported $20,000+ fundraising via product demos & investor coordination
+
+Drove GTM strategies increasing project visibility by 200%
+
+Worked closely with founders, VCs, launchpads (DAO Maker, Seedify, Poolz)
+
+Titan DEX — SDE Intern / Contributor
+
+2024
+
+Improved DEX UI workflows used by 500+ test users
+
+Stress-tested swap flows with 100+ traders
+
+Validated frontend ↔ backend interactions with live liquidity
+
+Worked on real trading interfaces (NOT a personal project)
+
+⚠️ Titan DEX must NOT appear in Projects
+
+PROJECTS SECTION (MAJOR FIX)
+RULES
+
+Projects must have real screenshots / mock frames
+
+NO abstract dots
+
+Each project = card → case study
+
+Titan DEX is NOT here
+
+PROJECTS TO INCLUDE (ALL REAL)
+OmniAgentPay
+
+AI-Driven Commerce & Payments Infrastructure
+
+Secure payment execution layer for AI agents
+
+Policy-based controls (spend limits, rate limiting, recipient validation)
+
+Built using Circle programmable wallets, MCP, LangChain
+
+100+ test transactions, feedback from 50+ developers
+
+Visuals:
+
+Dashboard UI mock
+
+Payment flow diagram
+
+Agent → Policy → Execution flow
+
+ARCPay
+
+Stablecoin Payment Gateway on ARC
+
+Stripe-like crypto payment system
+
+On-chain payment verification & receipt generation
+
+Merchant dashboards, QR payments, invoices
+
+Idempotent APIs to prevent double execution
+
+Metrics:
+
+100+ transactions tested
+
+Real merchant workflows
+
+Visuals:
+
+Payment dashboard
+
+QR payment screen
+
+Transaction status UI
+
+Private Ledger Flow
+
+Encrypted Ledger System on Zama FHEVM
+
+Fully homomorphic encrypted ledger
+
+5+ encrypted smart contract functions
+
+50+ encrypted ledger entries tested
+
+Privacy-first on-chain computation
+
+Visuals:
+
+FHE flow diagram
+
+Ledger UI
+
+Encryption lifecycle graphic
+
+Mini Cast Store
+
+Mini-App Marketplace (Base / Farcaster)
+
+Marketplace for mini apps
+
+Developer onboarding + admin review
+
+25+ developers listed apps
+
+1,500+ signups in first week
+
+100–150 DAU
+
+Visuals:
+
+App listing grid
+
+Developer dashboard
+
+Submission flow
+
+RiddlePay
+
+Gamified Crypto Rewards Platform
+
+Airdrops unlocked by solving riddles
+
+Referral-based growth loops
+
+Improved engagement by 40%
+
+Consumer-facing, playful UX
+
+Visuals:
+
+Riddle unlock screen
+
+Reward claim UI
+
+Game-like interface
+
+VISUAL FIX (IMPORTANT)
+❌ REMOVE
+
+Floating dots
+
+Abstract nodes with no meaning
+
+✅ REPLACE WITH
+
+Project cards with:
+
+Image / UI mock
+
+Title
+
+Short impact line
+
+“Open Case Study” CTA
+
+Optional:
+
+Keep constellation view as background only, NOT primary UI
+
+TERMINAL (KEEP BUT FIX PURPOSE)
+
+Terminal is your personal interface, not a gimmick.
+
+Commands:
+
+about
+
+experience
+
+projects
+
+open arcpay
+
+open omnipagentpay
+
+download resume
+
+download resume technical
+
+download resume business
+
+download resume founder
+
+webcoin
+
+funding
+
+badges
+
+help
+
+When typing funding:
+
+Webcoin Labs — $20,000+ fundraising supported via demos, partnerships & investor coordination.
+
+RESUME DOWNLOAD (FIXED)
+
+When user clicks Resume or types in terminal:
+
+Show options:
+
+Technical Resume
+
+Founder / Builder Resume
+
+Business / BD Resume
+
+Each downloads the correct PDF.
+
+BADGES (PERSONAL)
+
+Examples:
+
+“Built 5 Production Products”
+
+“$20K Fundraising Contributor”
+
+“Solana Hackathon Top 15”
+
+“1,500+ Influencers Managed”
+
+“21.4k Audience Builder”
+
+FINAL TONE CHECK (VERY IMPORTANT)
+
+This website must feel like:
+
+“This guy has actually BUILT things.”
+
+Not:
+
+❌ Agency site
+
+❌ SaaS landing page
+
+❌ Fictional system
+
+It should feel like:
+
+A living proof of work
+
+A personal operating system
+
+A resume you explore, not read
+
+ACCEPTANCE CHECKLIST
+
+ Name shown as Anshit Raj Yadav everywhere
+
+ Titan DEX only in Experience, NOT Projects
+
+ Webcoin Labs + $20K funding clearly shown
+
+ ALL projects included with visuals
+
+ No fake companies or roles
+
+ Terminal reflects real history
+
+ Portfolio feels personal, not corporate

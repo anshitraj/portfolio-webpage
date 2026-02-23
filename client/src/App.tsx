@@ -14,11 +14,13 @@ import Achievements from "./pages/Achievements";
 import Contact from "./pages/Contact";
 import Private from "./pages/Private";
 import Resume from "./pages/Resume";
+import Experience from "./pages/Experience";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/experience" component={Experience} />
       <Route path="/projects" component={Projects} />
       <Route path="/projects/:slug" component={ProjectDetail} />
       <Route path="/blog" component={Blog} />

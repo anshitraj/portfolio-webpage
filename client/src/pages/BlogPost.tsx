@@ -40,7 +40,7 @@ export default function BlogPost() {
             <span className="text-secondary">{post.readTime}</span>
           </div>
           
-          <div className="prose-custom max-w-none">
+          <div className="prose prose-invert max-w-none prose-headings:text-white prose-p:text-muted-foreground prose-strong:text-secondary prose-code:text-primary">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>
