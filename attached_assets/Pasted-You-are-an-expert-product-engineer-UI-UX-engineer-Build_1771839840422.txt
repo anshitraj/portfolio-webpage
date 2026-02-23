@@ -1,0 +1,209 @@
+You are an expert product engineer + UI/UX engineer. Build a production-grade, interactive portfolio website for Anshit Raj Yadav as a full-stack project that runs on Replit.
+
+GOAL
+Create a highly polished, immersive portfolio (not a regular portfolio) with:
+- Smooth page/section transitions, micro-interactions, custom cursor effects
+- Gamification (badges, progress/journey, riddle unlock)
+- Interactive terminal that supports “download resume” with multiple CV options (Founder’s Office / Business / Technical)
+- Projects + case studies with metrics + screenshots placeholders
+- Blog/Articles (MDX or Markdown)
+- Testimonials
+- Achievements + certifications timeline
+- Open source contributions (GitHub link + pinned repos section)
+- Social proof section (X/Twitter follower count shown as 21.4k; later can be API-driven)
+
+TECH STACK (Replit-friendly)
+- Next.js 14 (App Router) + TypeScript
+- TailwindCSS + shadcn/ui
+- Framer Motion for page transitions + animations
+- Three.js / @react-three/fiber ONLY for one lightweight 3D “Project Constellation” scene (lazy-loaded)
+- MDX for blog posts (next-mdx-remote or contentlayer; pick the simplest stable approach)
+- Optional: simple server route for follower count (static fallback = 21.4k)
+
+NON-NEGOTIABLE UX REQUIREMENTS
+1) Hero must feel premium: animated background (subtle noise + gradient + floating “encrypted digits” effect).
+2) Transitions: every navigation feels like a continuous story (fade-through + directional motion).
+3) Projects: presented as constellation or “star map” (2D/3D hybrid). Clicking a star zooms into a case study page.
+4) Terminal: must accept commands and feel real (autofill, command history, help, hidden commands).
+5) Gamification:
+   - A “Journey” progress indicator (About → Projects → Achievements → Blog → Contact)
+   - Badge collection: unlock badges when user completes actions (view all projects, solve riddle, read 1 blog, open terminal help).
+   - Riddle unlock: hides a “Private Logs” page section until user solves a riddle.
+6) Performance: lighthouse-friendly. Lazy-load 3D. Optimize images. No heavy render loops.
+
+CONTENT (use these facts; do NOT invent metrics beyond provided)
+Use these resume facts to populate content:
+- Technical profile, projects, achievements and metrics:
+  - OmniAgentPay: secure payment execution layer; policy controls; processed 100+ test transactions; feedback from 50+ developers. :contentReference[oaicite:0]{index=0}
+  - ARCPay: stablecoin payment gateway; on-chain verification and receipt generation; idempotent payment APIs; status tracking. :contentReference[oaicite:1]{index=1}
+  - Private Ledger Flow: Zama FHEVM privacy ledger; 5+ encrypted smart contract functions; 50+ encrypted ledger entries tested. :contentReference[oaicite:2]{index=2}
+  - Mini Cast Store: 25+ devs published; 1,500+ sign-ups in first week; ~150 DAU during rollout. :contentReference[oaicite:3]{index=3}
+  - Titan Dex: improved UI workflows; 500+ test users; stress testing with 100+ traders (from technical CV). :contentReference[oaicite:4]{index=4}
+- Business profile:
+  - Webcoin Labs: partnerships with 50+ startups; managed 1,500+ influencers; GTM increased adoption/visibility by 200%; raised $50K+. :contentReference[oaicite:5]{index=5}
+  - Marketing CV: Riddle Pay growth loops improved engagement by 40%. :contentReference[oaicite:6]{index=6}
+- Achievements:
+  - Top 15 Solana Hackathon among 500+ teams. :contentReference[oaicite:7]{index=7}
+  - Won Agentic AI Hackathon (San Francisco) (as written in CV). :contentReference[oaicite:8]{index=8}
+  - Built apps used by 1,000+ cumulative users. :contentReference[oaicite:9]{index=9}
+- Social:
+  - X/Twitter: show follower count 21.4k in UI (static fallback). (Later can be dynamic)
+- Links:
+  - GitHub: https://github.com/anshitraj
+  - LinkedIn: https://linkedin.com/in/anshitraj
+  - X: https://x.com/solrishu
+  - Demos:
+    - OmniAgentPay: https://ai-agent-dashboard-two.vercel.app :contentReference[oaicite:10]{index=10}
+    - ARCPay: https://www.arcpay.systems :contentReference[oaicite:11]{index=11}
+    - MiniCast: https://www.minicast.store :contentReference[oaicite:12]{index=12}
+
+PAGES / ROUTES
+- / (Home story page, section-based with scroll + nav)
+- /projects (projects index with constellation + filters)
+- /projects/[slug] (case study page template)
+- /blog (blog index)
+- /blog/[slug] (MDX post)
+- /achievements (timeline)
+- /contact (contact form + terminal area)
+- /private (locked; unlocked by riddle solve; shows “private logs” demo UI; no sensitive data)
+- /resume (download hub page; also accessible via terminal)
+
+DESIGN SYSTEM
+- Dark theme with deep blue/purple gradients and neon accents.
+- Typography: modern (Inter or similar).
+- Components: shadcn cards, badges, tabs, buttons.
+- Custom cursor: subtle “magnet” effect on interactive elements.
+- Motion: Framer Motion variants for page transitions + section reveals.
+
+TERMINAL SPEC
+A component that supports:
+- Commands:
+  - help
+  - about
+  - projects (lists projects)
+  - open <project> (navigates)
+  - download resume (shows 3 options)
+  - download resume founder
+  - download resume business
+  - download resume technical
+  - badges (lists unlocked)
+  - riddle (starts riddle)
+  - clear
+- Features:
+  - Command history with ↑/↓
+  - Autocomplete on Tab
+  - “download resume” opens a selection UI (modal or terminal prompt)
+  - Downloads should be local static assets in /public/resumes:
+    - founder-office.pdf
+    - business.pdf
+    - technical.pdf
+  (Use placeholder PDFs if not provided; make sure code supports swapping files later.)
+
+GAMIFICATION LOGIC
+- Use localStorage to store:
+  - visitedSections
+  - badgesUnlocked
+  - riddleSolved boolean
+- Badge examples:
+  - “Explorer” = visited all main sections
+  - “Operator” = used terminal help
+  - “Solver” = solved riddle
+  - “Reader” = opened a blog post
+  - “Closer” = clicked contact CTA
+- Progress UI: shows 0–100% completion of journey.
+- Private page gate: if riddleSolved is false → show locked screen + prompt to open terminal and run “riddle”.
+
+PROJECT DATA MODEL
+Create a single source of truth file:
+- /src/content/projects.ts with:
+  - slug, title, one-liner, tags, techStack, timeline, metrics, links, screenshots[], “problem/solution/architecture/outcomes”, “what I learned”
+Populate with the facts above; do not invent extra numbers.
+
+BLOG MODEL
+- /src/content/blog/*.mdx
+Create 4 starter posts with real themes (no fake claims):
+- “Designing non-custodial payment flows on-chain”
+- “What FHE changes for on-chain apps (beginner friendly)”
+- “Building marketplace workflows (submission → review → listing)”
+- “Policy controls for AI agent payments”
+
+TESTIMONIALS
+Create a section with placeholders clearly labeled “(Add real quote)”. Do NOT invent real people. Use “Anonymous collaborator” placeholders.
+
+IMPLEMENTATION TASKS (deliver all code)
+1) Initialize Next.js + Tailwind + shadcn + Framer Motion.
+2) Layout + theme toggle + SEO metadata + OpenGraph.
+3) Home page sections:
+   - Hero (animated background)
+   - About
+   - Featured projects
+   - Metrics strip (1,000+ users, 21.4k followers, 1,500+ sign-ups)
+   - Achievements timeline preview
+   - Blog preview
+   - Testimonials
+   - Contact + Terminal
+4) Projects constellation:
+   - Provide 2 modes:
+     - default: lightweight 2D canvas constellation (no WebGL)
+     - optional: 3D mode (lazy-loaded) with @react-three/fiber for starfield + clickable nodes
+5) Case study pages with smooth transitions.
+6) Terminal component fully functional with commands + downloads.
+7) Gamification state manager (localStorage) + badges UI.
+8) Riddle flow: at least 3 riddles; answers hashed/normalized; success unlocks private page.
+9) Contact form:
+   - Basic form with validation (name/email/message)
+   - Use a placeholder “send” API route that logs to console for now.
+10) Accessibility + performance:
+   - keyboard navigation
+   - reduced-motion support
+   - lazy-load heavy modules
+11) Add README.md with:
+   - setup steps
+   - how to change resume files
+   - how to add projects/blog posts
+   - how to deploy
+
+FOLDER STRUCTURE (must match)
+- /src/app
+  - layout.tsx
+  - page.tsx
+  - projects/page.tsx
+  - projects/[slug]/page.tsx
+  - blog/page.tsx
+  - blog/[slug]/page.tsx
+  - achievements/page.tsx
+  - contact/page.tsx
+  - private/page.tsx
+  - resume/page.tsx
+  - api/contact/route.ts
+- /src/components
+  - ui/* (shadcn)
+  - motion/PageTransition.tsx
+  - hero/Hero.tsx
+  - terminal/Terminal.tsx
+  - gamification/Badges.tsx
+  - gamification/JourneyProgress.tsx
+  - constellation/Constellation2D.tsx
+  - constellation/Constellation3D.tsx (lazy)
+- /src/content
+  - projects.ts
+  - blog/*.mdx
+- /public
+  - images/projects/* (placeholders)
+  - resumes/founder-office.pdf
+  - resumes/business.pdf
+  - resumes/technical.pdf
+
+ACCEPTANCE CRITERIA
+- Running on Replit: “npm run dev” works with no errors.
+- Terminal downloads open correct files.
+- Riddle unlock persists on refresh.
+- Projects render from a single data file; adding a project updates UI everywhere.
+- Page transitions feel smooth and intentional.
+- Mobile responsive + accessible.
+
+Now implement the entire project codebase accordingly. Output:
+- exact files with their full contents
+- any install commands
+- how to run locally on Replit
+Do NOT skip files. Do NOT leave TODOs except for placeholders like images/testimonials.
