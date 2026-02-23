@@ -1,0 +1,41 @@
+import { useMutation } from "@tanstack/react-query";
+import { api, type ContactInput } from "@shared/routes";
+import { useToast } from "@/hooks/use-toast";
+
+export function useSubmitContact() {
+  const { toast } = useToast();
+  
+  return useMutation({
+    mutationFn: async (data: ContactInput) => {
+      const validated = api.contact.create.input.parse(data);
+      const res = await fetch(api.contact.create.path, {
+        method: api.contact.create.method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(validated),
+      });
+      
+      if (!res.ok) {
+        if (res.status === 400) {
+          const error = api.contact.create.responses[400].parse(await res.json());
+          throw new Error(error.message);
+        }
+        throw new Error('Failed to send message');
+      }
+      return api.contact.create.responses[201].parse(await res.json());
+    },
+    onSuccess: () => {
+      toast({
+        title: "Transmission Successful",
+        description: "Your message has been encrypted and sent.",
+        variant: "default",
+      });
+    },
+    onError: (err) => {
+      toast({
+        title: "Transmission Failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
+  });
+}
