@@ -62,12 +62,40 @@ export default function ProjectDetail() {
             </div>
             
             <div className="flex flex-wrap gap-4">
-              <button onClick={() => window.alert('Demo locked for security reasons.')} className="px-6 py-3 rounded-xl font-bold bg-primary text-white shadow-lg shadow-primary/30 hover:-translate-y-1 transition-all flex items-center gap-2 magnet-target">
-                Live System <ExternalLink className="w-4 h-4" />
-              </button>
-              <button onClick={() => window.alert('Source code is classified.')} className="px-6 py-3 rounded-xl font-bold bg-white/10 text-white hover:bg-white/20 transition-all flex items-center gap-2 magnet-target">
-                Repository <Github className="w-4 h-4" />
-              </button>
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 rounded-xl font-bold bg-primary text-white shadow-lg shadow-primary/30 hover:-translate-y-1 transition-all flex items-center gap-2 magnet-target"
+                >
+                  Live System <ExternalLink className="w-4 h-4" />
+                </a>
+              ) : (
+                <button
+                  onClick={() => window.alert('Live demo link coming soon.')}
+                  className="px-6 py-3 rounded-xl font-bold bg-primary text-white shadow-lg shadow-primary/30 hover:-translate-y-1 transition-all flex items-center gap-2 magnet-target"
+                >
+                  Live System <ExternalLink className="w-4 h-4" />
+                </button>
+              )}
+              {project.repoUrl ? (
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 rounded-xl font-bold bg-white/10 text-white hover:bg-white/20 transition-all flex items-center gap-2 magnet-target"
+                >
+                  Repository <Github className="w-4 h-4" />
+                </a>
+              ) : (
+                <button
+                  onClick={() => window.alert('Source code is not publicly available.')}
+                  className="px-6 py-3 rounded-xl font-bold bg-white/10 text-white hover:bg-white/20 transition-all flex items-center gap-2 magnet-target"
+                >
+                  Repository <Github className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>

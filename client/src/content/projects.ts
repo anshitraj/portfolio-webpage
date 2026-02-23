@@ -7,6 +7,8 @@ export interface Project {
   metrics: { label: string; value: string }[];
   position: [number, number, number];
   image: string;
+  liveUrl?: string;
+  repoUrl?: string;
 }
 
 export const projects: Project[] = [

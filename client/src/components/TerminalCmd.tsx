@@ -66,8 +66,8 @@ export function TerminalCmd() {
         break;
       case 'experience':
         addLog('system', 'FETCHING PROFESSIONAL HISTORY...');
-        addLog('output', 'Webcoin Labs | 2022-2024 | Ecosystem Growth Lead');
-        addLog('output', 'Titan DEX    | 2024      | SDE Intern');
+        addLog('output', 'Webcoin Labs | 2022–2025 | Business Development & Ecosystem Growth Lead');
+        addLog('output', 'Titan Dex Protocol | 2023–2024 | SDE Intern / Protocol Contributor');
         addLog('output', 'Type "webcoin" or "funding" for more details.');
         break;
       case 'funding':

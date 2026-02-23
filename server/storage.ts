@@ -7,9 +7,26 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
   async createMessage(insertMessage: CreateMessageRequest): Promise<MessageResponse> {
+    if (!db) {
+      throw new Error("Database is not configured (missing DATABASE_URL).");
+    }
     const [message] = await db.insert(messages).values(insertMessage).returning();
     return message;
   }
 }
 
-export const storage = new DatabaseStorage();
+export class MemoryStorage implements IStorage {
+  private nextId = 1;
+
+  async createMessage(insertMessage: CreateMessageRequest): Promise<MessageResponse> {
+    const createdAt = new Date();
+    const message: MessageResponse = {
+      id: this.nextId++,
+      createdAt,
+      ...insertMessage,
+    };
+    return message;
+  }
+}
+
+export const storage: IStorage = db ? new DatabaseStorage() : new MemoryStorage();

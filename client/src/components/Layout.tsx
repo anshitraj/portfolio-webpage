@@ -4,7 +4,16 @@ import { motion } from 'framer-motion';
 import { useGamification } from '@/hooks/use-gamification';
 import { CustomCursor } from './CustomCursor';
 import { AnimatedBackground } from './AnimatedBackground';
-import { Terminal, Code, User, BookOpen, Trophy, ShieldAlert } from 'lucide-react';
+import {
+  Terminal,
+  Code,
+  User,
+  BookOpen,
+  Trophy,
+  ShieldAlert,
+  Linkedin,
+  Github,
+} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -76,16 +85,36 @@ export function Layout({ children }: { children: ReactNode }) {
               ))}
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <div className="text-xs font-mono text-muted-foreground hidden sm:block">
                 X Followers: <span className="text-secondary">21.4k</span>
               </div>
-              <Link 
-                href="/resume" 
-                className="px-4 py-2 text-sm font-bold rounded-lg bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-white transition-all box-glow magnet-target"
-              >
-                RESUME
-              </Link>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://linkedin.com/in/anshitraj"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-muted-foreground hover:text-white hover:bg-white/10 transition-all magnet-target"
+                >
+                  <Linkedin className="w-3 h-3" />
+                  <span className="hidden md:inline">LinkedIn</span>
+                </a>
+                <a
+                  href="https://github.com/anshitraj"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-muted-foreground hover:text-white hover:bg-white/10 transition-all magnet-target"
+                >
+                  <Github className="w-3 h-3" />
+                  <span className="hidden md:inline">GitHub</span>
+                </a>
+                <Link
+                  href="/resume"
+                  className="px-4 py-2 text-sm font-bold rounded-lg bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-white transition-all box-glow magnet-target"
+                >
+                  RESUME
+                </Link>
+              </div>
             </div>
           </div>
         </header>

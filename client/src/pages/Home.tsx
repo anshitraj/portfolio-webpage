@@ -1,8 +1,29 @@
 import { Layout } from '@/components/Layout';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { ArrowRight, Activity, Users, Star, Code, Terminal, Briefcase } from 'lucide-react';
+import {
+  ArrowRight,
+  Activity,
+  Users,
+  Star,
+  Code,
+  Terminal,
+  Briefcase,
+  Linkedin,
+  Github,
+  Download,
+} from 'lucide-react';
 import { projects } from '@/content/projects';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { GitHubContributionsHeatmap } from '@/components/github/GitHubContributionsHeatmap';
 
 export default function Home() {
   const metrics = [
@@ -49,24 +70,119 @@ export default function Home() {
             I build real products used by real users — from stablecoin payment infrastructure and encrypted ledgers to gamified consumer apps and AI-powered commerce systems.
           </motion.p>
           
-          <motion.div 
+          <motion.div
             className="flex flex-wrap items-center justify-center gap-4 pt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Link 
-              href="/projects" 
+            <Link
+              href="/projects"
               className="px-8 py-4 rounded-xl font-bold bg-primary text-white shadow-lg hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center gap-2 magnet-target"
             >
               Explore My Work <Code className="w-5 h-5" />
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="px-8 py-4 rounded-xl font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all flex items-center gap-2 magnet-target"
             >
               Open Terminal <Terminal className="w-5 h-5" />
             </Link>
+          </motion.div>
+
+          <motion.div
+            className="mt-6 flex flex-col items-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-black/40 border border-white/5 px-4 py-3 backdrop-blur-md shadow-[0_0_30px_rgba(88,28,135,0.35)]">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="gap-2 font-mono text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-primary/90 magnet-target">
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="bg-black/90 border border-primary/40 max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="font-mono text-sm tracking-[0.3em] text-secondary">
+                      /resumes
+                    </DialogTitle>
+                    <DialogDescription className="text-muted-foreground">
+                      Select the profile you want to download.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="mt-4 grid gap-3">
+                    <a
+                      href="/resumes/anshit-raj-yadav-technical.pdf"
+                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
+                      download
+                    >
+                      <div>
+                        <div className="text-sm font-semibold text-white">
+                          Technical Resume
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Systems, infra, full-stack engineering
+                        </p>
+                      </div>
+                      <Download className="w-4 h-4 text-primary" />
+                    </a>
+                    <a
+                      href="/resumes/anshit-raj-yadav-founder.pdf"
+                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
+                      download
+                    >
+                      <div>
+                        <div className="text-sm font-semibold text-white">
+                          Founder / Builder Resume
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Company-building, 0→1 products, growth
+                        </p>
+                      </div>
+                      <Download className="w-4 h-4 text-primary" />
+                    </a>
+                    <a
+                      href="/resumes/anshit-raj-yadav-business-bd.pdf"
+                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
+                      download
+                    >
+                      <div>
+                        <div className="text-sm font-semibold text-white">
+                          Business / BD Resume
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Strategy, GTM, partnerships & ops
+                        </p>
+                      </div>
+                      <Download className="w-4 h-4 text-primary" />
+                    </a>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              <a
+                href="https://linkedin.com/in/anshitraj"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-white/10 hover:text-white transition-all magnet-target"
+              >
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
+              </a>
+
+              <a
+                href="https://github.com/anshitraj"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-white/10 hover:text-white transition-all magnet-target"
+              >
+                <Github className="w-4 h-4" />
+                GitHub
+              </a>
+            </div>
           </motion.div>
 
           <motion.div 
@@ -99,7 +215,7 @@ export default function Home() {
         </motion.section>
 
         {/* Featured Projects preview */}
-        <section className="w-full space-y-10 mb-20">
+        <section className="w-full space-y-10 mb-16">
           <div className="flex items-end justify-between border-b border-white/5 pb-6">
             <div>
               <h2 className="text-4xl font-black text-white tracking-tighter uppercase">Recent Deployments</h2>
@@ -148,6 +264,62 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </section>
+
+        {/* GitHub Contributions */}
+        <section className="w-full space-y-6 mb-20">
+          <div className="flex items-center justify-between gap-4 border-b border-white/5 pb-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                GitHub Contributions
+              </h2>
+              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
+                553 contributions in the last year
+              </p>
+            </div>
+            <a
+              href="https://github.com/anshitraj"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-white transition-colors magnet-target"
+            >
+              View on GitHub
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="glass-panel rounded-3xl p-4 md:p-6 border border-white/5 bg-black/40">
+            <GitHubContributionsHeatmap />
+            <div className="mt-4 flex items-center justify-between gap-4 text-xs text-muted-foreground">
+              <span className="font-mono tracking-[0.2em] uppercase">
+                Activity Log &mdash; Last 12 Months
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-[0.2em]">
+                  Less
+                </span>
+                <div className="flex items-center gap-1">
+                  <span className="w-3 h-3 rounded-sm bg-muted-foreground/10" />
+                  <span className="w-3 h-3 rounded-sm bg-emerald-900/60" />
+                  <span className="w-3 h-3 rounded-sm bg-emerald-700" />
+                  <span className="w-3 h-3 rounded-sm bg-emerald-400" />
+                  <span className="w-3 h-3 rounded-sm bg-emerald-300" />
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.2em]">
+                  More
+                </span>
+              </div>
+            </div>
+            <a
+              href="https://github.com/anshitraj"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex sm:hidden items-center gap-2 text-xs font-bold text-primary hover:text-white transition-colors magnet-target"
+            >
+              View on GitHub
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </section>
       </div>
