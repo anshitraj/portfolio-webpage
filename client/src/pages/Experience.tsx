@@ -6,37 +6,55 @@ export default function Experience() {
   const experiences = [
     {
       company: 'Webcoin Labs',
-      role: 'Business Development & Ecosystem Growth Lead',
-      period: '2022 – 2024',
+      role: 'Founding Team — Ecosystem, Partnerships, Infra & Growth',
+      period: '2022 – 2025',
       description: [
-        'Led partnerships with 50+ Web3 startups',
-        'Managed 1,500+ influencers (KOLs) across X, Telegram, Discord',
-        'Supported $20,000+ fundraising via product demos & investor coordination',
-        'Drove GTM strategies increasing project visibility by 200%',
-        'Worked closely with founders, VCs, launchpads (DAO Maker, Seedify, Poolz)'
+        'Built Webcoin Labs as a founder–builder ecosystem connecting startups with builders, launchpads, VCs, and partners.',
+        'Connected 100+ startups with builders, investors, and ecosystem partners for launches and growth.',
+        'Managed a 1,500+ influencer / KOL network across X, Telegram, and Discord for campaigns.',
+        'Supported fundraising initiatives that contributed to $50K+ raised across early-stage projects.',
+        'Ran campaigns and partnership support for 10+ projects, growing social/community reach from ~1K to 21K+.',
       ],
       icon: TrendingUp,
       metrics: [
-        { label: 'Partnerships', value: '50+', icon: Users },
-        { label: 'Funding', value: '$20K+', icon: DollarSign }
-      ]
+        { label: 'Startups Connected', value: '100+', icon: Users },
+        { label: 'Community Reach', value: '21K+', icon: TrendingUp },
+        { label: 'Fundraising Supported', value: '$50K+', icon: DollarSign },
+        { label: 'KOL Network', value: '1,500+', icon: Users },
+      ],
     },
     {
       company: 'Titan DEX',
-      role: 'SDE Intern / Contributor',
+      role: 'SDE Intern / Product & Protocol Contributor',
       period: '2024',
       description: [
-        'Improved DEX UI workflows used by 500+ test users',
-        'Stress-tested swap flows with 100+ traders',
-        'Validated frontend ↔ backend interactions with live liquidity',
-        'Worked on real trading interfaces'
+        'Worked on DEX workflows, tooling, and product infrastructure used by test users and traders.',
+        'Improved reliability and usability across swap flows for 500+ test users.',
+        'Supported testing and iteration loops with 100+ traders providing real product feedback.',
+        'Collaborated with remote protocol and product teams to tune UX around real liquidity and transaction behaviours.',
       ],
       icon: Briefcase,
       metrics: [
         { label: 'Test Users', value: '500+', icon: Users },
-        { label: 'Traders', value: '100+', icon: TrendingUp }
-      ]
-    }
+        { label: 'Traders in Loops', value: '100+', icon: TrendingUp },
+      ],
+    },
+    {
+      company: 'Independent Builder',
+      role: 'Software Developer — Payments, AI & Infra',
+      period: '2023 – Present',
+      description: [
+        'Built and shipped multiple production-style full-stack applications across payments, AI agents, dashboards, and blockchain infra.',
+        'Designed and deployed systems like ARCPay, OmniAgentPay, Mini Cast Store, and DCA Vault.',
+        'Experimented with agentic AI workflows for payments, outreach, and developer support.',
+        'Maintains and iterates on a portfolio of systems rather than one-off demos.',
+      ],
+      icon: Briefcase,
+      metrics: [
+        { label: 'Products Shipped', value: '10+', icon: Briefcase },
+        { label: 'Focus Areas', value: 'Payments, AI, Infra', icon: TrendingUp },
+      ],
+    },
   ];
 
   return (

@@ -53,6 +53,11 @@ export function TerminalCmd() {
         addLog('output', '  projects  - List active deployments');
         addLog('output', '  open      - Open a project (e.g. open arcpay)');
         addLog('output', '  funding   - View Webcoin Labs funding details');
+        addLog('output', '  webcoin   - View ecosystem & growth work');
+        addLog('output', '  titan     - View Titan Dex contributions');
+        addLog('output', '  stack     - View technical stack');
+        addLog('output', '  focus     - View current build focus');
+        addLog('output', '  achievements - View headline outcomes');
         addLog('output', '  badges    - View unlocked achievements');
         addLog('output', '  riddle    - Initiate security override protocol');
         addLog('output', '  download resume - Show resume options');
@@ -61,18 +66,25 @@ export function TerminalCmd() {
       case 'about':
         addLog('output', 'IDENTITY: Anshit Raj Yadav');
         addLog('output', 'ROLE: Builder / Founder / Engineer');
-        addLog('output', 'SPECIALTIES: Web3, Systems, Distributed Products, AI Agents');
-        addLog('output', 'STATUS: Building production-grade systems for the future economy.');
+        addLog('output', 'SPECIALTIES: Agentic AI, LLM systems, stablecoin payments, blockchain infra, full-stack product.');
+        addLog('output', 'STATUS: Shipping production-style systems for founders, traders, and operators.');
         break;
       case 'experience':
         addLog('system', 'FETCHING PROFESSIONAL HISTORY...');
-        addLog('output', 'Webcoin Labs | 2022–2025 | Business Development & Ecosystem Growth Lead');
-        addLog('output', 'Titan Dex Protocol | 2023–2024 | SDE Intern / Protocol Contributor');
-        addLog('output', 'Type "webcoin" or "funding" for more details.');
+        addLog('output', 'Webcoin Labs | 2022–2025 | Founding Team — Ecosystem, Partnerships, Infra & Growth');
+        addLog('output', 'Titan Dex Protocol | 2023–2024 | SDE Intern / Product & Protocol Contributor');
+        addLog('output', 'Independent Builder | 2023–Present | Payments, AI agents, dashboards, infra');
+        addLog('output', 'Type "webcoin", "titan", or "achievements" for more details.');
         break;
       case 'funding':
       case 'webcoin':
-        addLog('output', 'Webcoin Labs — $20,000+ fundraising supported via demos, partnerships & investor coordination.');
+        addLog(
+          'output',
+          'Webcoin Labs — Connected 100+ startups, grew community reach from ~1K to 21K+, managed a 1,500+ KOL network, and supported $50K+ in fundraising initiatives.'
+        );
+        break;
+      case 'titan':
+        addLog('output', 'Titan Dex Protocol — Worked on DEX workflows, tooling, and infra for 500+ test users and 100+ traders.');
         break;
       case 'projects':
         addLog('output', 'DEPLOYED SYSTEMS:');
@@ -100,6 +112,54 @@ export function TerminalCmd() {
         } else {
           addLog('error', 'USAGE: download resume <type>');
         }
+        break;
+      case 'stack':
+        addLog('system', 'PRINTING TECH STACK...');
+        addLog(
+          'output',
+          'Languages: Rust, Solidity, TypeScript, JavaScript, Python, Java, C++'
+        );
+        addLog(
+          'output',
+          'Frontend: React, Next.js, TailwindCSS, Vite'
+        );
+        addLog(
+          'output',
+          'Backend & Data: Node.js, Express, Supabase, PostgreSQL, MongoDB, Firebase'
+        );
+        addLog(
+          'output',
+          'Web3 & Protocols: Solana, Ethereum, Ethers.js, Hardhat, Foundry, OpenZeppelin, IPFS'
+        );
+        addLog(
+          'output',
+          'DevOps & Infra: Git, Docker, Linux, Nginx, Vercel, Render'
+        );
+        addLog(
+          'output',
+          'AI / Agentic: LLM workflows, agentic AI systems, AI-native automation, stablecoin payment rails'
+        );
+        break;
+      case 'focus':
+        addLog('system', 'CURRENT FOCUS:');
+        addLog(
+          'output',
+          'Agentic AI systems that can safely move money, coordinate people, and interact with on-chain infrastructure.'
+        );
+        addLog(
+          'output',
+          'Stablecoin payment rails, DCA/vault strategies, dashboards for founders and operators, and AI-native financial coordination.'
+        );
+        break;
+      case 'achievements':
+        addLog('system', 'HEADLINE ACHIEVEMENTS:');
+        addLog('output', '- Grew Webcoin Labs social/community from ~1K to 21K+ reach.');
+        addLog('output', '- Connected 100+ startups with builders, partners, and investors.');
+        addLog('output', '- Supported fundraising initiatives contributing to $50K+ raised.');
+        addLog('output', '- Managed a 1,500+ influencer / KOL network for campaigns.');
+        addLog('output', '- Mini Cast Store reached 1,500+ users in its first week with 25+ developers listing apps.');
+        addLog('output', '- Titan Dex workflows supported 500+ test users and 100+ traders during testing.');
+        addLog('output', '- Built multiple production-style products across payments, AI, dashboards, and infra.');
         break;
       case 'badges':
         if (badgesUnlocked.length === 0) {

@@ -27,9 +27,10 @@ import { GitHubContributionsHeatmap } from '@/components/github/GitHubContributi
 
 export default function Home() {
   const metrics = [
-    { label: 'Cumulative Users', value: '1,000+', icon: Users },
-    { label: 'X Followers', value: '21.4k', icon: Star },
-    { label: 'Project Signups', value: '1,500+', icon: Activity },
+    { label: 'Startups Connected', value: '100+', icon: Users },
+    { label: 'Community Reach', value: '21K+', icon: Star },
+    { label: 'Product Users', value: '1,500+', icon: Activity },
+    { label: 'Fundraising Supported', value: '$50K+', icon: Briefcase },
   ];
 
   return (
@@ -57,7 +58,7 @@ export default function Home() {
               Anshit Raj Yadav
             </h1>
             <h2 className="text-2xl md:text-3xl font-bold text-secondary tracking-tight">
-              Builder of Systems, Products & Experiments
+              Builder of Agentic AI, Stablecoin Rails & Product Systems
             </h2>
           </motion.div>
           
@@ -67,7 +68,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            I build real products used by real users — from stablecoin payment infrastructure and encrypted ledgers to gamified consumer apps and AI-powered commerce systems.
+            I build real systems around agentic AI, LLM workflows, stablecoin payment rails, and blockchain infrastructure — from encrypted ledgers and DEX tooling to dashboards, automations, and consumer-facing experiments.
           </motion.p>
           
           <motion.div
@@ -195,7 +196,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Metrics Strip */}
+        {/* Impact Metrics Strip */}
         <motion.section 
           className="w-full glass-panel rounded-3xl p-8 md:p-12"
           initial={{ opacity: 0, y: 40 }}
@@ -203,14 +204,125 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/5">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                Impact at a Glance
+              </h2>
+              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
+                Ecosystem, users, and capital touched by my work.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 divide-y md:divide-y-0 md:divide-x divide-white/5">
             {metrics.map((m, i) => (
-              <div key={i} className="flex flex-col items-center justify-center pt-8 md:pt-0 first:pt-0">
-                <m.icon className="w-6 h-6 text-secondary mb-4 opacity-50" />
-                <h3 className="text-5xl font-black text-white tracking-tighter mb-2">{m.value}</h3>
-                <p className="text-xs text-muted-foreground uppercase tracking-[0.3em] font-medium">{m.label}</p>
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center pt-8 md:pt-0 first:pt-0 text-center px-2"
+              >
+                <m.icon className="w-6 h-6 text-secondary mb-3 opacity-70" />
+                <h3 className="text-3xl md:text-4xl font-black text-white tracking-tighter mb-1">
+                  {m.value}
+                </h3>
+                <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.3em] font-medium">
+                  {m.label}
+                </p>
               </div>
             ))}
+          </div>
+        </motion.section>
+
+        {/* Recent Achievements */}
+        <motion.section
+          className="w-full space-y-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
+                Recent Achievements
+              </h2>
+              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
+                Concrete proof of work across ecosystems, users, and capital.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                WEBCOIN LABS
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Grew ecosystem reach from ~1K to 21K+ followers.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Built and ran campaigns across X and community channels for early-stage Web3 projects.
+              </p>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                STARTUPS & FUNDRAISING
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Connected 100+ startups and supported $50K+ in fundraising.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Matched founders with builders, launchpads, and investors through structured dealflow.
+              </p>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                INFLUENCER NETWORK
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Managed a 1,500+ KOL and influencer network.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Coordinated campaigns and announcements across multiple projects and ecosystems.
+              </p>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                MINI CAST STORE
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Shipped a mini-app marketplace with 1,500+ users in week one.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Onboarded 25+ developers and built the infra to review and surface new mini apps.
+              </p>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                TITAN DEX PROTOCOL
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Improved DEX workflows for 500+ test users and 100+ traders.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Worked on real trading flows, tooling, and usability feedback loops.
+              </p>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
+                PRODUCT SURFACE AREA
+              </p>
+              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
+                Built and shipped multiple production-grade apps across payments, AI, and dashboards.
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                From stablecoin gateways and agentic payment systems to analytics boards and outreach tooling.
+              </p>
+            </div>
           </div>
         </motion.section>
 
@@ -226,8 +338,8 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.slice(0, 2).map((p, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {projects.slice(0, 6).map((p, i) => (
               <motion.div
                 key={p.slug}
                 initial={{ opacity: 0, y: 20 }}
@@ -275,7 +387,10 @@ export default function Home() {
                 GitHub Contributions
               </h2>
               <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                553 contributions in the last year
+                Contribution snapshot across systems, experiments, and infra work.
+              </p>
+              <p className="text-muted-foreground font-mono text-[10px] md:text-xs mt-1">
+                60+ repositories touching payments, dashboards, automation, blockchain infra, and side projects.
               </p>
             </div>
             <a
@@ -320,6 +435,162 @@ export default function Home() {
               View on GitHub
               <ArrowRight className="w-4 h-4" />
             </a>
+          </div>
+        </section>
+
+        {/* Tech Stack */}
+        <section className="w-full space-y-8">
+          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
+                Tech Stack
+              </h2>
+              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
+                Languages, protocols, and tools I reach for in production.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                Languages
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Solidity', 'TypeScript', 'JavaScript', 'Python', 'Java'].map(item => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                Frontend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['React', 'Next.js', 'TailwindCSS', 'Vite'].map((item) => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                Backend & Databases
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Node.js', 'Express', 'Supabase', 'PostgreSQL', 'MongoDB', 'Firebase'].map((item) => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                Web3 & Protocols
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Solana', 'Ethereum', 'Ethers.js', 'Hardhat', 'Foundry', 'OpenZeppelin', 'IPFS'].map((item) => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                DevOps & Tooling
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Git', 'Docker', 'Linux', 'Nginx', 'Vercel', 'Render'].map((item) => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                AI / LLM / Agentic Focus
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'LLM workflows',
+                  'Agentic AI systems',
+                  'Programmable payment rails',
+                  'AI-native automation',
+                ].map(item => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-5 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
+                Currently Learning
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Rust'].map(item => (
+                  <span
+                    key={item}
+                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Current Focus */}
+        <section className="w-full space-y-6">
+          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
+                Current Focus
+              </h2>
+              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
+                What I'm actively building and thinking about right now.
+              </p>
+            </div>
+          </div>
+
+          <div className="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 bg-black/40">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              I&apos;m focused on agentic AI systems that can safely move money, coordinate people, and interact
+              with on-chain infrastructure. That means LLM-powered workflows, stablecoin payment rails, DCA and vault
+              strategies, dashboards for founders and operators, and the tooling that lets ecosystems plug into this
+              with confidence.
+            </p>
           </div>
         </section>
       </div>

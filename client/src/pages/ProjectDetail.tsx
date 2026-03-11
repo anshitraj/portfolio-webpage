@@ -47,11 +47,22 @@ export default function ProjectDetail() {
             <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
               {project.title}
             </h1>
-            
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-              {project.longDescription}
-            </p>
-            
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+              <div className="space-y-4">
+                <h2 className="text-sm font-mono uppercase tracking-[0.25em] text-secondary">What it does</h2>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+              <div className="space-y-4">
+                <h2 className="text-sm font-mono uppercase tracking-[0.25em] text-secondary">How I built it</h2>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  {project.longDescription}
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-2xl bg-black/40 border border-white/5 mb-10">
               {project.metrics.map(m => (
                 <div key={m.label}>

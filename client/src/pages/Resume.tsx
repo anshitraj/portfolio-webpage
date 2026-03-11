@@ -13,7 +13,9 @@ export default function Resume() {
       <div className="max-w-4xl mx-auto space-y-12">
         <header>
           <h1 className="text-4xl font-bold text-white mb-2">Experience</h1>
-          <p className="text-muted-foreground">Real roles and work from Anshit Raj Yadav.</p>
+          <p className="text-muted-foreground">
+            Real roles and systems built by Anshit Raj Yadav across agentic AI, stablecoin payments, and infra.
+          </p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -24,13 +26,15 @@ export default function Resume() {
               <div className="relative">
                 <div className="absolute -left-[29px] top-1 w-3 h-3 bg-primary rounded-full box-glow"></div>
                 <h3 className="text-lg font-bold text-white">
-                  Business Development &amp; Ecosystem Growth Lead <span className="text-primary">@ Webcoin Labs</span>
+                  Founding Team — Ecosystem, Partnerships, Infra &amp; Growth{' '}
+                  <span className="text-primary">@ Webcoin Labs</span>
                 </h3>
                 <div className="text-xs font-mono text-muted-foreground mb-2">2022 – 2025</div>
                 <p className="text-sm text-muted-foreground">
-                  Partnered with 50+ Web3 startups, managed 1,500+ influencers/KOLs across X, Telegram, and Discord, and supported
-                  $20K+ fundraising efforts through investor coordination, pitches, and demos. Executed GTM campaigns that improved
-                  project visibility and user adoption by ~200%.
+                  Built Webcoin Labs as a founder–builder ecosystem connecting startups with builders, launchpads, VCs, and
+                  partners. Connected 100+ startups with the right ecosystems, managed a 1,500+ influencer/KOL network, grew
+                  community reach from ~1K to 21K+, and supported fundraising initiatives contributing to $50K+ raised across
+                  early-stage projects.
                 </p>
               </div>
               
@@ -41,8 +45,9 @@ export default function Resume() {
                 </h3>
                 <div className="text-xs font-mono text-muted-foreground mb-2">Jan 2023 – Apr 2023, Sep 2024 – Dec 2024</div>
                 <p className="text-sm text-muted-foreground">
-                  Tested DEX UI workflows and swap flows used by 500+ test users, collaborating with engineers to debug UI and
-                  transaction edge cases and supporting stress testing with real trader feedback.
+                  Worked on DEX workflows, tooling, and product infrastructure. Tested and improved swap flows used by 500+
+                  test users, supported iteration with feedback from 100+ traders, and collaborated with remote protocol and
+                  product teams to make trading UX safer and more understandable.
                 </p>
               </div>
 
@@ -53,8 +58,9 @@ export default function Resume() {
                 </h3>
                 <div className="text-xs font-mono text-muted-foreground mb-2">2023 – Present</div>
                 <p className="text-sm text-muted-foreground">
-                  Built and shipped multiple production-grade Web3 applications and dashboards, deploying smart contracts and
-                  full-stack apps and shipping them to public demos.
+                  Built and shipped multiple production-style applications and dashboards across payments, AI agents, creator
+                  tools, and blockchain infra — including ARCPay, OmniAgentPay, Mini Cast Store, DCA Vault, and internal
+                  utilities for outreach and analytics.
                 </p>
               </div>
             </div>
@@ -80,10 +86,12 @@ export default function Resume() {
               <h3 className="text-lg font-bold text-white mb-4">Core Competencies</h3>
               <ul className="space-y-3">
                 {[
-                  'Full-stack (React/Next.js, Node/Express)',
-                  'Systems + Payments (APIs, dashboards, verification flows)',
-                  'Web3 Engineering (Solana/EVM, smart contracts, integrations)',
-                  'Data/Automation (Python, scripting, tooling)'
+                  'Languages: Rust, Solidity, TypeScript, JavaScript, Python, Java, C++',
+                  'Frontend: React, Next.js, TailwindCSS, Vite',
+                  'Backend & Data: Node.js, Express, Supabase, PostgreSQL, MongoDB, Firebase',
+                  'Web3 & Protocols: Solana, Ethereum, Ethers.js, Hardhat, Foundry, OpenZeppelin, IPFS',
+                  'DevOps & Infra: Git, Docker, Linux, Nginx, Vercel, Render',
+                  'AI / Agentic: LLM workflows, agentic AI systems, AI-native automation, stablecoin payment rails'
                 ].map(skill => (
                   <li key={skill} className="flex items-center gap-3 text-sm text-muted-foreground">
                     <CheckCircle2 className="w-4 h-4 text-primary" /> {skill}
