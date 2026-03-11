@@ -17,7 +17,7 @@ const DEFAULT_STATE: GamificationState = {
   progress: 0,
 };
 
-const MAIN_SECTIONS = ['/', '/experience', '/projects', '/blog', '/achievements', '/resume', '/contact'];
+const MAIN_SECTIONS = ['/', '/experience', '/projects', '/blog', '/resume', '/contact'];
 const TOTAL_OBJECTIVES = MAIN_SECTIONS.length + 5 + 1; // sections + 5 badges + 1 riddle
 
 export function useGamification() {

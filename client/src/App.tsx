@@ -10,7 +10,6 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import Achievements from "./pages/Achievements";
 import Contact from "./pages/Contact";
 import Private from "./pages/Private";
 import Resume from "./pages/Resume";
@@ -25,7 +24,6 @@ function Router() {
       <Route path="/projects/:slug" component={ProjectDetail} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/achievements" component={Achievements} />
       <Route path="/contact" component={Contact} />
       <Route path="/private" component={Private} />
       <Route path="/resume" component={Resume} />

@@ -15,6 +15,8 @@ interface ResumeItem {
   label: string;
   subtitle: string;
   path: string;
+  /** When true, CV is not uploaded yet; show "still being updated" message */
+  pending?: boolean;
 }
 
 interface ResumeTerminalProps {
@@ -29,19 +31,21 @@ const WEB2_RESUMES: ResumeItem[] = [
     id: '1',
     label: 'Technical CV',
     subtitle: 'Web2 systems, engineering, and infrastructure',
-    path: '/resumes/web2-technical.pdf',
+    path: 'https://drive.google.com/file/d/1D8VL0zKJF4zwugeQKcJtoITRAGGSdqbK/view?usp=sharing',
   },
   {
     id: '2',
     label: "Founder's Office CV",
     subtitle: 'Operations, strategy, and founder support',
-    path: '/resumes/web2-founder-office.pdf',
+    path: '',
+    pending: true,
   },
   {
     id: '3',
     label: 'Business / GTM CV',
     subtitle: 'Business development, growth, and GTM execution',
-    path: '/resumes/web2-bdm-gtm.pdf',
+    path: '',
+    pending: true,
   },
 ];
 
@@ -50,19 +54,22 @@ const WEB3_RESUMES: ResumeItem[] = [
     id: 'w1',
     label: 'Web3 Technical CV',
     subtitle: 'Smart contracts, protocol tooling, and infra',
-    path: '/resumes/web3-technical.pdf',
+    path: '',
+    pending: true,
   },
   {
     id: 'w2',
     label: "Web3 Founder's Office CV",
     subtitle: 'Ecosystem building, partnerships, and execution',
-    path: '/resumes/web3-founder-office.pdf',
+    path: '',
+    pending: true,
   },
   {
     id: 'w3',
     label: 'Web3 Business / GTM CV',
     subtitle: 'Token growth, community, and partnerships',
-    path: '/resumes/web3-bdm-gtm.pdf',
+    path: '',
+    pending: true,
   },
 ];
 
@@ -365,6 +372,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
               <div className="grid gap-2">
                 {WEB2_RESUMES.map((resume) => {
                   const isActive = activeWeb2Resume?.id === resume.id;
+                  const isPending = resume.pending || !resume.path;
                   return (
                     <div
                       key={resume.id}
@@ -381,23 +389,32 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                         <p className="text-[11px] text-muted-foreground">{resume.subtitle}</p>
                       </button>
                       <div className="mt-2 flex flex-wrap gap-2">
-                        <a
-                          href={resume.path}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 rounded-md border border-emerald-300/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-emerald-200 hover:bg-emerald-500/20"
-                        >
-                          <Eye className="h-3 w-3" />
-                          View Resume
-                        </a>
-                        <a
-                          href={resume.path}
-                          download
-                          className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
-                        >
-                          <Download className="h-3 w-3" />
-                          Download Resume
-                        </a>
+                        {isPending ? (
+                          <p className="text-[10px] italic text-amber-400/90">
+                            This particular CV is still being updated by Anshit Raj, please wait.
+                          </p>
+                        ) : (
+                          <>
+                            <a
+                              href={resume.path}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1 rounded-md border border-emerald-300/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-emerald-200 hover:bg-emerald-500/20"
+                            >
+                              <Eye className="h-3 w-3" />
+                              View Resume
+                            </a>
+                            <a
+                              href={resume.path}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
+                            >
+                              <Download className="h-3 w-3" />
+                              Download Resume
+                            </a>
+                          </>
+                        )}
                       </div>
                     </div>
                   );
@@ -412,6 +429,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                   {WEB3_RESUMES.map((resume, index) => {
                     const command = `w${index + 1}`;
                     const isActive = activeWeb3Resume?.id === resume.id;
+                    const isPending = resume.pending || !resume.path;
                     return (
                       <div
                         key={resume.id}
@@ -426,23 +444,32 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                           <p className="text-[11px] text-muted-foreground">{resume.subtitle}</p>
                         </button>
                         <div className="mt-2 flex flex-wrap gap-2">
-                          <a
-                            href={resume.path}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1 rounded-md border border-emerald-300/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-emerald-200 hover:bg-emerald-500/20"
-                          >
-                            <Eye className="h-3 w-3" />
-                            View Resume
-                          </a>
-                          <a
-                            href={resume.path}
-                            download
-                            className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
-                          >
-                            <Download className="h-3 w-3" />
-                            Download Resume
-                          </a>
+                          {isPending ? (
+                            <p className="text-[10px] italic text-amber-400/90">
+                              This particular CV is still being updated by Anshit Raj, please wait.
+                            </p>
+                          ) : (
+                            <>
+                              <a
+                                href={resume.path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-1 rounded-md border border-emerald-300/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-emerald-200 hover:bg-emerald-500/20"
+                              >
+                                <Eye className="h-3 w-3" />
+                                View Resume
+                              </a>
+                              <a
+                                href={resume.path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
+                              >
+                                <Download className="h-3 w-3" />
+                                Download Resume
+                              </a>
+                            </>
+                          )}
                         </div>
                       </div>
                     );

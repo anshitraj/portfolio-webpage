@@ -9,7 +9,6 @@ import {
   Code,
   User,
   BookOpen,
-  Trophy,
   Linkedin,
   Github,
 } from 'lucide-react';
@@ -43,7 +42,6 @@ export function Layout({ children }: { children: ReactNode }) {
     { path: '/experience', label: 'Experience', icon: <BookOpen className="h-4 w-4" /> },
     { path: '/projects', label: 'Projects', icon: <Code className="h-4 w-4" /> },
     { path: '/blog', label: 'Logs', icon: <BookOpen className="h-4 w-4" /> },
-    { path: '/achievements', label: 'Badges', icon: <Trophy className="h-4 w-4" /> },
     { path: '/contact', label: 'Terminal', icon: <Terminal className="h-4 w-4" /> },
   ];
 

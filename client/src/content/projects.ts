@@ -25,6 +25,7 @@ export const projects: Project[] = [
     ],
     position: [0, 0, 0],
     image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800',
+    liveUrl: 'https://ai-agent-dashboard-two.vercel.app',
   },
   {
     slug: 'arcpay',
@@ -39,6 +40,8 @@ export const projects: Project[] = [
     ],
     position: [2.5, 1.5, -2],
     image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&q=80&w=800',
+    liveUrl: 'https://arcpay.systems',
+    repoUrl: 'https://github.com/anshitraj/arc-pay-public',
   },
   {
     slug: 'private-ledger-flow',
@@ -53,6 +56,7 @@ export const projects: Project[] = [
     ],
     position: [-2, -1.5, -1],
     image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
+    liveUrl: 'https://private-ledger-steel.vercel.app',
   },
   {
     slug: 'mini-cast-store',
@@ -67,6 +71,8 @@ export const projects: Project[] = [
     ],
     position: [1.5, -2, 1.5],
     image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800',
+    liveUrl: 'https://minicast.store',
+    repoUrl: 'https://github.com/anshitraj/farcaster-base-hub',
   },
   {
     slug: 'riddlepay',
@@ -81,6 +87,7 @@ export const projects: Project[] = [
     ],
     position: [-1.5, 2, 1],
     image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800',
+    liveUrl: 'https://ridlepay.tech',
   },
   {
     slug: 'arcgpt',

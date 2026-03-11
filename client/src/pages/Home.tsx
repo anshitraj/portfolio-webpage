@@ -321,11 +321,11 @@ export default function Home() {
 
           <div className="glass-panel rounded-3xl p-4 md:p-6 border border-white/5 bg-black/40">
             <GitHubContributionsHeatmap />
-            <div className="mt-4 flex items-center justify-between gap-4 text-xs text-muted-foreground">
+            <div className="mt-4 flex flex-col gap-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
               <span className="font-mono tracking-[0.2em] uppercase">
                 Activity Log &mdash; Last 12 Months
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 sm:justify-end">
                 <span className="text-[10px] uppercase tracking-[0.2em]">
                   Less
                 </span>
