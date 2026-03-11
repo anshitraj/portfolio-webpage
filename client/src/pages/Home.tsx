@@ -1,5 +1,6 @@
 import { Layout } from '@/components/Layout';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Link } from 'wouter';
 import {
   ArrowRight,
@@ -24,8 +25,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { GitHubContributionsHeatmap } from '@/components/github/GitHubContributionsHeatmap';
+import { ResumeTerminal } from '@/components/ResumeTerminal';
+import { TerminalAchievements } from '@/components/TerminalAchievements';
 
 export default function Home() {
+  const [isResumeVaultOpen, setIsResumeVaultOpen] = useState(false);
+
   const metrics = [
     { label: 'Startups Connected', value: '100+', icon: Users },
     { label: 'Community Reach', value: '21K+', icon: Star },
@@ -35,15 +40,15 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-16 md:gap-24 items-center justify-center min-h-[80vh]">
+      <div className="flex min-h-[80vh] flex-col items-center justify-center gap-16 md:gap-24">
         
         {/* Hero Section */}
-        <section className="text-center space-y-6 max-w-4xl mx-auto mt-12">
+        <section className="mx-auto mt-8 w-full max-w-4xl space-y-6 px-1 text-center md:mt-12">
           <div className="flex flex-col items-center gap-4 mb-4">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-mono uppercase tracking-widest"
+              className="inline-flex max-w-full items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-primary sm:px-4 sm:text-xs"
             >
               SYSTEM STATUS: ONLINE | USER: anshit.raj.yadav
             </motion.div>
@@ -54,16 +59,16 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-2">
+            <h1 className="mb-2 text-4xl font-black tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-8xl">
               Anshit Raj Yadav
             </h1>
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary tracking-tight">
+            <h2 className="text-xl font-bold tracking-tight text-secondary sm:text-2xl md:text-3xl">
               Builder of Agentic AI, Stablecoin Rails & Product Systems
             </h2>
           </motion.div>
           
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+            className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg md:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -72,20 +77,20 @@ export default function Home() {
           </motion.p>
           
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4 pt-6"
+            className="flex w-full flex-col items-stretch justify-center gap-3 pt-6 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Link
               href="/projects"
-              className="px-8 py-4 rounded-xl font-bold bg-primary text-white shadow-lg hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center gap-2 magnet-target"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-primary/40 magnet-target sm:w-auto"
             >
               Explore My Work <Code className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-xl font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all flex items-center gap-2 magnet-target"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-bold text-white transition-all hover:bg-white/10 magnet-target sm:w-auto"
             >
               Open Terminal <Terminal className="w-5 h-5" />
             </Link>
@@ -97,16 +102,17 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-black/40 border border-white/5 px-4 py-3 backdrop-blur-md shadow-[0_0_30px_rgba(88,28,135,0.35)]">
-              <Dialog>
+            <div className="mx-auto inline-flex w-full max-w-xl flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/5 bg-black/40 px-4 py-3 backdrop-blur-md shadow-[0_0_30px_rgba(88,28,135,0.35)]">
+              <Dialog open={isResumeVaultOpen} onOpenChange={setIsResumeVaultOpen}>
                 <DialogTrigger asChild>
                   <Button className="gap-2 font-mono text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-primary/90 magnet-target">
                     <Download className="w-4 h-4" />
                     Download Resume
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-black/90 border border-primary/40 max-w-md">
-                  <DialogHeader>
+                <DialogContent className="w-[96vw] max-w-4xl border-0 bg-transparent p-0 sm:rounded-2xl [&>button]:hidden">
+                  <ResumeTerminal onClose={() => setIsResumeVaultOpen(false)} />
+                  <DialogHeader className="hidden">
                     <DialogTitle className="font-mono text-sm tracking-[0.3em] text-secondary">
                       /resumes
                     </DialogTitle>
@@ -114,7 +120,7 @@ export default function Home() {
                       Select the profile you want to download.
                     </DialogDescription>
                   </DialogHeader>
-                  <div className="mt-4 grid gap-3">
+                  <div className="mt-4 hidden grid gap-3">
                     <a
                       href="/resumes/anshit-raj-yadav-technical.pdf"
                       className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
@@ -233,102 +239,11 @@ export default function Home() {
         </motion.section>
 
         {/* Recent Achievements */}
-        <motion.section
-          className="w-full space-y-8"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
-                Recent Achievements
-              </h2>
-              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                Concrete proof of work across ecosystems, users, and capital.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                WEBCOIN LABS
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Grew ecosystem reach from ~1K to 21K+ followers.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Built and ran campaigns across X and community channels for early-stage Web3 projects.
-              </p>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                STARTUPS & FUNDRAISING
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Connected 100+ startups and supported $50K+ in fundraising.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Matched founders with builders, launchpads, and investors through structured dealflow.
-              </p>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                INFLUENCER NETWORK
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Managed a 1,500+ KOL and influencer network.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Coordinated campaigns and announcements across multiple projects and ecosystems.
-              </p>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                MINI CAST STORE
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Shipped a mini-app marketplace with 1,500+ users in week one.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Onboarded 25+ developers and built the infra to review and surface new mini apps.
-              </p>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                TITAN DEX PROTOCOL
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Improved DEX workflows for 500+ test users and 100+ traders.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Worked on real trading flows, tooling, and usability feedback loops.
-              </p>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <p className="text-xs font-mono text-secondary tracking-[0.25em] uppercase mb-2">
-                PRODUCT SURFACE AREA
-              </p>
-              <h3 className="text-sm md:text-base text-white font-semibold mb-2">
-                Built and shipped multiple production-grade apps across payments, AI, and dashboards.
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                From stablecoin gateways and agentic payment systems to analytics boards and outreach tooling.
-              </p>
-            </div>
-          </div>
-        </motion.section>
+        <TerminalAchievements />
 
         {/* Featured Projects preview */}
         <section className="w-full space-y-10 mb-16">
-          <div className="flex items-end justify-between border-b border-white/5 pb-6">
+          <div className="flex flex-col gap-4 border-b border-white/5 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-4xl font-black text-white tracking-tighter uppercase">Recent Deployments</h2>
               <p className="text-muted-foreground font-mono text-sm mt-1">Proof of work / Production products</p>

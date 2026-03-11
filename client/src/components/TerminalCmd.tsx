@@ -54,7 +54,8 @@ export function TerminalCmd() {
         addLog('output', '  open      - Open a project (e.g. open arcpay)');
         addLog('output', '  funding   - View Webcoin Labs funding details');
         addLog('output', '  webcoin   - View ecosystem & growth work');
-        addLog('output', '  titan     - View Titan Dex contributions');
+        addLog('output', '  titan     - View Titan Exchange contributions');
+        addLog('output', '  raydium   - View Raydium Protocol contributions');
         addLog('output', '  stack     - View technical stack');
         addLog('output', '  focus     - View current build focus');
         addLog('output', '  achievements - View headline outcomes');
@@ -72,9 +73,10 @@ export function TerminalCmd() {
       case 'experience':
         addLog('system', 'FETCHING PROFESSIONAL HISTORY...');
         addLog('output', 'Webcoin Labs | 2022–2025 | Founding Team — Ecosystem, Partnerships, Infra & Growth');
-        addLog('output', 'Titan Dex Protocol | 2023–2024 | SDE Intern / Product & Protocol Contributor');
-        addLog('output', 'Independent Builder | 2023–Present | Payments, AI agents, dashboards, infra');
-        addLog('output', 'Type "webcoin", "titan", or "achievements" for more details.');
+        addLog('output', 'Titan Exchange | Sep 2024–Dec 2024 | SDE Intern');
+        addLog('output', 'Raydium Protocol | May 2024–July 2024 | Protocol Contributor');
+        addLog('output', 'Independent Contributor | 2023–Present | Payments, AI agents, dashboards, infra');
+        addLog('output', 'Type "webcoin", "titan", "raydium", or "achievements" for more details.');
         break;
       case 'funding':
       case 'webcoin':
@@ -84,7 +86,10 @@ export function TerminalCmd() {
         );
         break;
       case 'titan':
-        addLog('output', 'Titan Dex Protocol — Worked on DEX workflows, tooling, and infra for 500+ test users and 100+ traders.');
+        addLog('output', 'Titan Exchange — DEX workflows, tooling, and infra; 500+ test users, 100+ traders in feedback loops; UX and safety improvements with remote protocol/product teams.');
+        break;
+      case 'raydium':
+        addLog('output', 'Raydium Protocol — Solana AMM tooling, SDK, and pool integrations; 50+ developers supported; validated 20+ pool types and fee tiers; concentrated liquidity UX.');
         break;
       case 'projects':
         addLog('output', 'DEPLOYED SYSTEMS:');
@@ -158,7 +163,7 @@ export function TerminalCmd() {
         addLog('output', '- Supported fundraising initiatives contributing to $50K+ raised.');
         addLog('output', '- Managed a 1,500+ influencer / KOL network for campaigns.');
         addLog('output', '- Mini Cast Store reached 1,500+ users in its first week with 25+ developers listing apps.');
-        addLog('output', '- Titan Dex workflows supported 500+ test users and 100+ traders during testing.');
+        addLog('output', '- Titan Exchange workflows supported 500+ test users and 100+ traders during testing.');
         addLog('output', '- Built multiple production-style products across payments, AI, dashboards, and infra.');
         break;
       case 'badges':

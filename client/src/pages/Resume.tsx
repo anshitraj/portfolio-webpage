@@ -1,12 +1,18 @@
+import { useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { motion } from 'framer-motion';
 import { Download, FileText, CheckCircle2 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+import { ResumeTerminal } from '@/components/ResumeTerminal';
 
 export default function Resume() {
-  const handleDownload = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.location.href = '/resume';
-  };
+  const [isResumeVaultOpen, setIsResumeVaultOpen] = useState(false);
 
   return (
     <Layout>
@@ -41,9 +47,9 @@ export default function Resume() {
               <div className="relative">
                 <div className="absolute -left-[29px] top-1 w-3 h-3 bg-white/20 rounded-full"></div>
                 <h3 className="text-lg font-bold text-white">
-                  SDE Intern / Protocol Contributor <span className="text-primary">@ Titan Dex Protocol</span>
+                  SDE Intern <span className="text-primary">@ Titan Exchange</span>
                 </h3>
-                <div className="text-xs font-mono text-muted-foreground mb-2">Jan 2023 – Apr 2023, Sep 2024 – Dec 2024</div>
+                <div className="text-xs font-mono text-muted-foreground mb-2">Sep 2024 – Dec 2024</div>
                 <p className="text-sm text-muted-foreground">
                   Worked on DEX workflows, tooling, and product infrastructure. Tested and improved swap flows used by 500+
                   test users, supported iteration with feedback from 100+ traders, and collaborated with remote protocol and
@@ -52,9 +58,22 @@ export default function Resume() {
               </div>
 
               <div className="relative">
+                <div className="absolute -left-[29px] top-1 w-3 h-3 bg-white/20 rounded-full"></div>
+                <h3 className="text-lg font-bold text-white">
+                  Protocol Contributor <span className="text-primary">@ Raydium Protocol</span>
+                </h3>
+                <div className="text-xs font-mono text-muted-foreground mb-2">May 2024 – July 2024</div>
+                <p className="text-sm text-muted-foreground">
+                  Contributed to Solana AMM protocol tooling, SDK usage, and liquidity pool integrations. Supported
+                  documentation and examples for 50+ developers; tested and validated pool creation and swap flows across
+                  20+ pool types and fee tiers. Collaborated with core contributors on concentrated liquidity UX.
+                </p>
+              </div>
+
+              <div className="relative">
                 <div className="absolute -left-[29px] top-1 w-3 h-3 bg-white/10 rounded-full"></div>
                 <h3 className="text-lg font-bold text-white">
-                  Independent Web3 Developer / Contributor
+                  Independent Contributor
                 </h3>
                 <div className="text-xs font-mono text-muted-foreground mb-2">2023 – Present</div>
                 <p className="text-sm text-muted-foreground">
@@ -74,12 +93,25 @@ export default function Resume() {
               <p className="text-sm text-muted-foreground mb-6">
                 View focused resume variants (technical, business, founder) and download the version that best fits your use case.
               </p>
-              <button 
-                onClick={handleDownload}
-                className="w-full py-3 rounded-xl bg-white/10 text-white font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2 magnet-target"
-              >
-                Open Resume Hub <Download className="w-4 h-4" />
-              </button>
+              <Dialog open={isResumeVaultOpen} onOpenChange={setIsResumeVaultOpen}>
+                <button
+                  onClick={() => setIsResumeVaultOpen(true)}
+                  className="w-full py-3 rounded-xl bg-white/10 text-white font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2 magnet-target"
+                >
+                  Open Resume Hub <Download className="w-4 h-4" />
+                </button>
+                <DialogContent className="w-[96vw] max-w-4xl border-0 bg-transparent p-0 sm:rounded-2xl [&>button]:hidden">
+                  <ResumeTerminal onClose={() => setIsResumeVaultOpen(false)} />
+                  <DialogHeader className="hidden">
+                    <DialogTitle className="font-mono text-sm tracking-[0.3em] text-secondary">
+                      /resumes
+                    </DialogTitle>
+                    <DialogDescription className="text-muted-foreground">
+                      Select the profile you want to download.
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </div>
             
             <div className="glass-panel p-6 rounded-2xl">

@@ -83,6 +83,90 @@
   }
 }
 
+@keyframes terminalCursorBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes vaultScan {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(140%);
+    opacity: 0;
+  }
+}
+
+@keyframes terminalScanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 120px;
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: terminalCursorBlink 1s steps(1, end) infinite;
+}
+
+.terminal-green-glow {
+  text-shadow: 0 0 6px rgba(0, 255, 156, 0.45), 0 0 12px rgba(0, 255, 156, 0.25);
+}
+
+.terminal-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 156, 0.06) 0px,
+    rgba(0, 255, 156, 0.06) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.2;
+  animation: terminalScanlines 8s linear infinite;
+}
+
+.resume-vault-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-vault-scan::after {
+  content: '';
+  position: absolute;
+  inset: -35% 0 auto 0;
+  height: 42%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.06) 35%,
+    rgba(16, 185, 129, 0.22) 50%,
+    rgba(16, 185, 129, 0.06) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: vaultScan 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-cursor,
+  .terminal-scanlines,
+  .resume-vault-scan::after {
+    animation: none;
+  }
+}
+
 /* Custom Cursor Styles */
 .custom-cursor {
   position: fixed;

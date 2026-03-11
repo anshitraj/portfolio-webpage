@@ -24,14 +24,14 @@ export default function Experience() {
       ],
     },
     {
-      company: 'Titan DEX',
-      role: 'SDE Intern / Product & Protocol Contributor',
-      period: '2024',
+      company: 'Titan Exchange',
+      role: 'SDE Intern',
+      period: 'Sep 2024 – Dec 2024',
       description: [
-        'Worked on DEX workflows, tooling, and product infrastructure used by test users and traders.',
-        'Improved reliability and usability across swap flows for 500+ test users.',
-        'Supported testing and iteration loops with 100+ traders providing real product feedback.',
-        'Collaborated with remote protocol and product teams to tune UX around real liquidity and transaction behaviours.',
+        'Worked on DEX workflows, tooling, and product infrastructure for swap and liquidity flows.',
+        'Improved reliability and usability across swap flows used by 500+ test users during beta.',
+        'Supported testing and iteration with 100+ traders; feedback drove UX and safety improvements.',
+        'Collaborated with remote protocol and product teams to make trading UX safer and more understandable.',
       ],
       icon: Briefcase,
       metrics: [
@@ -40,8 +40,24 @@ export default function Experience() {
       ],
     },
     {
-      company: 'Independent Builder',
-      role: 'Software Developer — Payments, AI & Infra',
+      company: 'Raydium Protocol',
+      role: 'Protocol Contributor',
+      period: 'May 2024 – July 2024',
+      description: [
+        'Contributed to Solana AMM protocol tooling, SDK usage, and liquidity pool integrations.',
+        'Supported documentation and examples used by 50+ developers building on Raydium.',
+        'Tested and validated pool creation and swap flows across 20+ pool types and fee tiers.',
+        'Collaborated with core contributors on edge cases and UX for concentrated liquidity features.',
+      ],
+      icon: Briefcase,
+      metrics: [
+        { label: 'Developers Supported', value: '50+', icon: Users },
+        { label: 'Pool Types Validated', value: '20+', icon: TrendingUp },
+      ],
+    },
+    {
+      company: 'Independent',
+      role: 'Contributor — Payments, AI & Infra',
       period: '2023 – Present',
       description: [
         'Built and shipped multiple production-style full-stack applications across payments, AI agents, dashboards, and blockchain infra.',
