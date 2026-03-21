@@ -83,7 +83,7 @@ export default function ProjectConstellation() {
 
   return (
     <div className="w-full h-[600px] glass-panel rounded-2xl overflow-hidden relative">
-      <div className="absolute top-4 left-4 z-10 text-xs font-mono text-muted-foreground bg-black/50 px-2 py-1 rounded border border-white/10">
+      <div className="absolute top-4 left-4 z-10 text-xs font-mono text-muted-foreground bg-zinc-200/70 dark:bg-black/50 px-2 py-1 rounded border border-zinc-200/80 dark:border-white/10">
         INTERACTIVE_MAP: DRAG TO ROTATE, CLICK TO ACCESS
       </div>
       <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>

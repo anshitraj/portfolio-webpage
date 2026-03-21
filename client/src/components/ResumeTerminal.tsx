@@ -321,7 +321,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
           : 'border-primary/50 shadow-[0_0_45px_rgba(147,51,234,0.2)]'
       }`}
     >
-      <div className="flex items-center justify-between border-b border-white/10 bg-black/80 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-white/10 bg-black/80 px-4 py-3">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
@@ -335,7 +335,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-white/25 hover:text-white"
+          className="inline-flex items-center gap-2 rounded-md border border-zinc-200/80 dark:border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-white/25 hover:text-zinc-950 dark:hover:text-white"
         >
           Close
           <X className="h-3 w-3" />
@@ -346,7 +346,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
         {lines.map((line) => (
           <div key={line.id} className="mb-1.5 whitespace-pre-wrap break-words">
             {line.type === 'input' && (
-              <div className="flex items-start gap-2 text-white">
+              <div className="flex items-start gap-2 text-zinc-950 dark:text-white">
                 <span className={hackerMode ? 'text-emerald-400' : 'text-secondary'}>&gt;</span>
                 <span>{line.content}</span>
               </div>
@@ -376,14 +376,14 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                   return (
                     <div
                       key={resume.id}
-                      className={`rounded-xl border px-3 py-2 ${isActive ? 'border-emerald-400/60 bg-emerald-400/10' : 'border-white/10 bg-white/5'}`}
+                      className={`rounded-xl border px-3 py-2 ${isActive ? 'border-emerald-400/60 bg-emerald-400/10' : 'border-zinc-200/80 dark:border-white/10 bg-white/5'}`}
                     >
                       <button
                         type="button"
                         onClick={() => setSelectedWeb2(resume.id)}
                         className="w-full text-left"
                       >
-                        <div className="text-sm font-semibold text-white">
+                        <div className="text-sm font-semibold text-zinc-950 dark:text-white">
                           {resume.id}. {resume.label}
                         </div>
                         <p className="text-[11px] text-muted-foreground">{resume.subtitle}</p>
@@ -408,7 +408,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                               href={resume.path}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
+                              className="inline-flex items-center gap-1 rounded-md border border-zinc-300/90 dark:border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-zinc-950 dark:text-white hover:bg-zinc-300 dark:hover:bg-zinc-200/80 dark:hover:bg-white/10"
                             >
                               <Download className="h-3 w-3" />
                               Download Resume
@@ -433,14 +433,14 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                     return (
                       <div
                         key={resume.id}
-                        className={`rounded-xl border px-3 py-2 ${isActive ? 'border-emerald-400/60 bg-emerald-400/10' : 'border-white/10 bg-white/5'}`}
+                        className={`rounded-xl border px-3 py-2 ${isActive ? 'border-emerald-400/60 bg-emerald-400/10' : 'border-zinc-200/80 dark:border-white/10 bg-white/5'}`}
                       >
                         <button
                           type="button"
                           onClick={() => setSelectedWeb3(command)}
                           className="w-full text-left"
                         >
-                          <div className="text-sm font-semibold text-white">{resume.label}</div>
+                          <div className="text-sm font-semibold text-zinc-950 dark:text-white">{resume.label}</div>
                           <p className="text-[11px] text-muted-foreground">{resume.subtitle}</p>
                         </button>
                         <div className="mt-2 flex flex-wrap gap-2">
@@ -463,7 +463,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
                                 href={resume.path}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-white hover:bg-white/10"
+                                className="inline-flex items-center gap-1 rounded-md border border-zinc-300/90 dark:border-white/20 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-zinc-950 dark:text-white hover:bg-zinc-300 dark:hover:bg-zinc-200/80 dark:hover:bg-white/10"
                               >
                                 <Download className="h-3 w-3" />
                                 Download Resume
@@ -486,7 +486,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
         onSubmit={(event) => {
           void handleSubmit(event);
         }}
-        className="flex items-center gap-2 border-t border-white/10 bg-black/80 px-4 py-3"
+        className="flex items-center gap-2 border-t border-zinc-200/80 dark:border-white/10 bg-black/80 px-4 py-3"
       >
         <span className={`text-sm ${hackerMode ? 'text-emerald-400' : 'text-secondary'}`}>
           &gt;
@@ -497,7 +497,7 @@ export function ResumeTerminal({ onClose }: ResumeTerminalProps) {
           value={input}
           onChange={(event) => setInput(event.target.value)}
           disabled={!readyForInput || isDecoding}
-          className="flex-1 bg-transparent text-xs text-white outline-none placeholder:text-muted-foreground/50 sm:text-sm"
+          className="flex-1 bg-transparent text-xs text-zinc-950 dark:text-white outline-none placeholder:text-muted-foreground/50 sm:text-sm"
           placeholder={
             !readyForInput
               ? 'Initializing vault...'

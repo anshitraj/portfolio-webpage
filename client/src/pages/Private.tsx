@@ -18,18 +18,18 @@ export default function Private() {
           >
             <div className="absolute inset-0 bg-destructive/5 pointer-events-none"></div>
             <ShieldAlert className="w-16 h-16 text-destructive mx-auto mb-6 opacity-80" />
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter">ACCESS DENIED</h1>
+            <h1 className="text-3xl md:text-4xl font-black text-zinc-950 dark:text-white mb-4 tracking-tighter">ACCESS DENIED</h1>
             <p className="text-muted-foreground text-lg mb-8">
               This sector is restricted. Security override required.
             </p>
-            <div className="bg-black/60 p-4 rounded-lg font-mono text-sm text-left mb-8 border border-white/5 text-muted-foreground">
+            <div className="bg-black/60 p-4 rounded-lg font-mono text-sm text-left mb-8 border border-zinc-200/80 dark:border-white/5 text-muted-foreground">
               {">"} STATUS: LOCKED<br/>
               {">"} HINT: Access the <span className="text-primary">Terminal</span>.<br/>
               {">"} HINT: Initiate the <span className="text-secondary">riddle</span> protocol.
             </div>
             <Link 
               href="/contact"
-              className="px-8 py-3 rounded-xl font-bold bg-white/10 text-white hover:bg-white/20 transition-all magnet-target inline-block"
+              className="px-8 py-3 rounded-xl font-bold bg-white/10 text-zinc-950 dark:text-white hover:bg-white/20 transition-all magnet-target inline-block"
             >
               Go to Terminal
             </Link>
@@ -42,17 +42,17 @@ export default function Private() {
           >
             <div className="absolute inset-0 bg-secondary/5 pointer-events-none"></div>
             <Unlock className="w-16 h-16 text-secondary mx-auto mb-6" />
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter text-glow-cyan">ACCESS GRANTED</h1>
+            <h1 className="text-3xl md:text-4xl font-black text-zinc-950 dark:text-white mb-4 tracking-tighter text-glow-cyan">ACCESS GRANTED</h1>
             <p className="text-muted-foreground text-lg mb-8">
               Welcome to the classified sector.
             </p>
             
             <div className="space-y-4 text-left">
-              <div className="p-4 bg-black/40 rounded-xl border border-white/10">
+              <div className="p-4 bg-zinc-200/60 dark:bg-black/40 rounded-xl border border-zinc-200/80 dark:border-white/10">
                 <h3 className="text-primary font-bold mb-2">Secret Document Alpha</h3>
                 <p className="text-sm text-muted-foreground">The architecture for an unreleased protocol lies here. But for now, take pride in solving the puzzle.</p>
               </div>
-              <div className="p-4 bg-black/40 rounded-xl border border-white/10">
+              <div className="p-4 bg-zinc-200/60 dark:bg-black/40 rounded-xl border border-zinc-200/80 dark:border-white/10">
                 <h3 className="text-secondary font-bold mb-2">Developer's Note</h3>
                 <p className="text-sm text-muted-foreground">Building experiences that reward curiosity is what makes the web beautiful.</p>
               </div>

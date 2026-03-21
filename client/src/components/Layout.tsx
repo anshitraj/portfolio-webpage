@@ -2,21 +2,14 @@ import { ReactNode, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { useGamification } from '@/hooks/use-gamification';
-import { CustomCursor } from './CustomCursor';
-import { AnimatedBackground } from './AnimatedBackground';
-import {
-  Terminal,
-  Code,
-  User,
-  BookOpen,
-  Linkedin,
-  Github,
-} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { FloatingDock } from '@/components/FloatingDock';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { SITE } from '@/content/siteProfile';
 
 export function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
-  const { progress, visitSection } = useGamification();
+  const { visitSection } = useGamification();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -29,7 +22,7 @@ export function Layout({ children }: { children: ReactNode }) {
       toast({
         title: 'Achievement Unlocked!',
         description: `You earned the [${badge}] badge.`,
-        className: 'bg-card border-primary text-primary-foreground',
+        className: 'bg-zinc-200/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-white/10 text-zinc-950 dark:text-white',
       });
     };
 
@@ -37,125 +30,68 @@ export function Layout({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('badge-unlocked', handleBadge);
   }, [toast]);
 
-  const navItems = [
-    { path: '/', label: 'Index', icon: <User className="h-4 w-4" /> },
-    { path: '/experience', label: 'Experience', icon: <BookOpen className="h-4 w-4" /> },
-    { path: '/projects', label: 'Projects', icon: <Code className="h-4 w-4" /> },
-    { path: '/blog', label: 'Logs', icon: <BookOpen className="h-4 w-4" /> },
-    { path: '/contact', label: 'Terminal', icon: <Terminal className="h-4 w-4" /> },
-  ];
-
   return (
-    <>
-      <CustomCursor />
-      <AnimatedBackground />
+    <div className="portfolio-root min-h-screen bg-zinc-50 text-zinc-950 selection:bg-zinc-300/35 dark:bg-black dark:text-white dark:selection:bg-white/20">
+      {/* Subtle grid — light vs dark */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 block opacity-[0.45] dark:hidden"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+        }}
+      />
+      <div
+        className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.35] dark:block"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+        }}
+      />
 
-      <div className="flex min-h-screen flex-col">
-        {/* Top Progress Bar */}
-        <div className="fixed left-0 right-0 top-0 z-50 h-1 bg-white/5">
-          <motion.div
-            className="h-full bg-gradient-to-r from-secondary to-primary shadow-[0_0_10px_rgba(138,43,226,0.8)]"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5 }}
-          />
-        </div>
-
-        {/* Navigation */}
-        <header className="fixed left-0 right-0 top-0 z-40 border-b-0 border-t-0 px-4 py-3 glass-panel md:px-6 md:py-4 xl:px-8">
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-5">
-            <Link href="/" className="min-w-0 magnet-target">
-              <span className="block truncate font-mono text-base font-bold tracking-tight text-glow-cyan text-white sm:text-lg">
-                Anshit Raj Yadav
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <header className="sticky top-0 z-40 border-b border-zinc-200/80 dark:border-white/5 bg-white/85 backdrop-blur-md dark:bg-black/80">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-4 md:px-8">
+            <Link href="/" className="min-w-0">
+              <span className="block truncate text-base font-semibold tracking-tight text-zinc-950 dark:text-white md:text-lg">
+                {SITE.name}
               </span>
-              <span className="block font-mono text-[10px] font-semibold tracking-[0.25em] text-primary sm:text-xs">
-                SYS_ADMIN
-              </span>
+              <span className="block truncate text-xs text-zinc-600 dark:text-zinc-500">{SITE.tagline}</span>
             </Link>
-
-            <nav className="hidden min-w-0 items-center justify-center gap-1 lg:flex xl:gap-4">
-              {navItems.map(item => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  aria-label={item.label}
-                  className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-1 text-sm font-medium transition-colors magnet-target xl:gap-2 ${
-                    location === item.path ? 'text-primary text-glow' : 'text-muted-foreground hover:text-white'
-                  }`}
-                >
-                  {item.icon}
-                  <span className="hidden xl:inline">{item.label}</span>
-                </Link>
-              ))}
-            </nav>
-
-            <div className="flex shrink-0 items-center justify-end gap-2">
-              <div className="hidden whitespace-nowrap font-mono text-xs text-muted-foreground 2xl:block">
-                X Followers: <span className="text-secondary">21.4k</span>
-              </div>
-
-              <a
-                href="https://linkedin.com/in/anshitraj"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn profile"
-                className="hidden items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:bg-white/10 hover:text-white magnet-target xl:inline-flex"
-              >
-                <Linkedin className="h-3 w-3" />
-                <span className="hidden 2xl:inline">LinkedIn</span>
-              </a>
-
-              <a
-                href="https://github.com/anshitraj"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub profile"
-                className="hidden items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:bg-white/10 hover:text-white magnet-target xl:inline-flex"
-              >
-                <Github className="h-3 w-3" />
-                <span className="hidden 2xl:inline">GitHub</span>
-              </a>
-
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+              <ThemeToggle />
+              <span className="hidden text-xs text-zinc-600 dark:text-zinc-500 sm:inline">
+                X <span className="text-zinc-700 dark:text-zinc-300">{SITE.xFollowers}</span>
+              </span>
               <Link
                 href="/resume"
-                className="inline-flex whitespace-nowrap rounded-lg border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition-all hover:bg-primary hover:text-white box-glow magnet-target md:px-4 md:py-2 md:text-sm"
+                className="rounded-full border border-zinc-300 dark:border-white/15 bg-white px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-200"
               >
-                RESUME
+                Resume
               </Link>
             </div>
           </div>
         </header>
 
-        {/* Mobile Nav Bar (Bottom) */}
-        <nav className="fixed bottom-0 left-0 right-0 z-40 flex justify-around border-b-0 p-4 pb-safe glass-panel lg:hidden">
-          {navItems.slice(0, 5).map(item => (
-            <Link
-              key={item.path}
-              href={item.path}
-              className={`flex flex-col items-center gap-1 ${
-                location === item.path ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              {item.icon}
-              <span className="text-[10px]">{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Main Content */}
-        <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-24 md:px-8 md:pb-8">
+        <main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-32 pt-8 md:px-8 md:pb-36 md:pt-12">
           <motion.div
             key={location}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="h-full w-full"
+            transition={{ duration: 0.25 }}
+            className="w-full"
           >
             {children}
           </motion.div>
         </main>
+
+        <FloatingDock />
       </div>
-    </>
+    </div>
   );
 }

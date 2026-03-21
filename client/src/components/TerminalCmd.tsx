@@ -54,7 +54,7 @@ export function TerminalCmd() {
         addLog('output', '  open      - Open a project (e.g. open arcpay)');
         addLog('output', '  funding   - View Webcoin Labs funding details');
         addLog('output', '  webcoin   - View ecosystem & growth work');
-        addLog('output', '  titan     - View Titan Exchange contributions');
+        addLog('output', '  altava    - View ALTAVA GROUP internship details');
         addLog('output', '  raydium   - View Raydium Protocol contributions');
         addLog('output', '  stack     - View technical stack');
         addLog('output', '  focus     - View current build focus');
@@ -66,17 +66,21 @@ export function TerminalCmd() {
         break;
       case 'about':
         addLog('output', 'IDENTITY: Anshit Raj Yadav');
-        addLog('output', 'ROLE: Builder / Founder / Engineer');
-        addLog('output', 'SPECIALTIES: Agentic AI, LLM systems, stablecoin payments, blockchain infra, full-stack product.');
-        addLog('output', 'STATUS: Shipping production-style systems for founders, traders, and operators.');
+        addLog('output', 'ROLE: Builder / Operator — engineering, GTM, and business development');
+        addLog('output', 'SPECIALTIES: Agentic AI, stablecoin payments, blockchain infra, partnerships, full-stack product.');
+        addLog(
+          'output',
+          'TRACTION: 100+ startups connected; ~1K→21K+ community reach; 1,500+ KOL network; $50K+ fundraising supported; Mini Cast 1,500+ users w1 / 25+ devs.'
+        );
+        addLog('output', 'STATUS: Shipping systems with quantified distribution for founders and operators.');
         break;
       case 'experience':
         addLog('system', 'FETCHING PROFESSIONAL HISTORY...');
         addLog('output', 'Webcoin Labs | 2022–2025 | Founding Team — Ecosystem, Partnerships, Infra & Growth');
-        addLog('output', 'Titan Exchange | Sep 2024–Dec 2024 | SDE Intern');
-        addLog('output', 'Raydium Protocol | May 2024–July 2024 | Protocol Contributor');
-        addLog('output', 'Independent Contributor | 2023–Present | Payments, AI agents, dashboards, infra');
-        addLog('output', 'Type "webcoin", "titan", "raydium", or "achievements" for more details.');
+        addLog('output', 'Raydium Protocol | May 2023–July 2023 | Protocol Contributor');
+        addLog('output', 'ALTAVA GROUP | Jun 2022–Sep 2022 | SDE Intern');
+        addLog('output', 'Acid Rainbow | Mar 2022–Apr 2022 | Influencer Marketing Manager');
+        addLog('output', 'Type "webcoin", "altava", "raydium", or "achievements" for more details.');
         break;
       case 'funding':
       case 'webcoin':
@@ -85,8 +89,11 @@ export function TerminalCmd() {
           'Webcoin Labs — Connected 100+ startups, grew community reach from ~1K to 21K+, managed a 1,500+ KOL network, and supported $50K+ in fundraising initiatives.'
         );
         break;
-      case 'titan':
-        addLog('output', 'Titan Exchange — DEX workflows, tooling, and infra; 500+ test users, 100+ traders in feedback loops; UX and safety improvements with remote protocol/product teams.');
+      case 'altava':
+        addLog(
+          'output',
+          'ALTAVA GROUP — Remote SDE internship: blockchain product work with Next.js and on-chain integrations; feature delivery, testing, and collaboration with the engineering team.'
+        );
         break;
       case 'raydium':
         addLog('output', 'Raydium Protocol — Solana AMM tooling, SDK, and pool integrations; 50+ developers supported; validated 20+ pool types and fee tiers; concentrated liquidity UX.');
@@ -144,16 +151,20 @@ export function TerminalCmd() {
           'output',
           'AI / Agentic: LLM workflows, agentic AI systems, AI-native automation, stablecoin payment rails'
         );
+        addLog(
+          'output',
+          'GTM / BD: partnerships, launch playbooks, ecosystem growth, quantified distribution'
+        );
         break;
       case 'focus':
         addLog('system', 'CURRENT FOCUS:');
         addLog(
           'output',
-          'Agentic AI systems that can safely move money, coordinate people, and interact with on-chain infrastructure.'
+          'Ship product with measurable traction — agentic systems that move money safely, GTM/partnership loops with KPIs.'
         );
         addLog(
           'output',
-          'Stablecoin payment rails, DCA/vault strategies, dashboards for founders and operators, and AI-native financial coordination.'
+          'Stablecoin rails, DCA/vault strategies, dashboards for founders, tooling ecosystems can adopt with confidence.'
         );
         break;
       case 'achievements':
@@ -163,7 +174,7 @@ export function TerminalCmd() {
         addLog('output', '- Supported fundraising initiatives contributing to $50K+ raised.');
         addLog('output', '- Managed a 1,500+ influencer / KOL network for campaigns.');
         addLog('output', '- Mini Cast Store reached 1,500+ users in its first week with 25+ developers listing apps.');
-        addLog('output', '- Titan Exchange workflows supported 500+ test users and 100+ traders during testing.');
+        addLog('output', '- ALTAVA GROUP internship: remote SDE work across Next.js and blockchain product flows.');
         addLog('output', '- Built multiple production-style products across payments, AI, dashboards, and infra.');
         break;
       case 'badges':
@@ -243,7 +254,7 @@ export function TerminalCmd() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
     >
-      <div className="bg-black/40 px-4 py-2 border-b border-white/10 flex items-center gap-2">
+      <div className="bg-zinc-200/60 dark:bg-black/40 px-4 py-2 border-b border-zinc-200/80 dark:border-white/10 flex items-center gap-2">
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -256,7 +267,7 @@ export function TerminalCmd() {
         {logs.map((log, i) => (
           <div key={i} className="mb-1">
             {log.type === 'input' && (
-              <div className="flex gap-2 text-white">
+              <div className="flex gap-2 text-zinc-950 dark:text-white">
                 <span className="text-secondary">❯</span>
                 <span>{log.content}</span>
               </div>
@@ -275,14 +286,14 @@ export function TerminalCmd() {
         <div ref={bottomRef} />
       </div>
 
-      <div className="p-4 bg-black/20 flex items-center gap-2 border-t border-white/5">
+      <div className="p-4 bg-black/20 flex items-center gap-2 border-t border-zinc-200/80 dark:border-white/5">
         <span className="text-secondary font-bold animate-pulse">❯</span>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder:text-muted-foreground/30 magnet-target"
+          className="flex-1 bg-transparent border-none outline-none text-zinc-950 dark:text-white font-mono placeholder:text-muted-foreground/30 magnet-target"
           placeholder="Enter command..."
           autoComplete="off"
           spellCheck="false"

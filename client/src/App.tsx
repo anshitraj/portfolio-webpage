@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Private from "./pages/Private";
 import Resume from "./pages/Resume";
 import Experience from "./pages/Experience";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 function Router() {
   return (
@@ -34,12 +35,14 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

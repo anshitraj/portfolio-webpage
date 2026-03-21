@@ -36,20 +36,13 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-white overflow-x-hidden;
+    @apply bg-zinc-50 text-zinc-900 antialiased overflow-x-hidden dark:bg-black dark:text-white;
     font-family: var(--font-sans);
-    cursor: none; /* Hide default cursor for custom one on desktop */
+    cursor: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
-  }
-  
-  /* Fallback for mobile where custom cursor is hidden */
-  @media (max-width: 768px) {
-    body {
-      cursor: auto;
-    }
   }
 }
 
@@ -209,10 +202,10 @@
   @apply list-disc list-inside mb-4 pl-4 text-muted-foreground;
 }
 .prose-custom code {
-  @apply font-mono bg-white/10 px-1 py-0.5 rounded text-primary text-sm;
+  @apply font-mono rounded bg-zinc-200/80 px-1 py-0.5 text-primary text-sm dark:bg-white/10;
 }
 .prose-custom pre {
-  @apply font-mono bg-black/50 p-4 rounded-xl border border-white/10 overflow-x-auto mb-6;
+  @apply font-mono bg-zinc-100 p-4 rounded-xl border border-zinc-200/80 overflow-x-auto mb-6 dark:bg-black/50 dark:border-white/10;
 }
 .prose-custom pre code {
   @apply bg-transparent p-0 text-muted-foreground;

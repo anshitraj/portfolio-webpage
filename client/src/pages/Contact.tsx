@@ -26,9 +26,10 @@ export default function Contact() {
         
         {/* Left Side: Terminal */}
         <div className="space-y-6">
-          <header>
-            <h1 className="text-4xl font-bold text-white mb-2">Interface</h1>
-            <p className="text-muted-foreground">Use the terminal for direct system access.</p>
+          <header className="space-y-2">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500">// Contact</p>
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">Terminal</h1>
+            <p className="text-zinc-600 dark:text-zinc-400">Use the terminal for direct system access.</p>
           </header>
           <TerminalCmd />
         </div>
@@ -36,12 +37,12 @@ export default function Contact() {
         {/* Right Side: Form */}
         <div className="space-y-6 lg:mt-[4.5rem]">
           <motion.div 
-            className="glass-panel p-8 rounded-2xl"
+            className="rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-zinc-50/95 dark:bg-zinc-950/50 p-8"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold text-white mb-6">Standard Transmission</h2>
+            <h2 className="mb-6 text-2xl font-bold text-zinc-950 dark:text-white">Message</h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -51,7 +52,7 @@ export default function Contact() {
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all magnet-target"
+                  className="w-full bg-zinc-200/60 dark:bg-black/40 border border-zinc-200/80 dark:border-white/10 rounded-xl px-4 py-3 text-zinc-950 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all magnet-target"
                   placeholder="Enter designator"
                 />
               </div>
@@ -63,7 +64,7 @@ export default function Contact() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all magnet-target"
+                  className="w-full bg-zinc-200/60 dark:bg-black/40 border border-zinc-200/80 dark:border-white/10 rounded-xl px-4 py-3 text-zinc-950 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all magnet-target"
                   placeholder="Enter email address"
                 />
               </div>
@@ -75,7 +76,7 @@ export default function Contact() {
                   value={message}
                   onChange={e => setMessage(e.target.value)}
                   rows={4}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none magnet-target"
+                  className="w-full bg-zinc-200/60 dark:bg-black/40 border border-zinc-200/80 dark:border-white/10 rounded-xl px-4 py-3 text-zinc-950 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none magnet-target"
                   placeholder="Enter your message"
                 />
               </div>

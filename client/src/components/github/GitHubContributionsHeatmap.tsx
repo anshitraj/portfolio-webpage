@@ -10,11 +10,11 @@ const monthPositions: { label: string; column: number }[] = monthLabels.map((lab
 }));
 
 const levelToClassName: Record<number, string> = {
-  0: 'bg-emerald-950/20',
-  1: 'bg-emerald-900/60',
-  2: 'bg-emerald-700',
+  0: 'bg-emerald-200/50 dark:bg-emerald-950/20',
+  1: 'bg-emerald-400/70 dark:bg-emerald-900/60',
+  2: 'bg-emerald-600 dark:bg-emerald-700',
   3: 'bg-emerald-500',
-  4: 'bg-emerald-300',
+  4: 'bg-emerald-400 dark:bg-emerald-300',
 };
 
 export function GitHubContributionsHeatmap() {
@@ -59,7 +59,7 @@ export function GitHubContributionsHeatmap() {
             {/* Grid */}
             <div className="relative flex gap-[2px] sm:gap-[3px]">
               {loading && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-black/40 font-mono text-[10px] text-muted-foreground">
+                <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-zinc-200/60 dark:bg-black/40 font-mono text-[10px] text-muted-foreground">
                   Loading contributions…
                 </div>
               )}

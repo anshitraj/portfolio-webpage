@@ -18,16 +18,16 @@ export default function Achievements() {
     <Layout>
       <div className="max-w-4xl mx-auto space-y-12">
         <header>
-          <h1 className="text-4xl font-bold text-white mb-2">User Profile</h1>
+          <h1 className="text-4xl font-bold text-zinc-950 dark:text-white mb-2">User Profile</h1>
           <p className="text-muted-foreground">Track your interaction with this instance.</p>
         </header>
 
         <section className="glass-panel p-8 rounded-3xl">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-white">Synchronization Level</h2>
+            <h2 className="text-xl font-bold text-zinc-950 dark:text-white">Synchronization Level</h2>
             <span className="text-2xl font-mono text-secondary">{progress}%</span>
           </div>
-          <div className="h-4 bg-black/50 rounded-full overflow-hidden border border-white/10">
+          <div className="h-4 bg-zinc-200/70 dark:bg-black/50 rounded-full overflow-hidden border border-zinc-200/80 dark:border-white/10">
             <motion.div 
               className="h-full bg-gradient-to-r from-secondary to-primary relative"
               initial={{ width: 0 }}
@@ -43,7 +43,7 @@ export default function Achievements() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Badges</h2>
+          <h2 className="text-2xl font-bold text-zinc-950 dark:text-white mb-6">Badges</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ALL_BADGES.map((badge, i) => {
               const unlocked = badgesUnlocked.includes(badge.id);
@@ -54,7 +54,7 @@ export default function Achievements() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className={`p-6 rounded-2xl border ${unlocked ? 'bg-primary/10 border-primary/50 box-glow' : 'bg-black/40 border-white/5'} relative overflow-hidden`}
+                  className={`p-6 rounded-2xl border ${unlocked ? 'bg-primary/10 border-primary/50 box-glow' : 'bg-zinc-200/60 dark:bg-black/40 border-zinc-200/80 dark:border-white/5'} relative overflow-hidden`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${unlocked ? 'bg-primary text-white' : 'bg-white/5 text-muted-foreground'}`}>
@@ -62,7 +62,7 @@ export default function Achievements() {
                     </div>
                   </div>
                   
-                  <h3 className={`text-lg font-bold mb-2 ${unlocked ? 'text-white text-glow' : 'text-muted-foreground'}`}>
+                  <h3 className={`text-lg font-bold mb-2 ${unlocked ? 'text-zinc-950 dark:text-white text-glow' : 'text-muted-foreground'}`}>
                     {badge.id}
                   </h3>
                   
