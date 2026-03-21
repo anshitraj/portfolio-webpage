@@ -39,7 +39,10 @@ export default function Projects() {
                 <p className="line-clamp-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">{p.description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
-                    <span key={t} className="rounded-md bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-700 dark:text-zinc-300">
+                    <span
+                      key={t}
+                      className="rounded-md border border-zinc-300/80 bg-zinc-200 px-1.5 py-0.5 text-[10px] text-zinc-800 dark:border-white/10 dark:bg-zinc-800 dark:text-zinc-300"
+                    >
                       {t}
                     </span>
                   ))}
