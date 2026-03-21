@@ -1,19 +1,7 @@
 import { Layout } from '@/components/Layout';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'wouter';
-import {
-  ArrowRight,
-  Activity,
-  Users,
-  Star,
-  Code,
-  Terminal,
-  Briefcase,
-  Linkedin,
-  Github,
-  Download,
-} from 'lucide-react';
+import { ArrowRight, Download, Globe, Github } from 'lucide-react';
 import { projects } from '@/content/projects';
 import { Button } from '@/components/ui/button';
 import {
@@ -22,491 +10,251 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger,
 } from '@/components/ui/dialog';
-import { GitHubContributionsHeatmap } from '@/components/github/GitHubContributionsHeatmap';
 import { ResumeTerminal } from '@/components/ResumeTerminal';
 import { TerminalAchievements } from '@/components/TerminalAchievements';
+import { GitHubActivitySection } from '@/components/GitHubActivitySection';
+import {
+  SITE,
+  WHAT_I_DO,
+  WORK_EXPERIENCE,
+  SKILLS,
+  IMPACT_METRICS,
+  CURRENT_FOCUS,
+} from '@/content/siteProfile';
 
 export default function Home() {
   const [isResumeVaultOpen, setIsResumeVaultOpen] = useState(false);
-
-  const metrics = [
-    { label: 'Startups Connected', value: '100+', icon: Users },
-    { label: 'Community Reach', value: '21K+', icon: Star },
-    { label: 'Product Users', value: '1,500+', icon: Activity },
-    { label: 'Fundraising Supported', value: '$50K+', icon: Briefcase },
-  ];
+  const featured = projects.slice(0, 6);
 
   return (
     <Layout>
-      <div className="flex min-h-[80vh] flex-col items-center justify-center gap-16 md:gap-24">
-        
-        {/* Hero Section */}
-        <section className="mx-auto mt-8 w-full max-w-4xl space-y-6 px-1 text-center md:mt-12">
-          <div className="flex flex-col items-center gap-4 mb-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex max-w-full items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-primary sm:px-4 sm:text-xs"
-            >
-              SYSTEM STATUS: ONLINE | USER: anshit.raj.yadav
-            </motion.div>
-          </div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h1 className="mb-2 text-4xl font-black tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-8xl">
-              Anshit Raj Yadav
+      <div className="space-y-20 md:space-y-28">
+        {/* Hero */}
+        <section className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-2xl space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+              Hi, I&apos;m {SITE.name.split(' ')[0]} 👋
             </h1>
-            <h2 className="text-xl font-bold tracking-tight text-secondary sm:text-2xl md:text-3xl">
-              Builder of Agentic AI, Stablecoin Rails & Product Systems
-            </h2>
-          </motion.div>
-          
-          <motion.p 
-            className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg md:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            I build real systems around agentic AI, LLM workflows, stablecoin payment rails, and blockchain infrastructure — from encrypted ledgers and DEX tooling to dashboards, automations, and consumer-facing experiments.
-          </motion.p>
-          
-          <motion.div
-            className="flex w-full flex-col items-stretch justify-center gap-3 pt-6 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Link
-              href="/projects"
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-primary/40 magnet-target sm:w-auto"
-            >
-              Explore My Work <Code className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/contact"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-bold text-white transition-all hover:bg-white/10 magnet-target sm:w-auto"
-            >
-              Open Terminal <Terminal className="w-5 h-5" />
-            </Link>
-          </motion.div>
-
-          <motion.div
-            className="mt-6 flex flex-col items-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <div className="mx-auto inline-flex w-full max-w-xl flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/5 bg-black/40 px-4 py-3 backdrop-blur-md shadow-[0_0_30px_rgba(88,28,135,0.35)]">
+            <p className="text-lg text-zinc-400 sm:text-xl">{SITE.tagline}</p>
+            <p className="text-sm leading-relaxed text-zinc-500 sm:text-base">{SITE.bio}</p>
+            <div className="flex flex-wrap gap-3 pt-2">
               <Dialog open={isResumeVaultOpen} onOpenChange={setIsResumeVaultOpen}>
-                <DialogTrigger asChild>
-                  <Button className="gap-2 font-mono text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-primary/90 magnet-target">
-                    <Download className="w-4 h-4" />
-                    Download Resume
-                  </Button>
-                </DialogTrigger>
+                <Button
+                  onClick={() => setIsResumeVaultOpen(true)}
+                  className="rounded-full bg-white px-6 py-6 text-sm font-semibold text-black hover:bg-zinc-200"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  Download resume
+                </Button>
                 <DialogContent className="w-[96vw] max-w-4xl border-0 bg-transparent p-0 sm:rounded-2xl [&>button]:hidden">
                   <ResumeTerminal onClose={() => setIsResumeVaultOpen(false)} />
                   <DialogHeader className="hidden">
-                    <DialogTitle className="font-mono text-sm tracking-[0.3em] text-secondary">
-                      /resumes
-                    </DialogTitle>
-                    <DialogDescription className="text-muted-foreground">
-                      Select the profile you want to download.
-                    </DialogDescription>
+                    <DialogTitle>/resumes</DialogTitle>
+                    <DialogDescription>Resume vault</DialogDescription>
                   </DialogHeader>
-                  <div className="mt-4 hidden grid gap-3">
-                    <a
-                      href="/resumes/anshit-raj-yadav-technical.pdf"
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
-                      download
-                    >
-                      <div>
-                        <div className="text-sm font-semibold text-white">
-                          Technical Resume
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                          Systems, infra, full-stack engineering
-                        </p>
-                      </div>
-                      <Download className="w-4 h-4 text-primary" />
-                    </a>
-                    <a
-                      href="/resumes/anshit-raj-yadav-founder.pdf"
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
-                      download
-                    >
-                      <div>
-                        <div className="text-sm font-semibold text-white">
-                          Founder / Builder Resume
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                          Company-building, 0→1 products, growth
-                        </p>
-                      </div>
-                      <Download className="w-4 h-4 text-primary" />
-                    </a>
-                    <a
-                      href="/resumes/anshit-raj-yadav-business-bd.pdf"
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-primary/60 hover:bg-primary/10 transition-all"
-                      download
-                    >
-                      <div>
-                        <div className="text-sm font-semibold text-white">
-                          Business / BD Resume
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                          Strategy, GTM, partnerships & ops
-                        </p>
-                      </div>
-                      <Download className="w-4 h-4 text-primary" />
-                    </a>
-                  </div>
                 </DialogContent>
               </Dialog>
-
-              <a
-                href="https://linkedin.com/in/anshitraj"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-white/10 hover:text-white transition-all magnet-target"
+              <Link
+                href="/projects"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </a>
-
-              <a
-                href="https://github.com/anshitraj"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-white/10 hover:text-white transition-all magnet-target"
-              >
-                <Github className="w-4 h-4" />
-                GitHub
-              </a>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            transition={{ delay: 1 }}
-            className="pt-8 font-mono text-[10px] text-muted-foreground tracking-[0.2em] uppercase"
-          >
-            ROLE: BUILDER / FOUNDER / ENGINEER
-          </motion.div>
-        </section>
-
-        {/* Impact Metrics Strip */}
-        <motion.section 
-          className="w-full glass-panel rounded-3xl p-8 md:p-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
-                Impact at a Glance
-              </h2>
-              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                Ecosystem, users, and capital touched by my work.
-              </p>
+                View projects
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 divide-y md:divide-y-0 md:divide-x divide-white/5">
-            {metrics.map((m, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center pt-8 md:pt-0 first:pt-0 text-center px-2"
-              >
-                <m.icon className="w-6 h-6 text-secondary mb-3 opacity-70" />
-                <h3 className="text-3xl md:text-4xl font-black text-white tracking-tighter mb-1">
-                  {m.value}
-                </h3>
-                <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.3em] font-medium">
-                  {m.label}
-                </p>
+          <div className="flex shrink-0 justify-center md:justify-end">
+            <div className="h-28 w-28 overflow-hidden rounded-full border border-white/10 bg-zinc-900 sm:h-32 sm:w-32">
+              <img
+                src={`https://github.com/${SITE.handle}.png`}
+                alt=""
+                className="h-full w-full object-cover"
+                width={128}
+                height={128}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Availability */}
+        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-950/60 px-4 py-3 sm:px-5">
+          <span className="relative flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+          </span>
+          <p className="text-sm text-zinc-300">{SITE.availability}</p>
+        </div>
+
+        {/* About */}
+        <section className="space-y-4">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">// About</p>
+          <h2 className="text-3xl font-bold text-white">What I do</h2>
+          <p className="max-w-3xl text-zinc-400">{WHAT_I_DO}</p>
+          <div className="grid grid-cols-2 gap-4 pt-4 sm:grid-cols-4">
+            {IMPACT_METRICS.map((m) => (
+              <div key={m.label} className="rounded-xl border border-white/10 bg-zinc-950/50 p-4">
+                <div className="text-2xl font-bold text-white">{m.value}</div>
+                <div className="text-xs text-zinc-500">{m.label}</div>
               </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
-        {/* Recent Achievements */}
-        <TerminalAchievements />
+        {/* Work */}
+        <section className="space-y-6">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">// Work</p>
+          <h2 className="text-3xl font-bold text-white">Experience</h2>
+          <div className="space-y-0 divide-y divide-white/10 rounded-2xl border border-white/10 bg-zinc-950/40">
+            {WORK_EXPERIENCE.map((job) => (
+              <div
+                key={job.company + job.period}
+                className="flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:p-5"
+              >
+                <div className="flex gap-4">
+                  {job.logoSrc ? (
+                    <img
+                      src={job.logoSrc}
+                      alt=""
+                      className="mt-1 h-12 w-12 shrink-0 rounded-full border border-white/10 bg-zinc-900 object-cover"
+                    />
+                  ) : (
+                    <div className="mt-1 h-12 w-12 shrink-0 rounded-full border border-white/10 bg-zinc-900" />
+                  )}
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-semibold text-white">{job.company}</span>
+                      <span className="rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-zinc-300">
+                        {job.badge}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-zinc-500">{job.role}</p>
+                    <p className="mt-2 text-sm text-zinc-400">{job.summary}</p>
+                  </div>
+                </div>
+                <div className="shrink-0 text-sm text-zinc-500 sm:text-right">{job.period}</div>
+              </div>
+            ))}
+          </div>
+          <Link href="/experience" className="inline-flex text-sm font-medium text-sky-400 hover:text-sky-300">
+            Full experience & metrics →
+          </Link>
+        </section>
 
-        {/* Featured Projects preview */}
-        <section className="w-full space-y-10 mb-16">
-          <div className="flex flex-col gap-4 border-b border-white/5 pb-6 sm:flex-row sm:items-end sm:justify-between">
+        {/* Skills */}
+        <section className="space-y-4">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">// Skills</p>
+          <h2 className="text-3xl font-bold text-white">Stack</h2>
+          <div className="flex flex-wrap gap-2">
+            {SKILLS.map((s) => (
+              <span
+                key={s}
+                className="rounded-full border border-white/15 bg-white px-3 py-1.5 text-xs font-medium text-black"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+          <p className="text-xs text-zinc-600">
+            Also: Java, C++, Tailwind, MongoDB, Firebase, Hardhat, Vite, IPFS, Nginx, Render, and more — see{' '}
+            <Link href="/resume" className="text-zinc-400 underline hover:text-white">
+              resume
+            </Link>
+            .
+          </p>
+        </section>
+
+        {/* Featured projects */}
+        <section className="space-y-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-4xl font-black text-white tracking-tighter uppercase">Recent Deployments</h2>
-              <p className="text-muted-foreground font-mono text-sm mt-1">Proof of work / Production products</p>
+              <span className="inline-block rounded-full border border-white/20 bg-white px-3 py-1 text-xs font-semibold text-black">
+                My projects
+              </span>
+              <h2 className="mt-4 text-2xl font-bold text-white sm:text-3xl">Check out my latest work</h2>
+              <p className="mt-2 max-w-xl text-sm text-zinc-400">
+                Payments, GTM, agentic AI, marketplaces, and infra — from stablecoin gateways to Farcaster mini-apps.
+              </p>
             </div>
-            <Link href="/projects" className="text-primary hover:text-white transition-colors flex items-center gap-2 font-bold magnet-target">
-              View All Systems <ArrowRight className="w-5 h-5" />
+            <Link
+              href="/projects"
+              className="inline-flex items-center text-sm font-semibold text-white hover:text-zinc-300"
+            >
+              All projects <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.slice(0, 6).map((p, i) => (
-              <motion.div
+
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((p) => (
+              <article
                 key={p.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/5 bg-black/40 hover:border-primary/50 transition-all"
+                className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-zinc-950/40 transition-colors hover:border-white/20"
               >
-                <div className="aspect-[16/9] overflow-hidden">
-                  <img 
-                    src={p.image} 
-                    alt={p.title} 
-                    className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                <div className="aspect-[2/1] max-h-[140px] shrink-0 overflow-hidden bg-zinc-900 sm:max-h-[160px]">
+                  <img
+                    src={p.image}
+                    alt=""
+                    className="h-full w-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                 </div>
-                
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <div className="flex gap-2 mb-3">
-                    {p.tags.slice(0, 2).map(t => (
-                      <span key={t} className="text-[10px] font-mono uppercase tracking-widest px-2 py-1 rounded-md bg-white/10 text-white backdrop-blur-sm">
+                <div className="flex flex-1 flex-col space-y-2 p-4">
+                  <div>
+                    <h3 className="text-base font-bold leading-snug text-white">{p.title}</h3>
+                    {p.year ? <p className="text-xs text-zinc-500">{p.year}</p> : null}
+                  </div>
+                  <p className="line-clamp-3 text-xs leading-relaxed text-zinc-400">{p.description}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.slice(0, 4).map((t) => (
+                      <span key={t} className="rounded-md bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-300">
                         {t}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight">{p.title}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2 mb-6 max-w-md">{p.description}</p>
-                  <Link 
-                    href={`/projects/${p.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-primary transition-colors magnet-target"
-                  >
-                    Open Case Study <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+                    {p.liveUrl ? (
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-white/10"
+                      >
+                        <Globe className="h-3 w-3" />
+                        Website
+                      </a>
+                    ) : null}
+                    {p.repoUrl ? (
+                      <a
+                        href={p.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-white/10"
+                      >
+                        <Github className="h-3 w-3" />
+                        Source
+                      </a>
+                    ) : null}
+                    <Link
+                      href={`/projects/${p.slug}`}
+                      className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-black hover:bg-zinc-200"
+                    >
+                      Details
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* GitHub Contributions */}
-        <section className="w-full space-y-6 mb-20">
-          <div className="flex items-center justify-between gap-4 border-b border-white/5 pb-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
-                GitHub Contributions
-              </h2>
-              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                Contribution snapshot across systems, experiments, and infra work.
-              </p>
-              <p className="text-muted-foreground font-mono text-[10px] md:text-xs mt-1">
-                60+ repositories touching payments, dashboards, automation, blockchain infra, and side projects.
-              </p>
-            </div>
-            <a
-              href="https://github.com/anshitraj"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-white transition-colors magnet-target"
-            >
-              View on GitHub
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
+        <TerminalAchievements variant="minimal" />
 
-          <div className="glass-panel rounded-3xl p-4 md:p-6 border border-white/5 bg-black/40">
-            <GitHubContributionsHeatmap />
-            <div className="mt-4 flex flex-col gap-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-              <span className="font-mono tracking-[0.2em] uppercase">
-                Activity Log &mdash; Last 12 Months
-              </span>
-              <div className="flex items-center gap-2 sm:justify-end">
-                <span className="text-[10px] uppercase tracking-[0.2em]">
-                  Less
-                </span>
-                <div className="flex items-center gap-1">
-                  <span className="w-3 h-3 rounded-sm bg-muted-foreground/10" />
-                  <span className="w-3 h-3 rounded-sm bg-emerald-900/60" />
-                  <span className="w-3 h-3 rounded-sm bg-emerald-700" />
-                  <span className="w-3 h-3 rounded-sm bg-emerald-400" />
-                  <span className="w-3 h-3 rounded-sm bg-emerald-300" />
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.2em]">
-                  More
-                </span>
-              </div>
-            </div>
-            <a
-              href="https://github.com/anshitraj"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex sm:hidden items-center gap-2 text-xs font-bold text-primary hover:text-white transition-colors magnet-target"
-            >
-              View on GitHub
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </section>
+        <GitHubActivitySection />
 
-        {/* Tech Stack */}
-        <section className="w-full space-y-8">
-          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
-                Tech Stack
-              </h2>
-              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                Languages, protocols, and tools I reach for in production.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                Languages
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Solidity', 'TypeScript', 'JavaScript', 'Python', 'Java'].map(item => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                Frontend
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['React', 'Next.js', 'TailwindCSS', 'Vite'].map((item) => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                Backend & Databases
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Node.js', 'Express', 'Supabase', 'PostgreSQL', 'MongoDB', 'Firebase'].map((item) => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                Web3 & Protocols
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Solana', 'Ethereum', 'Ethers.js', 'Hardhat', 'Foundry', 'OpenZeppelin', 'IPFS'].map((item) => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                DevOps & Tooling
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Git', 'Docker', 'Linux', 'Nginx', 'Vercel', 'Render'].map((item) => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                AI / LLM / Agentic Focus
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  'LLM workflows',
-                  'Agentic AI systems',
-                  'Programmable payment rails',
-                  'AI-native automation',
-                ].map(item => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass-panel p-5 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-mono tracking-[0.25em] uppercase text-secondary mb-3">
-                Currently Learning
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Rust'].map(item => (
-                  <span
-                    key={item}
-                    className="px-2 py-1 rounded-md bg-white/5 text-xs text-muted-foreground border border-white/5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Current Focus */}
-        <section className="w-full space-y-6">
-          <div className="flex items-end justify-between gap-4 border-b border-white/5 pb-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">
-                Current Focus
-              </h2>
-              <p className="text-muted-foreground font-mono text-xs md:text-sm mt-1">
-                What I'm actively building and thinking about right now.
-              </p>
-            </div>
-          </div>
-
-          <div className="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 bg-black/40">
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              I&apos;m focused on agentic AI systems that can safely move money, coordinate people, and interact
-              with on-chain infrastructure. That means LLM-powered workflows, stablecoin payment rails, DCA and vault
-              strategies, dashboards for founders and operators, and the tooling that lets ecosystems plug into this
-              with confidence.
-            </p>
-          </div>
+        {/* Current focus */}
+        <section className="space-y-4 pb-8">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">// Focus</p>
+          <h2 className="text-3xl font-bold text-white">Current focus</h2>
+          <p className="max-w-3xl text-zinc-400">{CURRENT_FOCUS}</p>
         </section>
       </div>
     </Layout>
