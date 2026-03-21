@@ -9,6 +9,8 @@ export interface Project {
   image: string;
   liveUrl?: string;
   repoUrl?: string;
+  /** Display year on project cards */
+  year?: string;
 }
 
 export const projects: Project[] = [
@@ -24,8 +26,9 @@ export const projects: Project[] = [
       { label: 'Focus', value: 'Policy-based safeguards' },
     ],
     position: [0, 0, 0],
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800',
+    image: '/omnipay.png',
     liveUrl: 'https://ai-agent-dashboard-two.vercel.app',
+    year: '2025',
   },
   {
     slug: 'arcpay',
@@ -39,9 +42,10 @@ export const projects: Project[] = [
       { label: 'Verification', value: 'On-chain' },
     ],
     position: [2.5, 1.5, -2],
-    image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&q=80&w=800',
+    image: '/arcpay.png',
     liveUrl: 'https://arcpay.systems',
     repoUrl: 'https://github.com/anshitraj/arc-pay-public',
+    year: '2025',
   },
   {
     slug: 'private-ledger-flow',
@@ -55,8 +59,9 @@ export const projects: Project[] = [
       { label: 'Layer', value: 'On-chain ledger' },
     ],
     position: [-2, -1.5, -1],
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
+    image: '/privateledger.png',
     liveUrl: 'https://private-ledger-steel.vercel.app',
+    year: '2025',
   },
   {
     slug: 'mini-cast-store',
@@ -70,9 +75,10 @@ export const projects: Project[] = [
       { label: 'Developers', value: '25+' },
     ],
     position: [1.5, -2, 1.5],
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800',
+    image: '/minicaststore.png',
     liveUrl: 'https://minicast.store',
     repoUrl: 'https://github.com/anshitraj/farcaster-base-hub',
+    year: '2025',
   },
   {
     slug: 'riddlepay',
@@ -86,8 +92,9 @@ export const projects: Project[] = [
       { label: 'Surface', value: 'Consumer' },
     ],
     position: [-1.5, 2, 1],
-    image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800',
-    liveUrl: 'https://ridlepay.tech',
+    image: '/riddlepay.png',
+    liveUrl: 'https://riddlepay.tech',
+    year: '2025',
   },
   {
     slug: 'arcgpt',
@@ -102,6 +109,7 @@ export const projects: Project[] = [
     ],
     position: [3, 0.5, 2],
     image: 'https://images.unsplash.com/photo-1676299081847-824916de030a?auto=format&fit=crop&q=80&w=800',
+    year: '2025',
   },
   {
     slug: 'dca-vault',
@@ -116,6 +124,7 @@ export const projects: Project[] = [
     ],
     position: [-3, 1.5, 2],
     image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800',
+    year: '2024',
   },
   {
     slug: 'kreatorboard',
@@ -130,6 +139,7 @@ export const projects: Project[] = [
     ],
     position: [0.5, 3, -1.5],
     image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&q=80&w=800',
+    year: '2024',
   },
   {
     slug: 'email-multi-sender',
@@ -144,20 +154,23 @@ export const projects: Project[] = [
     ],
     position: [-2.5, -2.5, 0.5],
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=800',
+    year: '2024',
   },
   {
     slug: 'artyuga',
-    title: 'Artyuga',
-    description: 'Creator and art-focused product experimentation.',
+    title: 'Artyug Verifier',
+    description:
+      'Verifies artwork purchased from Artyug and checks via NFC and QR who is the owner on the Solana blockchain.',
     longDescription:
-      'Artyuga is an experiment around creators, digital art, and productized experiences. It explores how to package creative work and interactions into products that feel more like systems than static portfolios.',
-    tags: ['Creators', 'Product', 'Experiment'],
+      'Artyug Verifier ties physical art to on-chain ownership: scan NFC or QR to confirm which wallet holds the piece on Solana, so buyers and galleries can trust provenance after purchase from Artyug.',
+    tags: ['Solana', 'NFC', 'QR', 'Verification', 'Art'],
     metrics: [
-      { label: 'Theme', value: 'Art & creators' },
-      { label: 'Stage', value: 'Experimental' },
+      { label: 'Chain', value: 'Solana' },
+      { label: 'Proof', value: 'NFC + QR' },
     ],
     position: [2, -3, -2],
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800',
+    image: '/artyugverifier.png',
+    year: '2025',
   },
   {
     slug: 'gh-timeline',
@@ -172,5 +185,6 @@ export const projects: Project[] = [
     ],
     position: [-3, 0, -2.5],
     image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800',
+    year: '2024',
   },
 ];

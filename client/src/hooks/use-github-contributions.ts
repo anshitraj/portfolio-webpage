@@ -59,6 +59,20 @@ export function useGitHubContributions(): {
     const from = new Date(to);
     from.setFullYear(from.getFullYear() - 1);
 
+    /** Try our API first (Vercel serverless with token); fallback to direct GitHub for local dev. */
+    const tryApi = () =>
+      fetch(`/api/github-contributions?username=${encodeURIComponent(GITHUB_USER)}`)
+        .then((res) => {
+          if (!res.ok) throw new Error(`API ${res.status}`);
+          return res.json();
+        })
+        .then((data: { weeks: Week[]; totalContributions?: number }) => {
+          if (!data?.weeks?.length) throw new Error('No contribution data');
+          setTotalContributions(data.totalContributions ?? null);
+          setMatrix(buildContribMatrix(data.weeks));
+          setError(false);
+        });
+
     const query = `
       query($username: String!, $from: DateTime!, $to: DateTime!) {
         user(login: $username) {
@@ -76,39 +90,39 @@ export function useGitHubContributions(): {
         }
       }
     `;
-
     const token = import.meta.env.VITE_GITHUB_TOKEN as string | undefined;
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
+    const tryDirect = () =>
+      fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          query,
+          variables: {
+            username: GITHUB_USER,
+            from: from.toISOString(),
+            to: to.toISOString(),
+          },
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+          return res.json();
+        })
+        .then((data: { data?: { user?: { contributionsCollection?: { contributionCalendar?: { weeks: Week[]; totalContributions?: number } } } }; errors?: { message?: string }[] }) => {
+          if (data?.errors?.length) throw new Error(data.errors[0]?.message ?? 'GraphQL error');
+          const calendar = data?.data?.user?.contributionsCollection?.contributionCalendar;
+          if (!calendar?.weeks?.length) throw new Error('No contribution data');
+          setTotalContributions(calendar.totalContributions ?? null);
+          setMatrix(buildContribMatrix(calendar.weeks));
+          setError(false);
+        });
 
-    fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        query,
-        variables: {
-          username: GITHUB_USER,
-          from: from.toISOString(),
-          to: to.toISOString(),
-        },
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`GitHub API ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        if (data?.errors?.length) throw new Error(data.errors[0]?.message ?? 'GraphQL error');
-        const user = data?.data?.user;
-        const collection = user?.contributionsCollection;
-        const calendar = collection?.contributionCalendar;
-        if (!calendar?.weeks?.length) throw new Error('No contribution data');
-        setTotalContributions(calendar.totalContributions ?? null);
-        setMatrix(buildContribMatrix(calendar.weeks));
-        setError(false);
-      })
+    tryApi()
+      .catch(() => tryDirect())
       .catch(() => {
         setError(true);
         setMatrix(null);
