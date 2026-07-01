@@ -30,6 +30,17 @@ const achievementCards: AchievementCard[] = [
     detailHref: '/projects/omniagentpay',
   },
   {
+    id: 'circle-alliance',
+    title: 'ARCPay in Circle Alliance Directory',
+    year: '2025',
+    description:
+      'ARCPay Systems is officially listed in the Circle Alliance Directory — Circle\'s curated ecosystem of vetted partners building on USDC and Circle infrastructure. Listed under Bridge SDKs, Fintechs, and Payments categories.',
+    image: '/circlealliance.png',
+    tags: ['Circle', 'USDC', 'Stablecoins', 'Alliance'],
+    primary: { href: 'https://arcpay.systems', label: 'ARCPay' },
+    detailHref: '/projects/arcpay',
+  },
+  {
     id: 'webcoin',
     title: 'Webcoin Labs ecosystem',
     year: '2022 – 2025',

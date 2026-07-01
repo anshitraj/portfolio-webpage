@@ -13,9 +13,12 @@ export const SITE = {
   githubUrl: 'https://github.com/anshitraj',
 };
 
-/** About / "What I do" body — product- and engineering-focused; metrics live in IMPACT_METRICS elsewhere. */
-export const WHAT_I_DO =
-  'I build full-stack products and work across engineering and product strategy. My focus is AI-driven workflows, fintech infrastructure, stablecoin payments, and automation where software can execute real transactions and decisions. Blockchain is infrastructure when programmability, settlement, or trust minimization matter—not the whole story. I have shipped payment gateways such as ARCPay, agentic payment infrastructure like OmniAgentPay, and marketplace surfaces including Mini Cast Store. I am especially interested in systems where AI, programmable finance, and modern backend stacks intersect to create new product experiences.';
+/** Home About — hire-me framing; metrics stay in IMPACT_METRICS below on the page. */
+export const WHAT_I_DO = `I build and ship real products. While many developers spend years solving theoretical problems or preparing only for interviews, I focus on building systems that people can actually use. I work across engineering, product strategy, and go-to-market—turning ideas into working software and usable platforms.
+
+My work spans AI-driven workflows, fintech infrastructure, stablecoin payment systems, and automation platforms where software can execute real financial actions. I've built production systems such as the ARCPay payment gateway, agentic payment infrastructure like OmniAgentPay, and developer platforms like Mini Cast Store.
+
+I'm comfortable moving from backend systems and infrastructure to product design, integrations, and launch. My focus is simple: build useful systems, ship them fast, and iterate based on real usage—not just theory.`;
 
 export type WorkEntry = {
   company: string;

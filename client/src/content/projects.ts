@@ -11,9 +11,56 @@ export interface Project {
   repoUrl?: string;
   /** Display year on project cards */
   year?: string;
+  /** Optional mobile/app screenshots shown in a gallery on the detail page */
+  screenshots?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'artyug',
+    title: 'Artyug',
+    description: 'The operating system for trusted art commerce. Sell artwork, run auctions, host events, build guilds, and give collectors blockchain-backed ownership proof.',
+    longDescription:
+      'Artyug is a full-stack art commerce platform where niche creators protect their work and build their legacy. It ships a marketplace, live auctions, creator guilds, event publishing, and a blockchain-backed authenticity infrastructure (QR + NFC + Solana on-chain certificates). Partnership with Motojojo generated ₹90,000+ in revenue through a single partner-led event before full launch. Available on Android and Web with 1,244+ artists onboarded.',
+    tags: ['Art Commerce', 'Blockchain', 'NFC', 'Solana', 'Mobile App', 'Auctions'],
+    metrics: [
+      { label: 'Revenue', value: '₹90K+' },
+      { label: 'Artists', value: '1,244+' },
+      { label: 'Verification', value: 'QR + NFC + On-chain' },
+      { label: 'Platform', value: 'Android + Web' },
+    ],
+    position: [1, 3, 1],
+    image: '/Artyug.png',
+    liveUrl: 'https://artyug.art',
+    year: '2026',
+    screenshots: [
+      '/artyug-screenshots/s1.jpeg',
+      '/artyug-screenshots/s2.jpeg',
+      '/artyug-screenshots/s3.jpeg',
+      '/artyug-screenshots/s4.jpeg',
+      '/artyug-screenshots/s5.jpeg',
+      '/artyug-screenshots/s6.jpeg',
+    ],
+  },
+  {
+    slug: 'ledger-failsafe',
+    title: 'Ledger FailSafe',
+    description: 'Hardware-gated defense against AI agent prompt injection attacks. Your AI agent will be hijacked — your Ledger hardware won\'t be fooled.',
+    longDescription:
+      'Ledger FailSafe demonstrates how hardware wallets stop prompt-injection attacks on autonomous treasury agents. A poisoned invoice hijacks the AI agent into sending funds to an attacker address, but the Ledger device shows the mismatch on its trusted display — the human rejects, and the attack dies at the hardware gate. Built with the Ledger Agent Stack (Device Management Kit + Ethereum signer + Speculos) for bounty BNT-0038. Signatures are genuinely produced by the real Ledger Ethereum app under Speculos — never fabricated.',
+    tags: ['Security', 'Ledger', 'Agentic AI', 'Ethereum', 'Hardware Wallet', 'Prompt Injection'],
+    metrics: [
+      { label: 'Stack', value: 'Ledger DMK + Speculos' },
+      { label: 'Defense', value: 'Hardware gate' },
+      { label: 'Modes', value: 'DEMO + LIVE' },
+      { label: 'Network', value: 'Sepolia testnet' },
+    ],
+    position: [-1, 3, -1],
+    image: '/Ledger-Firewall.png',
+    liveUrl: 'https://hardware-firewall.vercel.app',
+    repoUrl: 'https://github.com/anshitraj/Ledger-FailSafe',
+    year: '2026',
+  },
   {
     slug: 'omniagentpay',
     title: 'OmniAgentPay',

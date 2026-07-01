@@ -1,12 +1,35 @@
 import { Layout } from '@/components/Layout';
 import { useRoute, Link } from 'wouter';
 import { projects } from '@/content/projects';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ExternalLink, Github, X, ChevronLeft, ChevronRight, Smartphone } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function ProjectDetail() {
   const [, params] = useRoute('/projects/:slug');
   const project = projects.find(p => p.slug === params?.slug);
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
+  const closeLightbox = useCallback(() => setLightboxIdx(null), []);
+  const goPrev = useCallback(() => {
+    if (lightboxIdx === null || !project?.screenshots) return;
+    setLightboxIdx((lightboxIdx - 1 + project.screenshots.length) % project.screenshots.length);
+  }, [lightboxIdx, project?.screenshots]);
+  const goNext = useCallback(() => {
+    if (lightboxIdx === null || !project?.screenshots) return;
+    setLightboxIdx((lightboxIdx + 1) % project.screenshots.length);
+  }, [lightboxIdx, project?.screenshots]);
+
+  useEffect(() => {
+    if (lightboxIdx === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [lightboxIdx, closeLightbox, goPrev, goNext]);
 
   if (!project) {
     return (
@@ -20,6 +43,8 @@ export default function ProjectDetail() {
       </Layout>
     );
   }
+
+  const hasScreenshots = project.screenshots && project.screenshots.length > 0;
 
   return (
     <Layout>
@@ -74,6 +99,52 @@ export default function ProjectDetail() {
             ))}
           </div>
 
+          {/* Screenshots gallery */}
+          {hasScreenshots && (
+            <div className="mb-10">
+              <div className="flex items-center gap-2 mb-4">
+                <Smartphone className="h-4 w-4 text-zinc-500" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-600 dark:text-zinc-500">
+                  App Screenshots
+                </h2>
+              </div>
+              <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700">
+                {project.screenshots!.map((src, i) => (
+                  <motion.button
+                    key={src}
+                    type="button"
+                    onClick={() => setLightboxIdx(i)}
+                    className="group relative flex-none snap-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                  >
+                    {/* Phone frame mockup */}
+                    <div className="relative w-[160px] sm:w-[180px] md:w-[200px] rounded-[24px] border-[3px] border-zinc-300 dark:border-zinc-600 bg-black p-[3px] shadow-lg transition-all duration-300 group-hover:shadow-xl group-hover:shadow-sky-500/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 group-hover:-translate-y-1">
+                      {/* Notch */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[6px] bg-zinc-300 dark:bg-zinc-600 rounded-b-lg z-10" />
+                      <div className="overflow-hidden rounded-[20px]">
+                        <img
+                          src={src}
+                          alt={`${project.title} screenshot ${i + 1}`}
+                          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    {/* Label */}
+                    <p className="mt-2 text-center text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-600">
+                      s{i + 1}
+                    </p>
+                  </motion.button>
+                ))}
+              </div>
+              <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-600">
+                Click any screenshot to view full size
+              </p>
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-3">
             {project.liveUrl ? (
               <a
@@ -114,6 +185,69 @@ export default function ProjectDetail() {
           </div>
         </div>
       </motion.div>
+
+      {/* Lightbox modal */}
+      <AnimatePresence>
+        {lightboxIdx !== null && hasScreenshots && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeLightbox}
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 z-50 rounded-full bg-zinc-900/80 p-2 text-white hover:bg-zinc-800 transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Prev button */}
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              className="absolute left-4 z-50 rounded-full bg-zinc-900/80 p-3 text-white hover:bg-zinc-800 transition-colors"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            {/* Image */}
+            <motion.div
+              key={lightboxIdx}
+              className="relative max-h-[85vh] max-w-[90vw] sm:max-w-[400px]"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="rounded-[28px] border-[4px] border-zinc-700 bg-black p-[4px] shadow-2xl shadow-sky-500/20">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-[7px] bg-zinc-700 rounded-b-lg z-10" />
+                <img
+                  src={project.screenshots![lightboxIdx]}
+                  alt={`${project.title} screenshot ${lightboxIdx + 1}`}
+                  className="w-full h-auto rounded-[24px]"
+                />
+              </div>
+              <p className="mt-3 text-center text-xs font-mono text-zinc-400">
+                {lightboxIdx + 1} / {project.screenshots!.length}
+              </p>
+            </motion.div>
+
+            {/* Next button */}
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              className="absolute right-4 z-50 rounded-full bg-zinc-900/80 p-3 text-white hover:bg-zinc-800 transition-colors"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Layout>
   );
 }
