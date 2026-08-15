@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design system — near-monochrome with one restrained accent.
+
+  Almost everything is greyscale: emphasis comes from weight, fill and contrast
+  rather than colour, so solid ink is the loudest thing on screen, outlines sit
+  a step below, and muted grey supports. The single accent appears only on
+  active nav state, focus rings, the hero underline and link emphasis — never
+  as a fill on a large surface and never as a gradient.
+
+  Both themes are first-class: the toggle swaps the whole page, not a stripe.
+
+  Values are space-separated RGB so Tailwind's <alpha-value> works.
+*/
+:root {
+  /* Neutrals carry a faint cool tint rather than being pure grey — it reads as
+     considered rather than default, and keeps large fields from feeling flat. */
+  --paper: 252 252 253;
+  --surface: 245 245 247;
+  --ink: 13 13 15;
+  --muted: 110 111 117;
+  --rule: 226 226 230;
+  /* The one accent. Used only for active state, focus and link emphasis. */
+  --accent: 37 65 178;
+}
+
+.dark {
+  --paper: 10 10 11;
+  --surface: 23 23 26;
+  --ink: 250 250 251;
+  --muted: 159 160 168;
+  --rule: 40 40 45;
+  --accent: 124 152 255;
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--rule));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky nav clearance for anchor jumps */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink));
+    font-feature-settings: 'cv11', 'ss01';
+    font-variant-ligatures: contextual;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgb(var(--accent) / 0.18);
+    color: rgb(var(--ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Metrics must never jitter while counting up. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+  }
+
+  /* Small uppercase mono label that opens every section. */
+  .eyebrow {
+    @apply font-mono text-eyebrow uppercase text-muted;
+  }
+
+  /* Underline that grows from the left on hover — used for text links. */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Hairline grid used as section separators. */
+  .rule-t {
+    @apply border-t border-rule;
+  }
+
+  /*
+    Expands a small text link's touch target to ~40px without changing its
+    visual box — so the hover underline stays glued to the text while the
+    tappable area is finger-sized on mobile.
+  */
+  .tap-pad::before {
+    content: '';
+    position: absolute;
+    inset: -10px -6px;
+    z-index: 0;
+  }
+}
+
+/*
+  ── SECTION TONE ───────────────────────────────────────────────────────────
+  A full-bleed band that sits one step away from the page. In light it is a
+  near-black block; in dark it lifts slightly instead of inverting.
+
+  Used sparingly — the site's light/dark identity comes from the theme toggle,
+  not from alternating stripes down the page.
+*/
+.tone-dark {
+  --paper: 10 10 11;
+  --surface: 23 23 26;
+  --ink: 250 250 251;
+  --muted: 159 160 168;
+  --rule: 40 40 45;
+  --accent: 124 152 255;
+  background-color: rgb(var(--paper));
+  color: rgb(var(--ink));
+}
+
+.dark .tone-dark {
+  --paper: 22 22 25;
+  --surface: 31 31 35;
+  --ink: 250 250 251;
+  --muted: 159 160 168;
+  --rule: 50 50 56;
+  --accent: 124 152 255;
+}
+
+/*
+  ── PLAYGROUND: the workbench ──────────────────────────────────────────────
+  A self-contained palette so Playground reads as a genuinely different place
+  from Official, without touching the light/dark tokens the main site uses.
+  Scoped to .workbench — nothing here leaks out.
+*/
+.workbench {
+  /*
+    Same restraint as the rest of the site. Playground stays distinct through
+    texture, panels and layout rather than hue — it borrows the one accent for
+    `--signal` and keeps everything else greyscale.
+  */
+  --bench: 12 12 13;
+  --bench-panel: 23 23 26;
+  --bench-edge: 46 46 52;
+  --bench-text: 250 250 251;
+  --bench-dim: 146 147 155;
+  --signal: 124 152 255;
+  --live: 250 250 251;
+
+  /*
+    Remap the shared tokens too, so the Nav, Footer and any other Official
+    component dropped in here inherits the bench palette instead of punching a
+    light hole in it — regardless of the visitor's light/dark preference.
+  */
+  --paper: var(--bench);
+  --surface: var(--bench-panel);
+  --ink: var(--bench-text);
+  --muted: var(--bench-dim);
+  --rule: var(--bench-edge);
+  --accent: var(--signal);
+
+  background-color: rgb(var(--bench));
+  color: rgb(var(--bench-text));
+  /* Faint machined-grid surface — the bench itself. */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.workbench ::selection {
+  background-color: rgb(var(--signal) / 0.3);
+  color: rgb(var(--bench-text));
+}
+
+.workbench :focus-visible {
+  outline: 2px solid rgb(var(--signal));
+  outline-offset: 3px;
+}
+
+.bench-panel {
+  background-color: rgb(var(--bench-panel));
+  border: 1px solid rgb(var(--bench-edge));
+}
+
+/* Screws in the corners of a mounted panel. */
+.bench-screw {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: rgb(var(--bench-edge));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Card that flips on click. Height is set by the caller. */
+.flip {
+  perspective: 1400px;
+}
+.flip-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+.flip.is-flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Perforated edge for receipts and tear-off passes. */
+.perforated-b {
+  -webkit-mask-image: radial-gradient(circle at 5px 100%, transparent 4px, #000 4.5px);
+  mask-image: radial-gradient(circle at 5px 100%, transparent 4px, #000 4.5px);
+  -webkit-mask-size: 14px 100%;
+  mask-size: 14px 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner {
+    transition: none;
+  }
+}
+
+@layer utilities {
+  /* Fades the tail of a horizontally scrolling row instead of a hard cut. */
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 85%, transparent 100%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Markdown (blog + case study prose) */
+.prose-editorial {
+  @apply text-[0.975rem] leading-[1.75] text-muted;
+}
+.prose-editorial h1,
+.prose-editorial h2,
+.prose-editorial h3 {
+  @apply mb-3 mt-10 font-semibold tracking-tight text-ink;
+}
+.prose-editorial h1 {
+  @apply text-3xl;
+}
+.prose-editorial h2 {
+  @apply text-2xl;
+}
+.prose-editorial h3 {
+  @apply text-lg;
+}
+.prose-editorial p {
+  @apply mb-5;
+}
+.prose-editorial a {
+  @apply text-ink underline decoration-accent underline-offset-4 hover:text-accent;
+}
+.prose-editorial ul {
+  @apply mb-5 list-disc space-y-2 pl-5;
+}
+.prose-editorial ol {
+  @apply mb-5 list-decimal space-y-2 pl-5;
+}
+.prose-editorial strong {
+  @apply font-semibold text-ink;
+}
+.prose-editorial code {
+  @apply rounded-pill bg-ink/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-ink dark:bg-ink/10;
+}
+.prose-editorial pre {
+  @apply mb-6 overflow-x-auto rounded-card border border-rule bg-surface p-4;
+}
+.prose-editorial pre code {
+  @apply bg-transparent p-0 text-muted;
+}
+.prose-editorial blockquote {
+  @apply mb-5 border-l-2 border-accent pl-4 italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
