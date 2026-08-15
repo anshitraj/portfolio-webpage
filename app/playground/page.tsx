@@ -32,7 +32,8 @@ export default function PlaygroundPage() {
       <Nav />
 
       <main id="main" className="pt-24 sm:pt-28">
-        <div className="shell space-y-16 pb-20 sm:space-y-20">
+        {/* pb clears the floating mobile dock below `lg`. */}
+        <div className="shell space-y-16 pb-32 sm:space-y-20 lg:pb-20">
           <BenchHero />
           <StackReveal />
           <Principles />

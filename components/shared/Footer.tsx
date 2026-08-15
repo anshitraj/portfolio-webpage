@@ -5,7 +5,8 @@ const YEAR = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="border-t border-rule">
+    // Extra bottom padding below `lg` clears the floating mobile dock.
+    <footer className="border-t border-rule pb-24 lg:pb-0">
       <div className="shell flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">

@@ -4,7 +4,18 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useReducedMotion } from 'motion/react';
-import { Github, Linkedin, Menu, X } from 'lucide-react';
+import {
+  Briefcase,
+  FileText,
+  Github,
+  Home,
+  Images,
+  LayoutGrid,
+  Linkedin,
+  Menu,
+  Terminal,
+  X,
+} from 'lucide-react';
 import { NAV_LINKS, SECTION_IDS, SITE } from '@/data/site';
 import { ModeSwitch } from './ModeSwitch';
 import { ThemeToggle } from './ThemeToggle';
@@ -24,6 +35,23 @@ const SOCIALS = [
   { label: 'X', href: SITE.socials.x, Icon: XIcon },
 ];
 
+/**
+ * The mobile dock.
+ *
+ * Six destinations rather than the full nav: at a 44px minimum tap target only
+ * seven slots fit across a 375px screen, and the seventh is spent on the menu
+ * that still reaches everything else. Socials live in that sheet — on a phone,
+ * getting around the site beats leaving it.
+ */
+const DOCK_LINKS = [
+  { label: 'Home', href: '/', Icon: Home },
+  { label: 'Work', href: '/#work', Icon: LayoutGrid },
+  { label: 'Experience', href: '/#experience', Icon: Briefcase },
+  { label: 'Gallery', href: '/gallery', Icon: Images },
+  { label: 'Resume', href: '/#resume', Icon: FileText },
+  { label: 'Contact', href: '/#contact', Icon: Terminal },
+];
+
 export function Nav() {
   const pathname = usePathname();
   const reduced = useReducedMotion();
@@ -34,7 +62,16 @@ export function Nav() {
   const onHome = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      /*
+        The scroll-spy only ever claims a section, never releases one, so
+        returning to the top left the last section still highlighted — and in
+        the dock that lit two icons at once alongside Home.
+      */
+      if (y <= 8) setActive('');
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -170,19 +207,62 @@ export function Nav() {
             </div>
 
             <ThemeToggle />
+          </div>
+        </nav>
+      </header>
+
+      {/*
+        Bottom dock — mobile only, and the reason the top bar has no menu
+        button below `lg`. Hidden while the sheet is open so it cannot sit on
+        top of it.
+      */}
+      {!open && (
+        <div
+          className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:hidden"
+          style={{ pointerEvents: 'none' }}
+        >
+          <nav
+            aria-label="Quick navigation"
+            className="pointer-events-auto flex items-center gap-0.5 rounded-pill border border-rule bg-paper/90 p-1.5 shadow-[0_8px_32px_rgb(0_0_0/0.12)] backdrop-blur-md"
+          >
+            {DOCK_LINKS.map(({ label, href, Icon }) => {
+              /*
+                Home is active at the top of the page. It keys off `scrolled`
+                rather than an empty `active`, because the scroll-spy only ever
+                sets a section and never clears one — so returning to the top
+                would otherwise leave the last section lit.
+              */
+              const on = href === '/' ? onHome && !scrolled : isActive(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-label={label}
+                  aria-current={on ? 'page' : undefined}
+                  className={cn(
+                    'inline-flex h-11 w-11 items-center justify-center rounded-pill transition-colors',
+                    on ? 'bg-ink text-paper' : 'text-muted hover:text-ink'
+                  )}
+                >
+                  <Icon className="h-[18px] w-[18px]" aria-hidden />
+                </Link>
+              );
+            })}
+
+            <span className="mx-0.5 h-5 w-px bg-rule" aria-hidden />
 
             <button
               type="button"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
               aria-expanded={open}
-              className="-mr-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-pill text-ink lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-pill text-muted transition-colors hover:text-ink"
             >
-              <Menu className="h-5 w-5" aria-hidden />
+              <Menu className="h-[18px] w-[18px]" aria-hidden />
             </button>
-          </div>
-        </nav>
-      </header>
+          </nav>
+        </div>
+      )}
 
       {/* Mobile sheet */}
       {open && (
