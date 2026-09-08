@@ -80,8 +80,8 @@ export function Nav() {
   // Scroll-spy: highlight the section currently occupying the upper viewport.
   useEffect(() => {
     if (!onHome) {
-      setActive('');
-      return;
+      const frame = window.requestAnimationFrame(() => setActive(''));
+      return () => window.cancelAnimationFrame(frame);
     }
     const els = SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null
@@ -110,7 +110,10 @@ export function Nav() {
     };
   }, [open]);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setOpen(false));
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
 
   function isActive(href: string) {
     if (href.startsWith('/#')) return onHome && active === href.slice(2);

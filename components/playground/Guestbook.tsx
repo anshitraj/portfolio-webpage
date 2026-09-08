@@ -26,13 +26,16 @@ export function Guestbook() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) setNotes(JSON.parse(raw));
-    } catch {
-      /* corrupt or unavailable storage — start empty */
-    }
-    setLoaded(true);
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) setNotes(JSON.parse(raw));
+      } catch {
+        /* corrupt or unavailable storage — start empty */
+      }
+      setLoaded(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   function persist(next: Note[]) {

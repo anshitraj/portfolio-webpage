@@ -8,8 +8,11 @@ export function ThemeToggle({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setDark(document.documentElement.classList.contains('dark'));
-    setMounted(true);
+    const frame = window.requestAnimationFrame(() => {
+      setDark(document.documentElement.classList.contains('dark'));
+      setMounted(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   function toggle() {

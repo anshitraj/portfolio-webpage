@@ -1,14 +1,14 @@
 export const SITE = {
-  name: 'Anshit Raj Yadav',
-  shortName: 'Anshit Raj Yadav',
-  initials: 'ARY',
-  role: 'Founding Engineer · Full-Stack · GTM, Partnerships & Operations',
+  name: 'Anshit Raj',
+  shortName: 'Anshit Raj',
+  initials: 'AR',
+  role: 'Founding Engineer',
   /** Hero headline. Kept short enough to hold one line on desktop. */
-  headline: 'I build infrastructure and products people actually use.',
+  headline: 'I build payment infrastructure, agentic systems and zero-to-one fintech products.',
   /** Hero supporting line. */
-  sub: 'Founding engineer and full-stack builder with hands-on GTM, business development and operator experience across AI agents, stablecoin payments and developer infrastructure.',
-  availability: 'Open to founding engineering, full-stack, GTM, business development and operator roles',
-  location: 'Bengaluru · Open to relocate anytime',
+  sub: 'Founding engineer building payment infrastructure, AI agents and fintech products.',
+  availability: 'Open to high-ownership founding engineering roles',
+  location: 'India · Open to remote',
   email: 'anshitraj7@gmail.com',
   url: 'https://anshitraj.me',
   handle: 'anshitraj',
@@ -17,6 +17,7 @@ export const SITE = {
     linkedin: 'https://linkedin.com/in/anshitraj',
     x: 'https://x.com/solrishu',
   },
+  resume: 'https://drive.google.com/file/d/1D8VL0zKJF4zwugeQKcJtoITRAGGSdqbK/view?usp=sharing',
 } as const;
 
 /** Anchor targets on the Official page + the one real sub-route in the nav. */
@@ -70,21 +71,16 @@ export const CONTACT = {
 } as const;
 
 export const SEO = {
-  title: 'Anshit Raj Yadav — Founding Engineer, Full-Stack & GTM',
+  title: 'Anshit Raj — Founding Engineer',
   description:
-    'Anshit Raj Yadav is a founding and full-stack engineer with GTM, business-development and business-operations experience across AI agents, stablecoin payments and developer infrastructure.',
+    'Founding engineer building payment infrastructure, AI agents and fintech products.',
   keywords: [
-    'Anshit Raj Yadav',
-    'Full-Stack Engineer',
+    'Anshit Raj',
+    'Founding Engineer',
     'AI Payments',
     'Stablecoin Infrastructure',
     'Agentic AI',
-    'Startup Operator',
-    "Founder's Office",
     'Product Engineer',
-    'Founding Engineer',
-    'GTM Engineer',
-    'Business Operations',
     'Web3',
     'Fintech APIs',
     'Developer Tools',

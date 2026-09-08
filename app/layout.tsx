@@ -74,13 +74,12 @@ export const viewport: Viewport = {
 /**
  * Applied before paint so the correct theme is on <html> with no flash.
  *
- * Official mode is a light-base design and light is the deliberate default —
- * a visitor with a dark OS should still see the intended first impression.
- * An explicit choice via the toggle always wins and persists.
+ * Dark is the portfolio's deliberate default. An explicit light choice always
+ * wins and persists on future visits.
  */
 const THEME_BOOTSTRAP = `
 (function(){try{
-  if(localStorage.getItem('ary-theme')==='dark')document.documentElement.classList.add('dark');
+  if(localStorage.getItem('ary-theme')!=='light')document.documentElement.classList.add('dark');
 }catch(e){}})();
 `;
 
@@ -90,7 +89,7 @@ const personJsonLd = {
   name: SITE.name,
   url: SITE.url,
   email: `mailto:${SITE.email}`,
-  jobTitle: 'Product Engineer — AI & Payments Infrastructure',
+  jobTitle: 'Founding Engineer',
   description: SEO.description,
   sameAs: [SITE.socials.github, SITE.socials.linkedin, SITE.socials.x],
   alumniOf: {

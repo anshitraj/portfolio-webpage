@@ -23,8 +23,8 @@ export function CountUp({ value, className }: { value: string; className?: strin
 
   useEffect(() => {
     if (!parsed || reduced) {
-      setDisplay(value);
-      return;
+      const fallbackFrame = requestAnimationFrame(() => setDisplay(value));
+      return () => cancelAnimationFrame(fallbackFrame);
     }
     if (!inView) return;
 
