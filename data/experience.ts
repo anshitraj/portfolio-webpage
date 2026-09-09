@@ -20,7 +20,7 @@ export const experience: ExperienceEntry[] = [
       'Took the workflows that repeated every week — builder discovery, investor introductions, credentials — and built them into the Webcoin Labs platform and Arc Pass.',
     ],
     metrics: [
-      { label: 'Raised', value: '$100K' },
+      { label: 'Generated for clients', value: '$100K' },
       { label: 'Startups connected', value: '275+' },
       { label: 'Investor relationships', value: '50+' },
       { label: 'Creators I work with', value: '1,500+' },

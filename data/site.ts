@@ -10,6 +10,7 @@ export const SITE = {
   availability: 'Open to high-ownership founding engineering roles',
   location: 'India · Open to remote',
   email: 'anshitraj7@gmail.com',
+  calendar: 'https://calendar.app.google/ZsekN1Zz4s5A35x46',
   url: 'https://anshitraj.me',
   handle: 'anshitraj',
   socials: {

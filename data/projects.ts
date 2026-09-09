@@ -52,7 +52,7 @@ export const projects: Project[] = [
     tags: ['Founder Tools', 'Network', 'Product', 'GTM'],
 
     metrics: [
-      { label: 'Raised at Webcoin Labs', value: '$100K' },
+      { label: 'Generated for clients', value: '$100K' },
       { label: 'Startups connected and supported', value: '275+' },
       { label: 'Investors I built relationships with', value: '50+' },
       { label: 'Creators I ran campaigns with', value: '1,500+' },
@@ -287,6 +287,7 @@ export const projects: Project[] = [
     metrics: [
       { label: 'Test transactions', value: '100+' },
       { label: 'Developer feedback', value: '50+' },
+      { label: 'Google Cloud credits won', value: '$20,000' },
       {
         label: 'GitHub stars',
         value: '500+',
@@ -548,7 +549,7 @@ export const projects: Project[] = [
     tags: ['Consumer', 'Marketplace', 'NFC', 'Solana'],
 
     metrics: [
-      { label: 'Early cashflow', value: '₹80,000+' },
+      { label: 'Revenue generated', value: '₹80,000' },
       { label: 'Artists onboarded', value: '20+' },
       { label: 'Students / users', value: '200+' },
       { label: 'Platform', value: 'Android + Web' },

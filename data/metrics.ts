@@ -10,7 +10,7 @@ import type { Metric } from './types';
 /** Hero proof strip — four numbers, nothing more. */
 export const HERO_METRICS: Metric[] = [
   { label: 'Products shipped', value: '10+' },
-  { label: 'Raised at Webcoin Labs', value: '$100K' },
+  { label: 'Generated for clients through Webcoin Labs', value: '$100K' },
   { label: 'MRR across my products', value: '$1K' },
   { label: 'Startups I’ve connected', value: '275+' },
 ];
@@ -18,7 +18,7 @@ export const HERO_METRICS: Metric[] = [
 /** The full "Numbers are better than adjectives" grid. */
 export const IMPACT_METRICS: Metric[] = [
   { label: 'Products shipped end to end', value: '10+' },
-  { label: 'Raised at Webcoin Labs', value: '$100K' },
+  { label: 'Generated for clients through Webcoin Labs', value: '$100K' },
   { label: 'MRR across my products', value: '$1K' },
   { label: 'Startups I’ve connected and supported', value: '275+' },
   { label: 'Investors I’ve built relationships with', value: '50+' },
@@ -29,7 +29,9 @@ export const IMPACT_METRICS: Metric[] = [
   { label: 'Developers I onboarded', value: '25+' },
   { label: 'Agent payments I test-ran', value: '100+' },
   { label: 'Views on the Ledger firewall', value: '12K+' },
-  { label: 'Early cashflow from Artyug', value: '₹80,000+' },
+  { label: 'Revenue generated through Artyug', value: '₹80,000' },
+  { label: 'Zama FHEVM bounty earned', value: '$1,500' },
+  { label: 'Google Cloud credits won with OmniClaw', value: '$20,000' },
   {
     label: 'People using what I’ve built',
     value: '2,500+',

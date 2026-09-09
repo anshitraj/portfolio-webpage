@@ -253,6 +253,24 @@
 
 .projectGrid, .archiveGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 15px; }
 
+.projectTierHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 2px 0 12px;
+  padding: 0 2px;
+  color: var(--p-muted);
+  font: 600 9px/1 var(--font-geist-mono);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.projectGrid + .projectTierHeading { margin-top: 34px; }
+.projectTierHeading div { display: inline-flex; align-items: center; gap: 8px; }
+.projectTierHeading div span { color: var(--p-accent); font-size: 10px; }
+.projectTierHeading strong { color: var(--p-ink); font-weight: 650; }
+.projectTierHeading small { color: var(--p-dim); font: inherit; }
+
 .projectCard {
   display: flex;
   min-width: 0;
@@ -266,6 +284,7 @@
 }
 
 .projectCard:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--p-accent) 58%, var(--p-line-bright)); box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22); }
+.spotlight { grid-column: span 12; }
 .flagship { grid-column: span 7; }
 .wide { grid-column: span 7; }
 .standard { grid-column: span 5; }
@@ -291,6 +310,7 @@
 .projectTitleRow { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .projectIdentity { display: flex; min-width: 0; align-items: center; gap: 11px; }
 .projectLogo { width: 42px; height: 42px; flex: 0 0 42px; object-fit: cover; background: white; border: 1px solid var(--p-line-bright); border-radius: 9px; }
+.projectEmojiMark { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; background: var(--p-surface); border: 1px solid var(--p-line-bright); border-radius: 9px; font-size: 20px; }
 .projectIdentity h3 { margin: 0; font-size: 18px; font-weight: 680; line-height: 1.15; letter-spacing: -0.025em; }
 .projectIdentity p { margin-top: 4px; overflow: hidden; color: var(--p-dim); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -430,7 +450,7 @@
   .page { padding-left: 0; }
   .techGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .projectGrid, .archiveGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .flagship, .wide, .standard, .archiveCard { grid-column: span 1; }
+  .spotlight, .flagship, .wide, .standard, .archiveCard { grid-column: span 1; }
   .metricsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 

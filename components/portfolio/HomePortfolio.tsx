@@ -44,6 +44,9 @@ const socials = [
 const moreProjects = MORE_PROJECT_SLUGS.map((slug) => projects.find((project) => project.slug === slug)).filter(
   (project): project is NonNullable<typeof project> => Boolean(project),
 );
+const topProjects = HOME_PROJECTS.filter((project) => project.tier === 'top');
+const secondaryProjects = HOME_PROJECTS.filter((project) => project.tier === 'secondary');
+const archiveVideoCount = moreProjects.filter((project) => project.video).length;
 
 function SectionHeading({ index, title, note }: { index: string; title: string; note?: string }) {
   return (
@@ -92,7 +95,11 @@ function ProjectCard({ project }: { project: HomeProject }) {
         </div>
         <ProjectMedia
           project={mediaProject}
-          sizes={project.layout === 'flagship' ? '(max-width: 760px) 100vw, 760px' : '(max-width: 760px) 100vw, 560px'}
+          sizes={project.layout === 'spotlight'
+            ? '(max-width: 760px) 100vw, 1140px'
+            : project.layout === 'flagship' || project.layout === 'wide'
+              ? '(max-width: 760px) 100vw, 680px'
+              : '(max-width: 760px) 100vw, 470px'}
           priority={project.slug === 'unipayscan'}
           className={styles.projectMedia}
           imgClassName={styles.projectMediaImage}
@@ -102,7 +109,11 @@ function ProjectCard({ project }: { project: HomeProject }) {
       <div className={styles.projectContent}>
         <header className={styles.projectTitleRow}>
           <div className={styles.projectIdentity}>
-            <Image src={project.logo} alt="" width={42} height={42} className={styles.projectLogo} />
+            {project.logo ? (
+              <Image src={project.logo} alt="" width={42} height={42} className={styles.projectLogo} />
+            ) : (
+              <span className={styles.projectEmojiMark} aria-hidden>{project.emoji}</span>
+            )}
             <div>
               <h3>{project.title}</h3>
               <p>{project.subtitle}</p>
@@ -204,7 +215,7 @@ export function HomePortfolio() {
                   </div>
                   <p>Founding Engineer</p>
                   <small>AI × Payments × Fintech</small>
-                  <span className={styles.quickProof}>10+ products shipped · $100K raised · 275+ startups supported</span>
+                  <span className={styles.quickProof}>10+ products shipped · $100K generated for clients · 275+ startups supported</span>
                 </div>
                 <div className={styles.profileControls}><PaletteTrigger /><ThemeButton /></div>
               </div>
@@ -215,7 +226,7 @@ export function HomePortfolio() {
               </ul>
 
               <div className={styles.profileActions}>
-                <a className={styles.primaryAction} href={`mailto:${SITE.email}?subject=${encodeURIComponent('Let’s build something')}`}><CalendarDays aria-hidden /> Let&apos;s talk</a>
+                <a className={styles.primaryAction} href={SITE.calendar} target="_blank" rel="noreferrer"><CalendarDays aria-hidden /> Let&apos;s talk</a>
                 <a href={`mailto:${SITE.email}`}><Mail aria-hidden /> Email me</a>
               </div>
 
@@ -243,12 +254,28 @@ export function HomePortfolio() {
 
           <section className={styles.section} id="projects" aria-labelledby="projects-title">
             <SectionHeading index="02" title="Projects" note="Products, infrastructure and experiments running in the real world." />
+            <div className={styles.projectTierHeading}>
+              <div><span aria-hidden>◆</span><strong>Top products</strong></div>
+              <small>05 / flagship builds</small>
+            </div>
             <div className={styles.projectGrid}>
-              {HOME_PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} />)}
+              {topProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}
+            </div>
+
+            <div className={styles.projectTierHeading}>
+              <div><span aria-hidden>◇</span><strong>More products</strong></div>
+              <small>{String(secondaryProjects.length).padStart(2, '0')} / shipped &amp; building</small>
+            </div>
+            <div className={styles.projectGrid}>
+              {secondaryProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}
             </div>
 
             <details className={styles.archiveDisclosure} open>
-              <summary><span>More shipped work</span><small>5 projects · 4 running demos</small><ChevronDown aria-hidden /></summary>
+              <summary>
+                <span>More shipped work</span>
+                <small>{moreProjects.length} project · {archiveVideoCount} running demo</small>
+                <ChevronDown aria-hidden />
+              </summary>
               <div className={styles.archiveGrid}>
                 {moreProjects.map((project) => <ArchiveProjectCard key={project.slug} project={project} />)}
               </div>
@@ -361,7 +388,7 @@ export function HomePortfolio() {
             <p>AVAILABLE FOR THE RIGHT PROBLEM</p>
             <h2 id="contact-title">Building infrastructure that has to work?</h2>
             <span>Payments, agent systems, developer tools—or the zero-to-one product around them.</span>
-            <a href={`mailto:${SITE.email}?subject=${encodeURIComponent('Founding engineer opportunity')}`}>Let&apos;s talk <ArrowUpRight aria-hidden /></a>
+            <a href={SITE.calendar} target="_blank" rel="noreferrer">Let&apos;s talk <ArrowUpRight aria-hidden /></a>
           </section>
         </main>
 

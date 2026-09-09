@@ -40,7 +40,7 @@ const commands = [
   {
     label: 'Book a call',
     detail: 'Contact',
-    href: `mailto:${SITE.email}?subject=${encodeURIComponent('Intro call with Anshit')}`,
+    href: SITE.calendar,
     Icon: BriefcaseBusiness,
   },
 ] as const;
