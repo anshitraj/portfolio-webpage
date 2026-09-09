@@ -1,7 +1,7 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useReducedMotion } from 'motion/react';
 import { Pause, Play } from 'lucide-react';
 import { ProjectImage } from './ProjectImage';
 import { cn } from '@/lib/utils';
@@ -33,7 +33,7 @@ export function ProjectMedia({
   imgClassName?: string;
   showControl?: boolean;
 }) {
-  const reduced = useReducedMotion();
+  const [reduced, setReduced] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -47,6 +47,14 @@ export function ProjectMedia({
 
   const video = project.video;
   const useVideo = Boolean(video) && !reduced && !failed;
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
 
   /*
     A rejected play() usually means the element wasn't ready yet or the browser
@@ -138,12 +146,13 @@ export function ProjectMedia({
         />
       ) : (
         // Poster stands in until the card is close enough to warrant loading.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={video.poster}
+        <Image
+          src={video.poster ?? project.image}
           alt={`${project.title} — ${project.subtitle}`}
-          className="h-full w-full object-cover"
-          loading={priority ? 'eager' : 'lazy'}
+          fill
+          sizes={sizes}
+          preload={priority}
+          className="object-cover"
         />
       )}
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import {
+  BarChart3,
   BriefcaseBusiness,
   FileText,
   Github,
@@ -21,14 +22,15 @@ const sections = [
   { label: 'Home', href: '#home', id: 'home', Icon: Home },
   { label: 'Projects', href: '#projects', id: 'projects', Icon: TerminalSquare },
   { label: 'Experience', href: '#experience', id: 'experience', Icon: BriefcaseBusiness },
+  { label: 'Proof', href: '#proof', id: 'proof', Icon: BarChart3 },
   { label: 'Writing', href: '#writing', id: 'writing', Icon: FileText },
-  { label: 'Contact', href: '#contact', id: 'contact', Icon: UserRound },
 ] as const;
 
 const commands = [
   { label: 'Go to Home', detail: 'Section', href: '#home', Icon: Home },
   { label: 'Go to Projects', detail: 'Section', href: '#projects', Icon: TerminalSquare },
   { label: 'Go to Experience', detail: 'Section', href: '#experience', Icon: BriefcaseBusiness },
+  { label: 'Go to Proof', detail: 'Section', href: '#proof', Icon: BarChart3 },
   { label: 'Go to Writing', detail: 'Section', href: '#writing', Icon: FileText },
   { label: 'Open GitHub', detail: 'External', href: SITE.socials.github, Icon: Github },
   { label: 'Open LinkedIn', detail: 'External', href: SITE.socials.linkedin, Icon: UserRound },
@@ -89,7 +91,7 @@ export function PaletteTrigger({ compact = false }: { compact?: boolean }) {
       type="button"
       className={compact ? 'portfolio-social-button' : 'portfolio-command-trigger'}
       onClick={() => window.dispatchEvent(new Event('portfolio:command'))}
-      aria-label="Open command palette"
+      aria-label={compact ? 'More options — open command palette' : 'Open command palette'}
     >
       {compact ? <><Search aria-hidden /> More</> : <><Search aria-hidden /><span className="command-label">Command</span><kbd>⌘ K</kbd></>}
     </button>

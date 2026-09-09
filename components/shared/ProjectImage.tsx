@@ -67,7 +67,7 @@ export function ProjectImage({
           alt={`${project.title} — ${project.subtitle}`}
           fill
           sizes={sizes}
-          priority={priority}
+          preload={priority}
           className={cn('object-contain object-center', imgClassName)}
         />
       </div>
