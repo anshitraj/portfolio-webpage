@@ -18,7 +18,8 @@ export const SITE = {
     linkedin: 'https://linkedin.com/in/anshitraj',
     x: 'https://x.com/solrishu',
   },
-  resume: 'https://drive.google.com/file/d/1D8VL0zKJF4zwugeQKcJtoITRAGGSdqbK/view?usp=sharing',
+  /** Default fallback when a single resume URL is required. */
+  resume: 'https://drive.google.com/file/d/1JoQyqU6rkQ98vizKbT2JlnZFqgOIJGQX/view?usp=drivesdk',
 } as const;
 
 /** Anchor targets on the Official page + the one real sub-route in the nav. */
@@ -28,7 +29,7 @@ export const NAV_LINKS = [
   { label: 'About', href: '/#about' },
   { label: 'Outcomes', href: '/#achievements' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Resume', href: '/#resume' },
+  { label: 'CVs', href: '/#resumes' },
   { label: 'Contact', href: '/#contact' },
 ] as const;
 
@@ -40,7 +41,7 @@ export const SECTION_IDS = [
   'numbers',
   'achievements',
   'gallery',
-  'resume',
+  'resumes',
   'contact',
 ] as const;
 

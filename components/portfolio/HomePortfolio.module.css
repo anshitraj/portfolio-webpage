@@ -215,7 +215,7 @@
 .socials { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
 .socials a, .page :global(.portfolio-social-button) { flex: 0 0 auto; }
 
-.section { padding: 47px clamp(28px, 4vw, 50px) 52px; border-bottom: 1px solid var(--p-line); }
+.section { padding: 47px clamp(28px, 4vw, 50px) 52px; border-bottom: 1px solid var(--p-line); scroll-margin-top: 20px; }
 
 .sectionHeading {
   display: grid;
@@ -423,6 +423,87 @@
 .textLink { display: inline-flex; align-items: center; gap: 6px; margin-top: 17px; color: var(--p-muted); font-size: 11px; font-weight: 600; }
 .textLink svg { width: 13px; }
 
+.resumeSection {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--p-accent) 4%, transparent), transparent 38%),
+    var(--p-surface);
+}
+
+.resumeRouter { border: 1px solid var(--p-line-bright); border-radius: 12px; overflow: hidden; }
+
+.resumePrompt {
+  display: grid;
+  min-height: 78px;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 16px 18px;
+  background: var(--p-surface-3);
+  border-bottom: 1px solid var(--p-line-bright);
+}
+.resumePrompt > span { color: var(--p-accent); font: 600 23px/1 var(--font-editorial); }
+.resumePrompt div { min-width: 0; }
+.resumePrompt small { color: var(--p-dim); font: 600 8px/1 var(--font-geist-mono); letter-spacing: 0.13em; }
+.resumePrompt p { margin-top: 7px; font: 650 19px/1.1 var(--font-editorial); letter-spacing: -0.02em; text-wrap: balance; }
+.resumePrompt > strong { color: var(--p-muted); font-size: 10px; font-weight: 540; }
+
+.resumeBoard {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--p-line-bright);
+}
+
+.resumeTrack { min-width: 0; grid-column: span 7; background: var(--p-surface-2); }
+.resumeTrack:nth-child(2) { grid-column: span 5; }
+.resumeTrack:nth-child(3) { grid-column: span 12; }
+
+.resumeTrack > header {
+  display: grid;
+  min-height: 145px;
+  grid-template-columns: 42px minmax(0, 1fr) 26px;
+  align-items: start;
+  gap: 12px;
+  padding: 21px 19px 18px;
+  border-bottom: 1px solid var(--p-line);
+}
+.resumeTrack > header > span {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  color: var(--p-accent);
+  background: var(--p-surface);
+  border: 1px solid var(--p-line-bright);
+  border-radius: 8px;
+  font: 650 18px/1 var(--font-geist-mono);
+}
+.resumeTrack > header div { min-width: 0; }
+.resumeTrack > header small { color: var(--p-dim); font: 600 8px/1 var(--font-geist-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.resumeTrack > header h3 { margin-top: 8px; font-size: 19px; font-weight: 660; letter-spacing: -0.025em; text-wrap: balance; }
+.resumeTrack > header p { max-width: 460px; margin-top: 7px; color: var(--p-muted); font-size: 11px; line-height: 1.5; text-wrap: pretty; }
+.resumeTrack > header b { color: var(--p-dim); font: 500 16px/1 var(--font-geist-mono); }
+
+.resumeTrack ol { margin: 0; padding: 0; list-style: none; }
+.resumeTrack li + li { border-top: 1px solid var(--p-line); }
+.resumeTrack a {
+  display: grid;
+  min-height: 104px;
+  grid-template-columns: 50px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 18px;
+  touch-action: manipulation;
+  transition: transform 150ms ease;
+}
+.resumeTrack a:hover { position: relative; z-index: 1; transform: translateX(3px); background: var(--p-surface-3); }
+.resumeTrack a > span { align-self: start; padding-top: 3px; color: var(--p-dim); font: 600 8px/1 var(--font-geist-mono); letter-spacing: 0.07em; }
+.resumeTrack a > div { min-width: 0; }
+.resumeTrack a small { display: block; color: var(--p-accent); font: 600 8px/1 var(--font-geist-mono); letter-spacing: 0.09em; text-transform: uppercase; }
+.resumeTrack a strong { display: block; margin-top: 5px; font-size: 13px; font-weight: 650; line-height: 1.25; text-wrap: pretty; }
+.resumeTrack a p { margin-top: 5px; color: var(--p-muted); font-size: 10px; line-height: 1.45; text-wrap: pretty; }
+.resumeTrack a > svg { width: 14px; color: var(--p-dim); }
+
 .contact { padding: 61px clamp(28px, 5vw, 65px) 65px; text-align: center; border-bottom: 1px solid var(--p-line); }
 .contact > p { color: var(--p-accent); font: 600 9px/1 var(--font-geist-mono); letter-spacing: 0.16em; }
 .contact h2 { margin-top: 17px; font-size: clamp(27px, 4.3vw, 48px); font-weight: 640; letter-spacing: -0.055em; }
@@ -452,6 +533,8 @@
   .projectGrid, .archiveGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .spotlight, .flagship, .wide, .standard, .archiveCard { grid-column: span 1; }
   .metricsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .resumeTrack, .resumeTrack:nth-child(2) { grid-column: span 6; }
+  .resumeTrack:nth-child(3) { grid-column: span 12; }
 }
 
 @media (max-width: 900px) {
@@ -494,6 +577,8 @@
   .writingList time { grid-column: 2; grid-row: 1; }
   .writingList > a > div { grid-column: 2; }
   .writingList > a > svg { grid-column: 3; grid-row: 1 / 3; }
+  .resumeBoard { grid-template-columns: 1fr; }
+  .resumeTrack, .resumeTrack:nth-child(2), .resumeTrack:nth-child(3) { grid-column: span 1; }
   .footer { align-items: flex-start; flex-direction: column; }
 }
 
@@ -529,10 +614,15 @@
   .metricsGrid strong { font-size: 19px; }
   .outcomes a { grid-template-columns: 62px minmax(0, 1fr) 12px; }
   .outcomes img { width: 62px; height: 48px; }
+  .resumePrompt { grid-template-columns: 25px minmax(0, 1fr); padding-inline: 14px; }
+  .resumePrompt > strong { display: none; }
+  .resumeTrack > header { min-height: 0; grid-template-columns: 38px minmax(0, 1fr) 22px; padding-inline: 13px; }
+  .resumeTrack > header > span { width: 36px; height: 36px; }
+  .resumeTrack a { min-height: 98px; grid-template-columns: 43px minmax(0, 1fr) 14px; padding-inline: 13px; }
   .contact { padding-inline: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .projectCard, .techGrid a > span, .writingList svg { transition: none; }
-  .projectCard:hover, .techGrid a:hover > span { transform: none; }
+  .projectCard, .techGrid a > span, .writingList svg, .resumeTrack a { transition: none; }
+  .projectCard:hover, .techGrid a:hover > span, .resumeTrack a:hover { transform: none; }
 }

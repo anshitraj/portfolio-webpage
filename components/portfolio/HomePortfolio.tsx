@@ -19,6 +19,7 @@ import { experience } from '@/data/experience';
 import { HOME_PROJECTS, HOME_TECH, MORE_PROJECT_SLUGS, type HomeProject } from '@/data/home';
 import { ECOSYSTEM_WORK, IMPACT_METRICS } from '@/data/metrics';
 import { projects } from '@/data/projects';
+import { RESUME_TRACKS } from '@/data/resumes';
 import { ABOUT, SITE } from '@/data/site';
 import { writing } from '@/data/writing';
 import { visible } from '@/lib/metrics';
@@ -38,7 +39,7 @@ const socials = [
   { label: 'GitHub', href: SITE.socials.github, Icon: Github },
   { label: 'LinkedIn', href: SITE.socials.linkedin, Icon: Linkedin },
   { label: 'X / Twitter', href: SITE.socials.x, Icon: XIcon },
-  { label: 'Resume', href: SITE.resume, Icon: FileText },
+  { label: 'CVs', href: '#resumes', Icon: FileText },
 ] as const;
 
 const moreProjects = MORE_PROJECT_SLUGS.map((slug) => projects.find((project) => project.slug === slug)).filter(
@@ -230,10 +231,17 @@ export function HomePortfolio() {
                 <a href={`mailto:${SITE.email}`}><Mail aria-hidden /> Email me</a>
               </div>
 
-              <p className={styles.socialIntro}>Here are my <strong>socials</strong> and resume</p>
+              <p className={styles.socialIntro}>Here are my <strong>socials</strong> and role-specific CVs</p>
               <div className={styles.socials}>
                 {socials.map(({ label, href, Icon }) => (
-                  <a key={label} href={href} target="_blank" rel="noreferrer"><Icon aria-hidden />{label}</a>
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                  >
+                    <Icon aria-hidden />{label}
+                  </a>
                 ))}
                 <PaletteTrigger compact />
               </div>
@@ -384,6 +392,57 @@ export function HomePortfolio() {
             <Link className={styles.textLink} href="/blog">View all writing <ArrowRight aria-hidden /></Link>
           </section>
 
+          <section className={`${styles.section} ${styles.resumeSection}`} id="resumes" aria-labelledby="resumes-title">
+            <SectionHeading
+              index="07"
+              title="Role-Specific CVs"
+              note="Choose the version aligned with the role you are hiring for—no generic résumé guessing game."
+            />
+
+            <div className={styles.resumeRouter}>
+              <div className={styles.resumePrompt}>
+                <span aria-hidden>↳</span>
+                <div>
+                  <small>RECRUITER ROUTER / 08 FILES</small>
+                  <p>You&apos;re hiring for…</p>
+                </div>
+                <strong>Pick a track, then open the tailored CV.</strong>
+              </div>
+
+              <div className={styles.resumeBoard}>
+                {RESUME_TRACKS.map((track, trackIndex) => (
+                  <article key={track.id} className={styles.resumeTrack}>
+                    <header>
+                      <span aria-hidden>{track.glyph}</span>
+                      <div>
+                        <small>{String(trackIndex + 1).padStart(2, '0')} / {track.eyebrow}</small>
+                        <h3>{track.title}</h3>
+                        <p>{track.description}</p>
+                      </div>
+                      <b>{String(track.resumes.length).padStart(2, '0')}</b>
+                    </header>
+
+                    <ol>
+                      {track.resumes.map((resume) => (
+                        <li key={resume.code}>
+                          <a href={resume.href} target="_blank" rel="noreferrer" aria-label={`Open ${resume.title} CV`}>
+                            <span>{resume.code}</span>
+                            <div>
+                              <small>{resume.label}</small>
+                              <strong>{resume.title}</strong>
+                              <p>{resume.description}</p>
+                            </div>
+                            <ArrowUpRight aria-hidden />
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section className={styles.contact} id="contact" aria-labelledby="contact-title">
             <p>AVAILABLE FOR THE RIGHT PROBLEM</p>
             <h2 id="contact-title">Building infrastructure that has to work?</h2>
@@ -398,6 +457,7 @@ export function HomePortfolio() {
             <a href={SITE.socials.github} target="_blank" rel="noreferrer">GitHub</a>
             <a href={SITE.socials.x} target="_blank" rel="noreferrer">X</a>
             <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="#resumes">CVs</a>
             <a href={`mailto:${SITE.email}`}>Email</a>
           </nav>
         </footer>

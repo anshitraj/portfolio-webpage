@@ -48,7 +48,7 @@ const DOCK_LINKS = [
   { label: 'Work', href: '/#work', Icon: LayoutGrid },
   { label: 'Experience', href: '/#experience', Icon: Briefcase },
   { label: 'Gallery', href: '/gallery', Icon: Images },
-  { label: 'Resume', href: '/#resume', Icon: FileText },
+  { label: 'CVs', href: '/#resumes', Icon: FileText },
   { label: 'Contact', href: '/#contact', Icon: Terminal },
 ];
 

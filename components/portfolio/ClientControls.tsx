@@ -23,7 +23,7 @@ const sections = [
   { label: 'Projects', href: '#projects', id: 'projects', Icon: TerminalSquare },
   { label: 'Experience', href: '#experience', id: 'experience', Icon: BriefcaseBusiness },
   { label: 'Proof', href: '#proof', id: 'proof', Icon: BarChart3 },
-  { label: 'Writing', href: '#writing', id: 'writing', Icon: FileText },
+  { label: 'CVs', href: '#resumes', id: 'resumes', Icon: FileText },
 ] as const;
 
 const commands = [
@@ -32,10 +32,10 @@ const commands = [
   { label: 'Go to Experience', detail: 'Section', href: '#experience', Icon: BriefcaseBusiness },
   { label: 'Go to Proof', detail: 'Section', href: '#proof', Icon: BarChart3 },
   { label: 'Go to Writing', detail: 'Section', href: '#writing', Icon: FileText },
+  { label: 'Browse role-specific CVs', detail: '8 tailored files', href: '#resumes', Icon: FileText },
   { label: 'Open GitHub', detail: 'External', href: SITE.socials.github, Icon: Github },
   { label: 'Open LinkedIn', detail: 'External', href: SITE.socials.linkedin, Icon: UserRound },
   { label: 'Open X / Twitter', detail: 'External', href: SITE.socials.x, Icon: Send },
-  { label: 'Open Resume', detail: 'External', href: SITE.resume, Icon: FileText },
   { label: 'Email Anshit', detail: 'Contact', href: `mailto:${SITE.email}`, Icon: Mail },
   {
     label: 'Book a call',
