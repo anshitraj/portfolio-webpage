@@ -302,6 +302,8 @@
 .techGrid small { max-width: 100%; overflow: hidden; color: var(--p-muted); font: 500 10px/1.2 var(--font-geist-mono); text-overflow: ellipsis; white-space: nowrap; }
 
 .projectGrid, .archiveGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 15px; }
+.projectGrid > .projectCard { grid-column: span 6; }
+.projectGrid > .projectCard:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 .projectTierHeading {
   display: flex;
@@ -376,6 +378,13 @@
   background: #222528 !important;
   border: 1px solid var(--p-line-bright);
   border-radius: 8px;
+}
+
+.projectVideo {
+  border: 2px solid color-mix(in srgb, var(--p-accent) 52%, var(--p-line-bright));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--p-accent) 5%, var(--p-surface-2)),
+    0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 .projectMedia::after {
@@ -662,6 +671,8 @@
   .techGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .projectGrid, .archiveGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .spotlight, .flagship, .wide, .standard, .archiveCard { grid-column: span 1; }
+  .projectGrid > .projectCard { grid-column: span 1; }
+  .projectGrid > .projectCard:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .metricsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .resumeTrack, .resumeTrack:nth-child(2) { grid-column: span 6; }
   .resumeTrack:nth-child(3) { grid-column: span 12; }

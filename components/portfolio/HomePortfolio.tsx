@@ -134,7 +134,7 @@ function ProjectCard({ project }: { project: HomeProject }) {
               ? '(max-width: 760px) 100vw, 680px'
               : '(max-width: 760px) 100vw, 470px'}
           priority={project.slug === 'unipayscan'}
-          className={styles.projectMedia}
+          className={`${styles.projectMedia} ${project.video ? styles.projectVideo : ''}`}
           imgClassName={styles.projectMediaImage}
         />
       </div>
