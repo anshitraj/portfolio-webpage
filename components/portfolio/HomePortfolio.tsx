@@ -1,18 +1,33 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  Activity,
   ArrowRight,
   ArrowUpRight,
+  Bot,
+  Boxes,
   CalendarDays,
   Check,
   ChevronDown,
+  Cloud,
+  Code2,
+  DollarSign,
   FileText,
   Github,
+  Handshake,
   Linkedin,
   Mail,
+  Megaphone,
+  Network,
+  Palette,
   Play,
   Radio,
+  Rocket,
+  ShieldCheck,
   Sparkles,
+  TrendingUp,
+  Trophy,
+  Users,
 } from 'lucide-react';
 import { visibleAchievements } from '@/data/achievements';
 import { experience } from '@/data/experience';
@@ -48,6 +63,23 @@ const moreProjects = MORE_PROJECT_SLUGS.map((slug) => projects.find((project) =>
 const topProjects = HOME_PROJECTS.filter((project) => project.tier === 'top');
 const secondaryProjects = HOME_PROJECTS.filter((project) => project.tier === 'secondary');
 const archiveVideoCount = moreProjects.filter((project) => project.video).length;
+const metricIcons = [
+  Boxes,
+  DollarSign,
+  TrendingUp,
+  Handshake,
+  Network,
+  Megaphone,
+  Users,
+  Activity,
+  Rocket,
+  Code2,
+  Bot,
+  ShieldCheck,
+  Palette,
+  Trophy,
+  Cloud,
+] as const;
 
 function SectionHeading({ index, title, note }: { index: string; title: string; note?: string }) {
   return (
@@ -341,13 +373,16 @@ export function HomePortfolio() {
           <section className={`${styles.section} ${styles.proofSection}`} id="proof" aria-labelledby="proof-title">
             <SectionHeading index="05" title="Proof in numbers" note="The quantifiable product, engineering and GTM outcomes behind the work." />
             <div className={styles.metricsGrid}>
-              {visible(IMPACT_METRICS).map((metric, index) => (
-                <div key={metric.label}>
-                  <span aria-hidden>{['⚙️', '💸', '📊', '🤝', '🧭', '📣', '🌐', '⚡', '🚀', '🧑‍💻', '🤖', '🛡️', '🎨'][index]}</span>
-                  <strong>{metric.value}</strong>
-                  <p>{metric.label}</p>
-                </div>
-              ))}
+              {visible(IMPACT_METRICS).map((metric, index) => {
+                const MetricIcon = metricIcons[index] ?? Sparkles;
+                return (
+                  <div key={metric.label}>
+                    <span aria-hidden><MetricIcon /></span>
+                    <strong>{metric.value}</strong>
+                    <p>{metric.label}</p>
+                  </div>
+                );
+              })}
             </div>
 
             <div className={styles.proofSplit}>
