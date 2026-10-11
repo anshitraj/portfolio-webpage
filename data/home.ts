@@ -30,6 +30,7 @@ export type HomeProject = {
   title: string;
   subtitle: string;
   description: string;
+  shortDescription?: string;
   status: 'BUILDING' | 'LIVE' | 'OPEN SOURCE';
   year: string;
   emoji: string;
@@ -49,6 +50,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'top',
     slug: 'webcoin-labs',
     title: 'Webcoin Labs',
+    shortDescription: 'Founder identity, builder discovery, investor access and launch support—in one place.',
     subtitle: 'Founder operating system',
     description:
       'An operating layer for early-stage founders: identity, builder discovery, investor access and launch support in one place instead of across fifteen tabs.',
@@ -76,6 +78,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'top',
     slug: 'arc-pass',
     title: 'Arc Pass',
+    shortDescription: 'Founder and builder credentials backed by verifiable on-chain work.',
     subtitle: 'Proof-based founder and builder identity',
     description:
       'A credential layer for the Arc ecosystem where access is earned from verifiable building history—not from simply claiming a title.',
@@ -103,6 +106,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'top',
     slug: 'arcpay',
     title: 'ArcPay',
+    shortDescription: 'Create payment links, verify settlement and issue receipts through one stablecoin API.',
     subtitle: 'Stablecoin payment infrastructure',
     description:
       'Developer-first stablecoin infrastructure for merchants and applications: payment links, verification, settlement tracking and receipts behind one API.',
@@ -131,6 +135,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'top',
     slug: 'agentic-api-economy',
     title: 'Agentic API Economy',
+    shortDescription: 'AI agents plan requests, pay for APIs and return answers—with a live execution trace.',
     subtitle: 'Machine-to-machine micropayments',
     description:
       'A full-stack agentic economy where a natural-language request is planned, paid for through x402 and Circle Gateway, and answered autonomously.',
@@ -158,6 +163,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'top',
     slug: 'unipayscan',
     title: 'UniPayScan',
+    shortDescription: 'One parser for payment QRs, wallet addresses and links. Zero network calls.',
     subtitle: 'Universal payment-intent parser',
     description:
       'Detects, validates and normalizes payment QRs, wallet addresses and payment links across fiat and crypto—with the core parser making zero network calls.',
@@ -180,6 +186,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'secondary',
     slug: 'railor',
     title: 'Railor',
+    shortDescription: 'Compare stablecoin, banking, card and compliance rails before integrating.',
     subtitle: 'Financial infrastructure, mapped',
     description:
       'A source-backed intelligence and orchestration layer for comparing stablecoin, banking, card and compliance infrastructure before teams integrate.',
@@ -201,6 +208,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'secondary',
     slug: 'cryptodapp',
     title: 'CryptoDapp.lol',
+    shortDescription: 'A live product leaderboard powered by wallet-based USDC and USDT bids.',
     subtitle: 'On-chain product leaderboard',
     description:
       'A live bidding leaderboard where crypto products compete for placement by paying directly from a wallet in USDC or USDT.',
@@ -221,6 +229,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'secondary',
     slug: 'omniclaw',
     title: 'OmniClaw',
+    shortDescription: 'Agent payments with spend limits, approved recipients and policy outside the model.',
     subtitle: 'Payments infrastructure for AI agents',
     description:
       'Lets autonomous agents transact without unrestricted wallet access by enforcing spend limits, recipients and policy outside the model.',
@@ -248,6 +257,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'secondary',
     slug: 'ledger-agent-firewall',
     title: 'Ledger Agent Firewall',
+    shortDescription: 'Stop prompt-injected payments before they reach a hardware wallet.',
     subtitle: 'AI transaction security',
     description:
       'A deterministic signing gate that catches prompt-injected payment instructions before a transaction reaches a hardware wallet.',
@@ -275,6 +285,7 @@ export const HOME_PROJECTS: HomeProject[] = [
     tier: 'secondary',
     slug: 'artyug',
     title: 'Artyug',
+    shortDescription: 'Physical art → NFC verification → on-chain provenance and ownership.',
     subtitle: 'NFC-verified art marketplace',
     description:
       'A Flutter marketplace where an NFC tag on physical artwork resolves to on-chain provenance and ownership on Solana.',

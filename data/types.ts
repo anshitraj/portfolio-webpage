@@ -12,6 +12,11 @@
 export type Metric = {
   label: string;
   value: string;
+  /** Compact presentation metadata. Full labels stay available to other views. */
+  id?: string;
+  shortLabel?: string;
+  context?: string;
+  group?: 'commercial' | 'growth' | 'engineering';
   /** Omit or `true` to render. `false` keeps it in the file but hides it. */
   verified?: boolean;
   /** Why it's unverified / what would confirm it. Never rendered. */

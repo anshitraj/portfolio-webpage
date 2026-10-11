@@ -24,10 +24,10 @@ export const SITE = {
 
 /** Anchor targets on the Official page + the one real sub-route in the nav. */
 export const NAV_LINKS = [
-  { label: 'Work', href: '/#work' },
+  { label: 'Work', href: '/#projects' },
   { label: 'Experience', href: '/#experience' },
   { label: 'About', href: '/#about' },
-  { label: 'Outcomes', href: '/#achievements' },
+  { label: 'Outcomes', href: '/#proof' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'CVs', href: '/#resumes' },
   { label: 'Contact', href: '/#contact' },
@@ -35,12 +35,13 @@ export const NAV_LINKS = [
 
 /** Section ids the scroll-spy watches, in document order. */
 export const SECTION_IDS = [
+  'home',
+  'projects',
+  'github',
   'about',
-  'work',
   'experience',
-  'numbers',
-  'achievements',
-  'gallery',
+  'proof',
+  'writing',
   'resumes',
   'contact',
 ] as const;

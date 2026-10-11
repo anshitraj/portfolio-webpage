@@ -228,6 +228,10 @@ export interface ContributionSkylineProps {
   view?: View
   /** Uncontrolled starting view. The 3D view rises out of the flat one when it first scrolls into sight. */
   defaultView?: View
+  /** Scroll-driven camera progress: 0 is flat, 1 is fully raised. */
+  scrollProgress?: number
+  /** Keep the stage and stats stable while the camera moves. */
+  scrollMorph?: boolean
   onViewChange?: (view: View) => void
   /** A preset, four colours, or `{ light, dark }` sets of four. */
   palette?: PaletteInput
@@ -402,6 +406,8 @@ export default function ContributionSkyline({
   endDate,
   view: viewProp,
   defaultView = "3d",
+  scrollProgress,
+  scrollMorph = false,
   onViewChange,
   palette = "github",
   title,
@@ -464,10 +470,11 @@ export default function ContributionSkyline({
   }, [model, nf, noun, plural, dfl])
 
   // Everything the render loop reads, refreshed every render so the loop never closes over stale props.
-  const cfg = React.useRef({ model, duration, heightScale, orbit, palette, legendLevel, onCellClick, target: view === "3d" ? 1 : 0, setActive, setWidth, setTheme, setAnnounce, describe })
+  const cameraTarget = scrollProgress === undefined ? (view === "3d" ? 1 : 0) : clamp01(scrollProgress)
+  const cfg = React.useRef({ model, duration, heightScale, orbit, palette, legendLevel, onCellClick, scrollMorph, target: cameraTarget, setActive, setWidth, setTheme, setAnnounce, describe })
   React.useLayoutEffect(() => {
-    cfg.current = { model, duration, heightScale, orbit, palette, legendLevel, onCellClick, target: view === "3d" ? 1 : 0, setActive, setWidth, setTheme, setAnnounce, describe }
-  }, [model, duration, heightScale, orbit, palette, legendLevel, onCellClick, view, describe])
+    cfg.current = { model, duration, heightScale, orbit, palette, legendLevel, onCellClick, scrollMorph, target: cameraTarget, setActive, setWidth, setTheme, setAnnounce, describe }
+  }, [model, duration, heightScale, orbit, palette, legendLevel, onCellClick, scrollMorph, cameraTarget, describe])
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -647,7 +654,7 @@ export default function ContributionSkyline({
       if (!W || !n) return
       const e = easeInOutCubic(t)
       const cam = camera(e, yaw, elev)
-      const Hc = lerp(H2, H3, e)
+      const Hc = cfg.current.scrollMorph ? H3 : lerp(H2, H3, e)
       if (Math.abs(Hc - lastH) > 0.2) {
         stage.style.height = Hc.toFixed(1) + "px"
         lastH = Hc
@@ -891,7 +898,7 @@ export default function ContributionSkyline({
 
     const onDown = (ev: PointerEvent) => {
       if (ev.button !== 0) return
-      const can = cfg.current.orbit && target === 1
+      const can = cfg.current.orbit && target >= 0.99
       drag = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, yaw: yawGoal, elev: elevGoal, moved: false, orbit: can, mouse: ev.pointerType === "mouse" }
       if (can) {
         try {
@@ -1023,7 +1030,7 @@ export default function ContributionSkyline({
       setTarget()
     }
     let io: IntersectionObserver | null = null
-    if ("IntersectionObserver" in window) {
+    if (!cfg.current.scrollMorph && "IntersectionObserver" in window) {
       io = new IntersectionObserver(
         (entries) => {
           if (entries.some((en) => en.isIntersecting)) {
@@ -1098,7 +1105,7 @@ export default function ContributionSkyline({
 
   React.useEffect(() => {
     engine.current?.kick()
-  }, [view, legendLevel])
+  }, [view, legendLevel, cameraTarget])
 
   React.useEffect(() => {
     engine.current?.load()
@@ -1121,7 +1128,7 @@ export default function ContributionSkyline({
     return f.format(dayMs(a)) + " — " + f.format(dayMs(b))
   }
   const is3d = view === "3d"
-  const corners = showStats && width >= 560
+  const corners = showStats && width >= 560 && !scrollMorph
   const bigSize = Math.round(Math.max(30, Math.min(56, width * 0.058)))
   const statBlocks = [
     { label: "1 year total", value: nf.format(stats.total), unit: noun(stats.total), sub: range(stats.first, stats.last, true) },

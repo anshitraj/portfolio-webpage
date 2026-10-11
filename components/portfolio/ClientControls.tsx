@@ -21,6 +21,7 @@ import { SITE } from '@/data/site';
 const sections = [
   { label: 'Home', href: '#home', id: 'home', Icon: Home },
   { label: 'Projects', href: '#projects', id: 'projects', Icon: TerminalSquare },
+  { label: 'GitHub', href: '#github', id: 'github', Icon: Github },
   { label: 'Experience', href: '#experience', id: 'experience', Icon: BriefcaseBusiness },
   { label: 'Proof', href: '#proof', id: 'proof', Icon: BarChart3 },
   { label: 'CVs', href: '#resumes', id: 'resumes', Icon: FileText },
@@ -124,7 +125,7 @@ export function PortfolioNavigation() {
           </a>
         ))}
         <span aria-hidden />
-        <a href="#github" aria-label="GitHub contributions" data-tooltip="GitHub contributions">
+        <a href={SITE.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub profile" data-tooltip="GitHub profile">
           <Github aria-hidden />
         </a>
       </nav>

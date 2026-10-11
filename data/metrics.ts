@@ -17,21 +17,21 @@ export const HERO_METRICS: Metric[] = [
 
 /** The full "Numbers are better than adjectives" grid. */
 export const IMPACT_METRICS: Metric[] = [
-  { label: 'Products shipped end to end', value: '10+' },
-  { label: 'Generated for clients through Webcoin Labs', value: '$100K' },
-  { label: 'MRR across my products', value: '$1K' },
-  { label: 'Startups I’ve connected and supported', value: '275+' },
-  { label: 'Investors I’ve built relationships with', value: '50+' },
-  { label: 'Creators I run campaigns with', value: '1,500+' },
-  { label: 'Community I grew from zero', value: '200K' },
-  { label: 'Daily actives at peak', value: '3,000+' },
-  { label: 'Users in Mini Cast’s first week', value: '1,500+' },
-  { label: 'Developers I onboarded', value: '25+' },
-  { label: 'Agent payments I test-ran', value: '100+' },
-  { label: 'Views on the Ledger firewall', value: '12K+' },
-  { label: 'Revenue generated through Artyug', value: '₹80,000' },
-  { label: 'Zama FHEVM bounty earned', value: '$1,500' },
-  { label: 'Google Cloud credits won with OmniClaw', value: '$20,000' },
+  { id: 'shipped', group: 'engineering', shortLabel: 'Products shipped', context: 'End to end', label: 'Products shipped end to end', value: '10+' },
+  { id: 'clients', group: 'commercial', shortLabel: 'Generated for clients', context: 'Webcoin Labs', label: 'Generated for clients through Webcoin Labs', value: '$100K' },
+  { id: 'mrr', group: 'commercial', shortLabel: 'Product MRR', context: 'Recurring revenue', label: 'MRR across my products', value: '$1K' },
+  { id: 'startups', group: 'growth', shortLabel: 'Startups supported', context: 'Connections & launch', label: 'Startups I’ve connected and supported', value: '275+' },
+  { id: 'investors', group: 'growth', shortLabel: 'Investor relationships', context: 'Founder network', label: 'Investors I’ve built relationships with', value: '50+' },
+  { id: 'creators', group: 'growth', shortLabel: 'Creator network', context: 'Campaign partners', label: 'Creators I run campaigns with', value: '1,500+' },
+  { id: 'community', group: 'growth', shortLabel: 'Community grown', context: 'Built from zero', label: 'Community I grew from zero', value: '200K' },
+  { id: 'active', group: 'growth', shortLabel: 'Daily active users', context: 'At peak', label: 'Daily actives at peak', value: '3,000+' },
+  { id: 'minicast', group: 'growth', shortLabel: 'Week-one users', context: 'Mini Cast', label: 'Users in Mini Cast’s first week', value: '1,500+' },
+  { id: 'developers', group: 'engineering', shortLabel: 'Developers onboarded', context: 'Developer adoption', label: 'Developers I onboarded', value: '25+' },
+  { id: 'payments', group: 'engineering', shortLabel: 'Agent payments', context: 'Test transactions', label: 'Agent payments I test-ran', value: '100+' },
+  { id: 'ledger', group: 'engineering', shortLabel: 'Project views', context: 'Ledger firewall', label: 'Views on the Ledger firewall', value: '12K+' },
+  { id: 'artyug', group: 'commercial', shortLabel: 'Revenue generated', context: 'Artyug · INR', label: 'Revenue generated through Artyug', value: '₹80,000' },
+  { id: 'zama', group: 'commercial', shortLabel: 'Bounty earned', context: 'Zama FHEVM', label: 'Zama FHEVM bounty earned', value: '$1,500' },
+  { id: 'cloud', group: 'commercial', shortLabel: 'Cloud credits won', context: 'OmniClaw · Google Cloud', label: 'Google Cloud credits won with OmniClaw', value: '$20,000' },
   {
     label: 'People using what I’ve built',
     value: '2,500+',
@@ -51,6 +51,12 @@ export const IMPACT_METRICS: Metric[] = [
     note: 'Publicly checkable and the old site claimed 21.4K. Confirm the live number before shipping.',
   },
 ];
+
+export const IMPACT_GROUPS = [
+  { id: 'commercial', title: 'Revenue & recognition', note: 'Revenue · bounty · non-cash credits' },
+  { id: 'growth', title: 'Growth & relationships', note: 'GTM, community and product adoption' },
+  { id: 'engineering', title: 'Build & ship', note: 'Products, developers and test payments' },
+] as const;
 
 /** Named outcomes — qualitative proof that sits beside the numbers. */
 export const ECOSYSTEM_WORK = [

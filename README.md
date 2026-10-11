@@ -22,7 +22,7 @@ npm run check    # tsc --noEmit
 
 ### GitHub contribution skyline
 
-The homepage's `#github` section renders real activity for `anshitraj` using the GitHub GraphQL contribution calendar, with interactive 2D and 3D views. Requests are made through `/api/github-contributions` and cached for one hour. Generated sample contributions are never used.
+The homepage's `#github` section, immediately after Projects, renders real activity for `anshitraj` using the GitHub GraphQL contribution calendar. The initial 2D heatmap progressively rises into a 3D skyline as its top moves from 82% to 38% of the viewport, and reverses when scrolling up. The chart reserves a stable stage height so the camera transition does not move downstream sections. Visitors can also switch views manually. Reduced-motion users get a direct view change. Requests are made through `/api/github-contributions` and cached for one hour. Generated sample contributions are never used.
 
 Set `GITHUB_TOKEN` in your local `.env.local` and in the hosting provider's **server-side** environment settings, then restart or redeploy. GitHub GraphQL requires authentication. Use a read-only token with the minimum permissions needed to read your profile contributions; this feature does not need repository write access. Do not prefix it with `NEXT_PUBLIC_`, paste it into chat, or commit it. The existing `.env` files are ignored by Git.
 

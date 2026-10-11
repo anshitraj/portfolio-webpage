@@ -32,7 +32,7 @@ import {
 import { visibleAchievements } from '@/data/achievements';
 import { experience } from '@/data/experience';
 import { HOME_PROJECTS, HOME_TECH, MORE_PROJECT_SLUGS, type HomeProject } from '@/data/home';
-import { ECOSYSTEM_WORK, IMPACT_METRICS } from '@/data/metrics';
+import { ECOSYSTEM_WORK, IMPACT_GROUPS, IMPACT_METRICS } from '@/data/metrics';
 import { projects } from '@/data/projects';
 import { RESUME_TRACKS } from '@/data/resumes';
 import { ABOUT, SITE } from '@/data/site';
@@ -64,23 +64,12 @@ const moreProjects = MORE_PROJECT_SLUGS.map((slug) => projects.find((project) =>
 const topProjects = HOME_PROJECTS.filter((project) => project.tier === 'top');
 const secondaryProjects = HOME_PROJECTS.filter((project) => project.tier === 'secondary');
 const archiveVideoCount = moreProjects.filter((project) => project.video).length;
-const metricIcons = [
-  Boxes,
-  DollarSign,
-  TrendingUp,
-  Handshake,
-  Network,
-  Megaphone,
-  Users,
-  Activity,
-  Rocket,
-  Code2,
-  Bot,
-  ShieldCheck,
-  Palette,
-  Trophy,
-  Cloud,
-] as const;
+const metricIcons: Record<string, typeof Boxes> = {
+  shipped: Boxes, clients: DollarSign, mrr: TrendingUp, startups: Handshake,
+  investors: Network, creators: Megaphone, community: Users, active: Activity,
+  minicast: Rocket, developers: Code2, payments: Bot, ledger: ShieldCheck,
+  artyug: Palette, zama: Trophy, cloud: Cloud,
+};
 
 function SectionHeading({ index, title, note, id }: { index: string; title: string; note?: string; id?: string }) {
   return (
@@ -156,7 +145,13 @@ function ProjectCard({ project }: { project: HomeProject }) {
           <span className={styles.projectStatus}><i aria-hidden />{project.status}</span>
         </header>
 
-        <p className={styles.projectDescription}>{project.description}</p>
+        <p className={styles.projectDescription}>{project.shortDescription ?? project.description}</p>
+        {project.shortDescription ? (
+          <details className={styles.projectDetails}>
+            <summary>Product details <ChevronDown aria-hidden /></summary>
+            <p>{project.description}</p>
+          </details>
+        ) : null}
 
         <div className={styles.projectMetrics} aria-label={`${project.title} proof points`}>
           {project.metrics.map((metric) => (
@@ -249,7 +244,11 @@ export function HomePortfolio() {
                   </div>
                   <p>Founding Engineer</p>
                   <small>AI × Payments × Fintech</small>
-                  <span className={styles.quickProof}>10+ products shipped · $100K generated for clients · 275+ startups supported</span>
+                  <div className={styles.quickProof}>
+                    <span><strong>10+</strong> products shipped</span>
+                    <span><strong>$100K</strong> for clients</span>
+                    <span><strong>275+</strong> startups supported</span>
+                  </div>
                 </div>
                 <div className={styles.profileControls}><PaletteTrigger /><ThemeButton /></div>
               </div>
@@ -264,7 +263,7 @@ export function HomePortfolio() {
                 <a href={`mailto:${SITE.email}`}><Mail aria-hidden /> Email me</a>
               </div>
 
-              <p className={styles.socialIntro}>Here are my <strong>socials</strong> and role-specific CVs</p>
+              <p className={styles.socialIntro}>Find me online · choose a CV</p>
               <div className={styles.socials}>
                 {socials.map(({ label, href, Icon }) => (
                   <a
@@ -282,7 +281,7 @@ export function HomePortfolio() {
           </section>
 
           <section className={styles.section} aria-labelledby="tech-stack-title">
-            <SectionHeading index="01" title="Tech stack" note="The tools behind shipped products—not a proficiency chart." />
+            <SectionHeading id="tech-stack-title" index="01" title="Tech stack" note="Tools I ship with." />
             <div className={styles.techGrid}>
               {HOME_TECH.map((tech) => (
                 <a key={tech.name} href={tech.href} target="_blank" rel="noreferrer" aria-label={`${tech.name} website`}>
@@ -294,7 +293,7 @@ export function HomePortfolio() {
           </section>
 
           <section className={styles.section} id="projects" aria-labelledby="projects-title">
-            <SectionHeading index="02" title="Projects" note="Products, infrastructure and experiments running in the real world." />
+            <SectionHeading id="projects-title" index="02" title="Projects" note="Watch the demos. Explore the builds." />
             <div className={styles.projectTierHeading}>
               <div><span aria-hidden>◆</span><strong>Top products</strong></div>
               <small>05 / flagship builds</small>
@@ -314,7 +313,7 @@ export function HomePortfolio() {
             <details className={styles.archiveDisclosure} open>
               <summary>
                 <span>More shipped work</span>
-                <small>{moreProjects.length} project · {archiveVideoCount} running demo</small>
+                <small>{moreProjects.length} project{moreProjects.length === 1 ? '' : 's'} · {archiveVideoCount} demo{archiveVideoCount === 1 ? '' : 's'}</small>
                 <ChevronDown aria-hidden />
               </summary>
               <div className={styles.archiveGrid}>
@@ -323,12 +322,25 @@ export function HomePortfolio() {
             </details>
           </section>
 
+          <section className={styles.section} id="github" aria-labelledby="github-title">
+            <SectionHeading id="github-title" index="03" title="GitHub" note="From daily commits to a year of building." />
+            <GitHubContributions />
+          </section>
+
           <section className={`${styles.section} ${styles.aboutSection}`} id="about" aria-labelledby="about-title">
-            <SectionHeading index="03" title="How I work" note="Engineering is the core. Product judgment and distribution are the leverage." />
+            <SectionHeading id="about-title" index="04" title="How I work" note="Engineering × product × distribution." />
             <div className={styles.aboutGrid}>
               <div>
                 <p className={styles.aboutLead}>{ABOUT.heading}</p>
-                {ABOUT.body.map((paragraph) => <p key={paragraph.slice(0, 32)}>{paragraph}</p>)}
+                <ol className={styles.workSteps}>
+                  <li><span><Code2 aria-hidden /></span><div><strong>Build the missing layer</strong><p>Payment rails, agent permissions, developer tools.</p></div></li>
+                  <li><span><Rocket aria-hidden /></span><div><strong>Ship to real users</strong><p>Fast first versions. Practical feedback.</p></div></li>
+                  <li><span><TrendingUp aria-hidden /></span><div><strong>Turn usage into growth</strong><p>Product iteration, partnerships, distribution.</p></div></li>
+                </ol>
+                <details className={styles.aboutDetails}>
+                  <summary>The longer story <ChevronDown aria-hidden /></summary>
+                  {ABOUT.body.map((paragraph) => <p key={paragraph.slice(0, 32)}>{paragraph}</p>)}
+                </details>
               </div>
               <aside>
                 <Sparkles aria-hidden />
@@ -339,7 +351,7 @@ export function HomePortfolio() {
           </section>
 
           <section className={styles.section} id="experience" aria-labelledby="experience-title">
-            <SectionHeading index="04" title="Experience" note="Engineering, founder-side operations, partnerships and product delivery." />
+            <SectionHeading id="experience-title" index="05" title="Experience" note="Engineering, partnerships and founder-side work." />
             <div className={styles.experienceList}>
               {experience.map((item, index) => {
                 const metrics = visible(item.metrics);
@@ -360,7 +372,7 @@ export function HomePortfolio() {
                           {metrics.map((metric) => <span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>)}
                         </div>
                       ) : null}
-                      <details className={styles.roleDetails} open={index === 0}>
+                      <details className={styles.roleDetails}>
                         <summary>What I did <ChevronDown aria-hidden /></summary>
                         <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
                       </details>
@@ -372,23 +384,33 @@ export function HomePortfolio() {
           </section>
 
           <section className={`${styles.section} ${styles.proofSection}`} id="proof" aria-labelledby="proof-title">
-            <SectionHeading index="05" title="Proof in numbers" note="The quantifiable product, engineering and GTM outcomes behind the work." />
-            <div className={styles.metricsGrid}>
-              {visible(IMPACT_METRICS).map((metric, index) => {
-                const MetricIcon = metricIcons[index] ?? Sparkles;
+            <SectionHeading id="proof-title" index="06" title="Proof in numbers" note="Revenue. Reach. Shipped work." />
+            <div className={styles.metricGroups}>
+              {IMPACT_GROUPS.map((group, groupIndex) => {
+                const metrics = visible(IMPACT_METRICS).filter((metric) => metric.group === group.id);
                 return (
-                  <div key={metric.label}>
-                    <span aria-hidden><MetricIcon /></span>
-                    <strong>{metric.value}</strong>
-                    <p>{metric.label}</p>
-                  </div>
+                  <section key={group.id} className={styles.metricGroup} aria-labelledby={`metric-${group.id}`}>
+                    <header><span>0{groupIndex + 1}</span><h3 id={`metric-${group.id}`}>{group.title}</h3><small>{group.note}</small></header>
+                    <dl className={styles.metricsGrid} style={{ '--metric-columns': metrics.length } as React.CSSProperties}>
+                      {metrics.map((metric) => {
+                        const MetricIcon = metricIcons[metric.id ?? ''] ?? Sparkles;
+                        return (
+                          <div key={metric.id ?? metric.label} className={styles.metricCard}>
+                            <span className={styles.metricIcon} aria-hidden><MetricIcon /></span>
+                            <dt><strong aria-hidden>{metric.shortLabel ?? metric.label}</strong><span className="sr-only">{metric.label}</span><small>{metric.context}</small></dt>
+                            <dd>{metric.value}</dd>
+                          </div>
+                        );
+                      })}
+                    </dl>
+                  </section>
                 );
               })}
             </div>
 
             <div className={styles.proofSplit}>
               <div>
-                <h3>GTM execution receipts</h3>
+                <h3>GTM in action</h3>
                 <div className={styles.ecosystemList}>
                   {ECOSYSTEM_WORK.map((item) => (
                     <div key={item.org}>
@@ -413,13 +435,8 @@ export function HomePortfolio() {
             </div>
           </section>
 
-          <section className={styles.section} id="github" aria-labelledby="github-title">
-            <SectionHeading id="github-title" index="06" title="GitHub" note="A year of building, one contribution at a time." />
-            <GitHubContributions />
-          </section>
-
           <section className={styles.section} id="writing" aria-labelledby="writing-title">
-            <SectionHeading index="07" title="Writing" note="Notes from inside payments, marketplaces and agent infrastructure." />
+            <SectionHeading id="writing-title" index="07" title="Writing" note="Notes from the build." />
             <div className={styles.writingList}>
               {writing.slice(0, 3).map((post, index) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`}>
@@ -436,8 +453,9 @@ export function HomePortfolio() {
           <section className={`${styles.section} ${styles.resumeSection}`} id="resumes" aria-labelledby="resumes-title">
             <SectionHeading
               index="08"
+              id="resumes-title"
               title="Role-Specific CVs"
-              note="Choose the version aligned with the role you are hiring for—no generic résumé guessing game."
+              note="Pick the role. Open the right CV."
             />
 
             <div className={styles.resumeRouter}>
@@ -487,7 +505,7 @@ export function HomePortfolio() {
           <section className={styles.contact} id="contact" aria-labelledby="contact-title">
             <p>AVAILABLE FOR THE RIGHT PROBLEM</p>
             <h2 id="contact-title">Building infrastructure that has to work?</h2>
-            <span>Payments, agent systems, developer tools—or the zero-to-one product around them.</span>
+            <span>Payments · AI agents · Developer tools · Zero-to-one products</span>
             <a href={SITE.calendar} target="_blank" rel="noreferrer">Let&apos;s talk <ArrowUpRight aria-hidden /></a>
           </section>
         </main>
