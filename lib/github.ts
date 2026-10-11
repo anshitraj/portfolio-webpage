@@ -2,6 +2,8 @@
  * GitHub proxies. Ported from the old Vercel serverless functions.
  * Set GITHUB_TOKEN for 5,000 req/h; unauthenticated is 60/h.
  */
+import 'server-only';
+
 const UA = 'anshitraj-portfolio/2.0 (anshitraj)';
 const GRAPHQL = 'https://api.github.com/graphql';
 
@@ -200,6 +202,7 @@ export async function fetchContributions(
   username = DEFAULT_USER,
   revalidate = 3600
 ): Promise<ContributionCalendar> {
+  if (!process.env.GITHUB_TOKEN) throw new Error('GitHub contributions are temporarily unavailable');
   const to = new Date();
   const from = new Date(to);
   from.setFullYear(from.getFullYear() - 1);
@@ -225,8 +228,10 @@ export async function fetchContributions(
       variables: { username, from: from.toISOString(), to: to.toISOString() },
     }),
     next: { revalidate },
+    signal: AbortSignal.timeout(10000),
   });
 
+  if (!res.ok) throw new Error('GitHub contributions are temporarily unavailable');
   const data = await res.json();
   if (data?.errors?.length) throw new Error(data.errors[0]?.message ?? 'GraphQL error');
 

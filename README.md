@@ -20,7 +20,13 @@ npm run build    # production build
 npm run check    # tsc --noEmit
 ```
 
-Optional env var: `GITHUB_TOKEN` raises the GitHub API rate limit from 60 to 5,000 req/h. The Open Source section renders a fallback without it.
+### GitHub contribution skyline
+
+The homepage's `#github` section renders real activity for `anshitraj` using the GitHub GraphQL contribution calendar, with interactive 2D and 3D views. Requests are made through `/api/github-contributions` and cached for one hour. Generated sample contributions are never used.
+
+Set `GITHUB_TOKEN` in your local `.env.local` and in the hosting provider's **server-side** environment settings, then restart or redeploy. GitHub GraphQL requires authentication. Use a read-only token with the minimum permissions needed to read your profile contributions; this feature does not need repository write access. Do not prefix it with `NEXT_PUBLIC_`, paste it into chat, or commit it. The existing `.env` files are ignored by Git.
+
+Without a valid token, visitors get a retry option and your GitHub profile link instead of fabricated statistics. Private contribution visibility follows the account's GitHub settings; no private repository names or code are requested by the calendar query.
 
 ## Content lives in `/data`
 

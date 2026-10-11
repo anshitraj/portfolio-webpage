@@ -31,6 +31,7 @@ const commands = [
   { label: 'Go to Projects', detail: 'Section', href: '#projects', Icon: TerminalSquare },
   { label: 'Go to Experience', detail: 'Section', href: '#experience', Icon: BriefcaseBusiness },
   { label: 'Go to Proof', detail: 'Section', href: '#proof', Icon: BarChart3 },
+  { label: 'Explore GitHub contributions', detail: 'Interactive 2D / 3D skyline', href: '#github', Icon: Github },
   { label: 'Go to Writing', detail: 'Section', href: '#writing', Icon: FileText },
   { label: 'Browse role-specific CVs', detail: '8 tailored files', href: '#resumes', Icon: FileText },
   { label: 'Open GitHub', detail: 'External', href: SITE.socials.github, Icon: Github },
@@ -123,7 +124,7 @@ export function PortfolioNavigation() {
           </a>
         ))}
         <span aria-hidden />
-        <a href={SITE.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub">
+        <a href="#github" aria-label="GitHub contributions" data-tooltip="GitHub contributions">
           <Github aria-hidden />
         </a>
       </nav>

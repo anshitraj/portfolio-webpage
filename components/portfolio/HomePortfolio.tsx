@@ -39,6 +39,7 @@ import { ABOUT, SITE } from '@/data/site';
 import { writing } from '@/data/writing';
 import { visible } from '@/lib/metrics';
 import { ProjectMedia } from '@/components/shared/ProjectMedia';
+import { GitHubContributions } from './GitHubContributions';
 import { BannerClock, CommandPalette, PaletteTrigger, PortfolioNavigation, ThemeButton } from './ClientControls';
 import styles from './HomePortfolio.module.css';
 
@@ -81,12 +82,12 @@ const metricIcons = [
   Cloud,
 ] as const;
 
-function SectionHeading({ index, title, note }: { index: string; title: string; note?: string }) {
+function SectionHeading({ index, title, note, id }: { index: string; title: string; note?: string; id?: string }) {
   return (
     <header className={styles.sectionHeading}>
       <span>{index}</span>
       <div>
-        <h2>{title}</h2>
+        <h2 id={id}>{title}</h2>
         {note ? <p>{note}</p> : null}
       </div>
       <i aria-hidden />
@@ -412,8 +413,13 @@ export function HomePortfolio() {
             </div>
           </section>
 
+          <section className={styles.section} id="github" aria-labelledby="github-title">
+            <SectionHeading id="github-title" index="06" title="GitHub" note="A year of building, one contribution at a time." />
+            <GitHubContributions />
+          </section>
+
           <section className={styles.section} id="writing" aria-labelledby="writing-title">
-            <SectionHeading index="06" title="Writing" note="Notes from inside payments, marketplaces and agent infrastructure." />
+            <SectionHeading index="07" title="Writing" note="Notes from inside payments, marketplaces and agent infrastructure." />
             <div className={styles.writingList}>
               {writing.slice(0, 3).map((post, index) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`}>
@@ -429,7 +435,7 @@ export function HomePortfolio() {
 
           <section className={`${styles.section} ${styles.resumeSection}`} id="resumes" aria-labelledby="resumes-title">
             <SectionHeading
-              index="07"
+              index="08"
               title="Role-Specific CVs"
               note="Choose the version aligned with the role you are hiring for—no generic résumé guessing game."
             />

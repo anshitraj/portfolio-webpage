@@ -767,3 +767,52 @@
   .projectCard, .techGrid a > span, .writingList svg, .resumeTrack a { transition: none; }
   .projectCard:hover, .techGrid a:hover > span, .resumeTrack a:hover { transform: none; }
 }
+.githubPanel {
+  --color-background: var(--p-surface);
+  --color-foreground: var(--p-ink);
+  --color-border: var(--p-line-bright);
+  --color-muted-foreground: var(--p-muted);
+  min-width: 0;
+}
+
+.githubTopline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.githubTopline a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  color: var(--p-ink);
+}
+
+.githubTopline svg { width: 17px; height: 17px; }
+.githubTopline span { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--p-muted); }
+.githubTopline i { width: 6px; height: 6px; border-radius: 50%; background: #39d353; }
+.githubSkyline { min-width: 0; }
+.githubSkyline button { min-width: 24px; min-height: 24px; }
+.githubFootnote { margin-top: 14px; max-width: 740px; font-size: 12px; line-height: 1.7; color: var(--p-muted); }
+
+.githubPlaceholder {
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--p-line-bright);
+  border-radius: 12px;
+  background: var(--p-surface);
+  text-align: center;
+}
+.githubPlaceholder > svg { width: 32px; height: 32px; color: var(--p-muted); }
+.githubPlaceholder p { font-size: 13px; color: var(--p-muted); }
+.githubPlaceholder button { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--p-line-bright); border-radius: 6px; }
+.githubPlaceholder button svg { width: 14px; height: 14px; }
